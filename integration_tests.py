@@ -1,29 +1,53 @@
-```javascript
-// Integration tests for the search_stays function
+Based on the provided information, here is a Python script using pytest and requests to create integration tests for the backend. This script will test the `/search` endpoint of the backend.
 
-const { search_stays } = require('./your_integration_file'); // Import your integration file here
-const assert = require('assert');
+```python
+import pytest
+import requests
+import json
 
-describe('Search Stays Integration Tests', () => {
-    it('should return search results for stays based on provided parameters', async () => {
-        const access_token = "YOUR_ACCESS_TOKEN";
-        const check_in_date = "2023-01-15";
-        const check_out_date = "2023-01-20";
-        const adults = 2;
-        const rooms = 1;
-        const latitude = 37.7749;
-        const longitude = -122.4194;
-        const radius = 10;
+def test_search_flights():
+    url = 'http://localhost:5000/search'
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    data = {
+        "origin": "LON",
+        "destination": "NYC",
+        "departure_date": "2022-12-01",
+        "return_date": "2022-12-15"
+    }
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+    assert response.status_code == 200
+    assert 'data' in response.json()
 
-        const response = await search_stays(access_token, check_in_date, check_out_date, adults, rooms, latitude, longitude, radius);
+def test_search_flights_no_data():
+    url = 'http://localhost:5000/search'
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    data = {}
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+    assert response.status_code == 400
 
-        assert(response.data.results.length > 0);
-        assert(response.data.results[0].rooms === rooms);
-        assert(response.data.results[0].check_in_date === check_in_date);
-        assert(response.data.results[0].check_out_date === check_out_date);
-        assert(response.data.results[0].adults === adults);
-        assert(response.data.results[0].location.geographic_coordinates.latitude === latitude);
-        assert(response.data.results[0].location.geographic_coordinates.longitude === longitude);
-    });
-});
+def test_search_flights_invalid_data():
+    url = 'http://localhost:5000/search'
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    data = {
+        "origin": "123",
+        "destination": "456",
+        "departure_date": "2022-12-01",
+        "return_date": "2022-12-15"
+    }
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+    assert response.status_code == 400
 ```
+
+To run the tests, use the following command:
+
+```bash
+pytest test_integration.py
+```
+
+Please note that these tests assume that the backend is running locally on port 5000. The tests also assume that the Duffel API will return a 400 status code when it receives invalid data. You may need to adjust these assumptions based on your specific requirements.
