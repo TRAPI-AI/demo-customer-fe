@@ -1,39 +1,34 @@
-'''OTA'''
-import json
-import logging
+```python
+# Backend function to integrate with Duffel API provider for searching stays
+
 import requests
-from flask import Flask, request, jsonify
 
-logging.basicConfig(
-    level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s"
-)
-
-
-app = Flask(__name__)
-
-
-@app.route("/search", methods=["POST"])
-def search():
-    '''Search'''
-    data = request.get_json()
-
+def search_stays(access_token, check_in_date, check_out_date, adults, rooms, latitude, longitude, radius):
+    url = "https://api.duffel.com/stays/search"
     headers = {
         "Accept-Encoding": "gzip",
         "Accept": "application/json",
         "Content-Type": "application/json",
         "Duffel-Version": "v1",
-        "Authorization": "Bearer duffel_test_O6axsBfPB1YFwLk2tVJaNYXiFhITUnItVS8FJEtfpRp",
+        "Authorization": f"Bearer {access_token}"
     }
-
-    response = requests.post(
-        "https://api.duffel.com/stays/search", headers=headers, data=json.dumps(data)
-    )
-    logging.debug(
-        f"Received response from external API: {response.status_code}, Body: {response.text}"
-    )
-
-    return jsonify(response.json())
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+    data = {
+        "data": {
+            "rooms": rooms,
+            "location": {
+                "radius": radius,
+                "geographic_coordinates": {
+                    "longitude": longitude,
+                    "latitude": latitude
+                }
+            },
+            "check_out_date": check_out_date,
+            "check_in_date": check_in_date,
+            "adults": adults
+        }
+    }
+    
+    response = requests.post(url, headers=headers, json=data)
+    
+    return response.json()
+```
