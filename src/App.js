@@ -1,27 +1,76 @@
-import React, { useEffect } from 'react';
+import React, { useState } from "react";
 
 function App() {
-  const testBackendConnection = async () => {
+  const [destination, setDestination] = useState("");
+  const [checkInDate, setCheckInDate] = useState("");
+  const [checkOutDate, setCheckOutDate] = useState("");
+  const [results, setResults] = useState([]);
+
+  const searchStays = async (data) => {
+    console.log("Sending data to backend:", data); // Log data being sent
+    const response = await fetch("http://localhost:5000/search", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    console.log("Received data from backend:", responseData); // Log data received
+    return responseData;
+  };
+
+  const submitSearch = async () => {
+    const data = {
+      destination: destination,
+      checkInDate: checkInDate,
+      checkOutDate: checkOutDate,
+    };
+
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/test');
-      const data = await response.json();
-      console.log('Backend response:', data);
-      alert(`Backend says: ${data.message}`);
+      const results = await searchStays(data);
+      console.log("Search results:", results); // Log the results set to state
+      setResults(results);
     } catch (error) {
-      console.error('Error connecting to backend:', error);
-      alert('Failed to connect to backend.');
+      console.error("Error:", error);
     }
   };
 
-  useEffect(() => {
-    testBackendConnection();
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <div>Hello world!</div>
-      </header>
+    <div>
+      <div id="searchForm">
+        <input
+          type="text"
+          id="destination"
+          placeholder="Enter destination"
+          onChange={(e) => setDestination(e.target.value)}
+        />
+        <input
+          type="date"
+          id="checkInDate"
+          onChange={(e) => setCheckInDate(e.target.value)}
+        />
+        <input
+          type="date"
+          id="checkOutDate"
+          onChange={(e) => setCheckOutDate(e.target.value)}
+        />
+        <button onClick={submitSearch}>Search</button>
+      </div>
+      <div id="results">
+        {results.map((result, index) => (
+          <div key={index}>
+            <h2>{result.name}</h2>
+            <p>{result.description}</p>
+            <p>{result.price}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
