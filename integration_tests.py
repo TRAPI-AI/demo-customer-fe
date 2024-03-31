@@ -1,69 +1,61 @@
-# Here are some integration tests for the Duffel API based on the documentation provided. These tests are written in JavaScript using the Mocha testing framework and the Chai assertion library.
+Based on the provided integration actions and backend endpoint result, here is a Python script for the backend integration tests. This script uses the `unittest` and `requests` libraries to test the `/search` endpoint of the backend.
 
-# ```javascript
-# const chai = require('chai');
-# const chaiHttp = require('chai-http');
-# const expect = chai.expect;
+```python
+import unittest
+import requests
+import json
 
-# chai.use(chaiHttp);
+class TestSearchStays(unittest.TestCase):
+    BASE_URL = 'http://localhost:5000/search'
+    HEADERS = {
+        'Content-Type': 'application/json'
+    }
 
-# describe('Duffel API Integration Tests', function() {
-#   const API_URL = 'https://duffel.com/api';
+    def test_search_stays_success(self):
+        data = {
+            "check_in": "2022-12-01",
+            "check_out": "2022-12-10",
+            "location": "London",
+            "guests": 2
+        }
+        response = requests.post(self.BASE_URL, headers=self.HEADERS, data=json.dumps(data))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('results' in response.json())
 
-#   it('should successfully search for stays', function(done) {
-#     chai.request(API_URL)
-#       .get('/stays')
-#       .end(function(err, res) {
-#         expect(res).to.have.status(200);
-#         expect(res.body).to.be.an('array');
-#         done();
-#       });
-#   });
+    def test_search_stays_failure(self):
+        data = {
+            "check_in": "2022-12-01",
+            "check_out": "2022-12-10",
+            "location": "",
+            "guests": 2
+        }
+        response = requests.post(self.BASE_URL, headers=self.HEADERS, data=json.dumps(data))
+        self.assertEqual(response.status_code, 400)
 
-#   it('should successfully get stay details', function(done) {
-#     const stayId = 'some-stay-id'; // Replace with a valid stay ID
-#     chai.request(API_URL)
-#       .get(`/stays/${stayId}`)
-#       .end(function(err, res) {
-#         expect(res).to.have.status(200);
-#         expect(res.body).to.be.an('object');
-#         done();
-#       });
-#   });
+    def test_search_stays_invalid_token(self):
+        data = {
+            "check_in": "2022-12-01",
+            "check_out": "2022-12-10",
+            "location": "London",
+            "guests": 2
+        }
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer invalid_token'
+        }
+        response = requests.post(self.BASE_URL, headers=headers, data=json.dumps(data))
+        self.assertEqual(response.status_code, 401)
 
-#   it('should successfully create a booking', function(done) {
-#     const bookingData = {}; // Replace with valid booking data
-#     chai.request(API_URL)
-#       .post('/bookings')
-#       .send(bookingData)
-#       .end(function(err, res) {
-#         expect(res).to.have.status(201);
-#         expect(res.body).to.be.an('object');
-#         done();
-#       });
-#   });
+if __name__ == '__main__':
+    unittest.main()
+```
 
-#   it('should successfully get booking details', function(done) {
-#     const bookingId = 'some-booking-id'; // Replace with a valid booking ID
-#     chai.request(API_URL)
-#       .get(`/bookings/${bookingId}`)
-#       .end(function(err, res) {
-#         expect(res).to.have.status(200);
-#         expect(res.body).to.be.an('object');
-#         done();
-#       });
-#   });
+This script includes three tests:
 
-#   it('should successfully cancel a booking', function(done) {
-#     const bookingId = 'some-booking-id'; // Replace with a valid booking ID
-#     chai.request(API_URL)
-#       .delete(`/bookings/${bookingId}`)
-#       .end(function(err, res) {
-#         expect(res).to.have.status(204);
-#         done();
-#       });
-#   });
-# });
-# ```
+1. `test_search_stays_success`: This test checks if the `/search` endpoint returns a 200 status code and a response containing 'results' when valid data is sent.
 
-# Please replace the placeholders with valid data before running the tests.
+2. `test_search_stays_failure`: This test checks if the `/search` endpoint returns a 400 status code when invalid data (empty location) is sent.
+
+3. `test_search_stays_invalid_token`: This test checks if the `/search` endpoint returns a 401 status code when an invalid access token is used.
+
+Please replace the `data` and `headers` in the tests with the actual data and headers you want to use for testing.
