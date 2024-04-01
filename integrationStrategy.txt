@@ -1,27 +1,67 @@
-**Summary of the Docs:**
+Based on the Duffel API documentation, here are the required parameters for the payload object and the response data object:
 
-The Duffel API documentation provides information on how to create an offer request to search for flights. An offer request describes the passengers, where and when they want to travel (in the form of a list of slices), and may also include additional filters (e.g., a particular cabin to travel in).
+**Payload Object:**
 
-**Guidance for LLM Model:**
+```json
+{
+  "data": {
+    "slices": [
+      {
+        "origin": "string", // Required. The IATA code of the origin airport.
+        "destination": "string", // Required. The IATA code of the destination airport.
+        "departure_date": "string" // Required. The date of departure in the format "YYYY-MM-DD".
+      }
+    ],
+    "passengers": [
+      {
+        "type": "string" // Required. The type of passenger. Possible values: "adult", "child", "infant", "young_adult", "senior".
+      }
+    ]
+  }
+}
+```
 
-1. **Backend (Python):**
-   - Use the `requests` library to make HTTP requests to the Duffel API.
-   - The base URL for the API is `https://api.duffel.com/air/offer_requests`.
-   - To create an offer request, make a POST request to the base URL.
-   - The minimum required payload for the POST request includes:
-     - `slices`: A list of slices that make up the offer request. One-way journeys can be expressed using one slice, whereas return trips will need two.
-     - `passengers`: A list of passengers who want to travel.
-   - The headers should include `Accept-Encoding: gzip`, `Accept: application/json`, `Content-Type: application/json`, `Duffel-Version: v1`, and `Authorization: Bearer <YOUR_ACCESS_TOKEN>`.
-   - Handle errors by checking the HTTP status code of the response. If it's not 200, raise an exception or return an error message.
+**Response Data Object:**
 
-2. **Frontend (React):**
-   - Create a form for the user to input the required fields (`slices` and `passengers`).
-   - The `slices` field should allow the user to input multiple slices, each with an origin, destination, and departure date.
-   - The `passengers` field should allow the user to input multiple passengers, each with a given name and family name.
-   - On form submission, send the form data to the backend to be used in the API request.
-   - Handle errors by catching them in the frontend and displaying an error message to the user.
+```json
+{
+  "data": {
+    "slices": [
+      {
+        "origin_type": "string", // The type of the origin. Possible values: "airport", "city".
+        "origin": {
+          "type": "string", // The type of the origin. Possible values: "airport", "city".
+          "id": "string", // Duffel's unique identifier for the origin.
+          "iata_code": "string", // The IATA code of the origin.
+          "iata_country_code": "string", // The IATA code of the country of the origin.
+          "iata_city_code": "string", // The IATA code of the city of the origin.
+          "name": "string", // The name of the origin.
+          "city_name": "string", // The name of the city of the origin.
+          "time_zone": "string", // The time zone of the origin.
+          "longitude": "number", // The longitude of the origin.
+          "latitude": "number" // The latitude of the origin.
+        },
+        "destination_type": "string", // The type of the destination. Possible values: "airport", "city".
+        "destination": {
+          "type": "string", // The type of the destination. Possible values: "airport", "city".
+          "id": "string", // Duffel's unique identifier for the destination.
+          "iata_code": "string", // The IATA code of the destination.
+          "iata_country_code": "string", // The IATA code of the country of the destination.
+          "iata_city_code": "string", // The IATA code of the city of the destination.
+          "name": "string", // The name of the destination.
+          "city_name": "string", // The name of the city of the destination.
+          "time_zone": "string", // The time zone of the destination.
+          "longitude": "number", // The longitude of the destination.
+          "latitude": "number" // The latitude of the destination.
+        },
+        "departure_date": "string" // The date of departure in the format "YYYY-MM-DD".
+      }
+    ],
+    "id": "string", // Duffel's unique identifier for the offer request.
+    "created_at": "string", // The ISO 8601 datetime at which the offer request was created.
+    "live_mode": "boolean" // Whether the offer request was created in live mode.
+  }
+}
+```
 
-**Error Handling:**
-- Check the HTTP status code of the response. If it's not 200, raise an exception or return an error message.
-- In the frontend, catch any errors and display an appropriate error message to the user.
-- Consider implementing a retry mechanism for network-related errors.
+Please note that the actual response may contain more data fields depending on the specific request and the data provided by the airlines.

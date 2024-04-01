@@ -1,53 +1,67 @@
-Based on the provided information, we can write integration tests for the backend using Python's unittest module and the requests library. Here's a basic example of how you might structure your tests:
-
 ```python
-import os
 import unittest
-import requests
-from flask import Flask
-from your_flask_app import create_offer_request
+from unittest.mock import patch
+from app import app
 
 class TestIntegration(unittest.TestCase):
+
     def setUp(self):
-        self.app = Flask(__name__)
-        self.client = self.app.test_client()
-        self.headers = {
-            'Accept-Encoding': 'gzip',
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Duffel-Version': 'v1',
-            'Authorization': f"Bearer {os.getenv('DUFFEL_ACCESS_TOKEN')}"
-        }
+        self.app = app.test_client()
+        self.app.testing = True
 
-    def test_create_offer_request_success(self):
-        data = {
-            "slices": [{"origin": "LON", "destination": "NYC", "departure_date": "2023-09-01"}],
-            "passengers": [{"type": "adult"}]
+    @patch('requests.post')
+    def test_create_offer_success(self, mock_post):
+        mock_post.return_value.json.return_value = {
+            "data": {
+                "id": "123456",
+                "created_at": "2022-01-01T12:00:00Z",
+                "live_mode": True
+            }
         }
-        response = self.client.post('/api/offer_requests', headers=self.headers, json=data)
+        payload = {
+            "data": {
+                "slices": [
+                    {
+                        "origin": "JFK",
+                        "destination": "LAX",
+                        "departure_date": "2022-12-25"
+                    }
+                ],
+                "passengers": [
+                    {
+                        "type": "adult"
+                    }
+                ]
+            }
+        }
+        response = self.app.post('/create-offer', json=payload)
         self.assertEqual(response.status_code, 200)
-        self.assertIn('data', response.get_json())
+        self.assertEqual(response.json['data']['id'], "123456")
+        self.assertEqual(response.json['data']['created_at'], "2022-01-01T12:00:00Z")
+        self.assertEqual(response.json['data']['live_mode'], True)
 
-    def test_create_offer_request_fail(self):
-        data = {
-            "slices": [{"origin": "LON", "destination": "NYC", "departure_date": "2023-09-01"}],
-            "passengers": [{"type": "adult"}]
+    @patch('requests.post')
+    def test_create_offer_failure(self, mock_post):
+        mock_post.return_value.status_code = 400
+        payload = {
+            "data": {
+                "slices": [
+                    {
+                        "origin": "JFK",
+                        "destination": "LAX",
+                        "departure_date": "2022-12-25"
+                    }
+                ],
+                "passengers": [
+                    {
+                        "type": "adult"
+                    }
+                ]
+            }
         }
-        response = self.client.post('/api/offer_requests', headers=self.headers, json=data)
+        response = self.app.post('/create-offer', json=payload)
         self.assertEqual(response.status_code, 400)
-        self.assertIn('error', response.get_json())
 
 if __name__ == '__main__':
     unittest.main()
-```
-
-In this example, we have two tests: `test_create_offer_request_success` and `test_create_offer_request_fail`. The first test checks that a successful request returns a 200 status code and includes 'data' in the response. The second test checks that a failed request returns a 400 status code and includes 'error' in the response.
-
-Please replace `from your_flask_app import create_offer_request` with the actual import statement for your Flask application.
-
-Remember to install the required dependencies for testing:
-
-```bash
-pip install unittest2
-pip install requests
 ```
