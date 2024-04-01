@@ -1,41 +1,50 @@
-Based on the Duffel API documentation, here is a Python script using Flask to create a backend that will call the Duffel API. This script will run locally on port 5000 and handle all CORS.
+Based on the Duffel API documentation, to integrate with the provider's content via API, you will need to make a POST request to the endpoint `https://api.duffel.com/stays/search` with the required parameters in the request body. The backend function to make the integration work should be a route that handles this POST request.
+
+Here is the Python script for the backend using Flask that will call the Duffel API based on their documentation:
 
 ```python
 from flask import Flask, request, jsonify
-from flask_cors import CORS
 import requests
-import json
 
 app = Flask(__name__)
-CORS(app)
 
-@app.route('/search', methods=['POST'])
-def search():
-    data = request.get_json()
+@app.route('/search_stays', methods=['POST'])
+def search_stays():
+    url = "https://api.duffel.com/stays/search"
     headers = {
-        'Accept-Encoding': 'gzip',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Duffel-Version': 'v1',
-        'Authorization': 'Bearer <YOUR_ACCESS_TOKEN>',
+        "Accept-Encoding": "gzip",
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Duffel-Version": "v1",
+        "Authorization": "Bearer <YOUR_ACCESS_TOKEN>"
     }
-    response = requests.post('https://api.duffel.com/stays/search', headers=headers, data=json.dumps(data))
-    return jsonify(response.json()['data']), response.status_code
+    data = {
+        "data": {
+            "rooms": 1,
+            "location": {
+                "radius": 5,
+                "geographic_coordinates": {
+                    "longitude": -0.1416,
+                    "latitude": 51.5071
+                }
+            },
+            "check_out_date": "2023-06-07",
+            "check_in_date": "2023-06-04",
+            "adults": 2
+        }
+    }
+
+    response = requests.post(url, headers=headers, json=data)
+    return jsonify(response.json())
 
 if __name__ == '__main__':
     app.run(port=5000)
 ```
 
-Replace `<YOUR_ACCESS_TOKEN>` with your actual access token.
-
-This script creates a POST endpoint at `/search` that accepts JSON data in the request body. It then forwards this data to the Duffel API and returns the response.
-
-To install the required dependencies, use the following commands:
+To install the required dependencies, you can use the following command:
 
 ```bash
-pip install flask
-pip install flask_cors
-pip install requests
+pip install Flask requests
 ```
 
-Please note that this script does not include any error handling or validation of the input data. You may want to add this depending on your specific requirements.
+This Flask app will host the backend locally on port 5000 and provide a route `/search_stays` to search for stays using the Duffel API.
