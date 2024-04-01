@@ -1,66 +1,76 @@
-Sure, here is a complete React component that you can copy and paste into your file. This component includes the necessary state variables, event handlers, and UI components. It also includes the function that makes the API call to the backend.
-
-```jsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const App = () => {
   const [payload, setPayload] = useState({
     data: {
       slices: [
         {
-          origin: '',
-          destination: '',
-          departure_date: ''
-        }
+          origin: "",
+          destination: "",
+          departure_date: "",
+        },
       ],
       passengers: [
         {
-          type: ''
-        }
-      ]
-    }
+          type: "",
+        },
+      ],
+    },
   });
   const [response, setResponse] = useState(null);
 
   const handleRequest = async () => {
     try {
-      const res = await fetch('http://localhost:5000/create-offer', {
-        method: 'POST',
+      console.log("Sending payload:", payload); // Log the payload
+      const res = await fetch("http://localhost:5000/create-offer", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
         throw new Error(res.status);
       }
-
       const data = await res.json();
       setResponse(data);
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
   const handleChange = (e) => {
-    setPayload({
-      ...payload,
-      data: {
-        ...payload.data,
-        slices: [
-          {
-            ...payload.data.slices[0],
-            [e.target.name]: e.target.value
-          }
-        ],
-        passengers: [
-          {
-            type: e.target.value
-          }
-        ]
-      }
-    });
+    const { name, value } = e.target;
+  
+    if (name === "type") {
+      // Update passenger type
+      setPayload({
+        ...payload,
+        data: {
+          ...payload.data,
+          passengers: [
+            {
+              type: value,
+            },
+          ],
+        },
+      });
+    } else {
+      // Update slices information
+      setPayload({
+        ...payload,
+        data: {
+          ...payload.data,
+          slices: [
+            {
+              ...payload.data.slices[0],
+              [name]: value,
+            },
+          ],
+        },
+      });
+    }
   };
 
   return (
@@ -88,7 +98,9 @@ const App = () => {
             <option value="senior">Senior</option>
           </select>
         </label>
-        <button type="button" onClick={handleRequest}>Send Request</button>
+        <button type="button" onClick={handleRequest}>
+          Send Request
+        </button>
       </form>
       {response && (
         <div>
@@ -103,6 +115,3 @@ const App = () => {
 };
 
 export default App;
-```
-
-Please note that this code assumes that your backend server is running on `http://localhost:5000` and that it has an endpoint `/create-offer` that accepts POST requests. You may need to adjust these values based on your actual backend setup.
