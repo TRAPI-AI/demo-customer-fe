@@ -1,53 +1,49 @@
-Based on the provided information, here is a Python script using pytest and requests to create integration tests for the backend. This script will test the `/search` endpoint of the backend.
+Based on the provided information, here is a simple integration test for the `createOfferRequest` function using Jest, a popular JavaScript testing framework. This test will ensure that the function is correctly making a POST request to the `/api/offer_requests` endpoint and handling the response.
 
-```python
-import pytest
-import requests
-import json
+```javascript
+const fetch = require('node-fetch');
+const createOfferRequest = require('./createOfferRequest'); // assuming the function is exported from this file
 
-def test_search_flights():
-    url = 'http://localhost:5000/search'
-    headers = {
+jest.mock('node-fetch');
+
+describe('createOfferRequest', () => {
+  it('should make a POST request to /api/offer_requests and return the response', async () => {
+    const mockResponse = { id: 'offer_123', status: 'success' };
+    fetch.mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve(mockResponse),
+      status: 200
+    });
+
+    const data = { /* your test data here */ };
+    const response = await createOfferRequest(data);
+
+    expect(fetch).toHaveBeenCalledWith('http://localhost:5000/api/offer_requests', {
+      method: 'POST',
+      headers: {
         'Content-Type': 'application/json'
-    }
-    data = {
-        "origin": "LON",
-        "destination": "NYC",
-        "departure_date": "2022-12-01",
-        "return_date": "2022-12-15"
-    }
-    response = requests.post(url, headers=headers, data=json.dumps(data))
-    assert response.status_code == 200
-    assert 'data' in response.json()
+      },
+      body: JSON.stringify(data)
+    });
+    expect(response).toEqual(mockResponse);
+  });
 
-def test_search_flights_no_data():
-    url = 'http://localhost:5000/search'
-    headers = {
-        'Content-Type': 'application/json'
-    }
-    data = {}
-    response = requests.post(url, headers=headers, data=json.dumps(data))
-    assert response.status_code == 400
+  it('should throw an error if the response is not ok', async () => {
+    fetch.mockResolvedValueOnce({
+      ok: false,
+      status: 400
+    });
 
-def test_search_flights_invalid_data():
-    url = 'http://localhost:5000/search'
-    headers = {
-        'Content-Type': 'application/json'
-    }
-    data = {
-        "origin": "123",
-        "destination": "456",
-        "departure_date": "2022-12-01",
-        "return_date": "2022-12-15"
-    }
-    response = requests.post(url, headers=headers, data=json.dumps(data))
-    assert response.status_code == 400
+    const data = { /* your test data here */ };
+    await expect(createOfferRequest(data)).rejects.toThrow('HTTP error! status: 400');
+  });
+});
 ```
 
-To run the tests, use the following command:
+This test suite includes two tests:
 
-```bash
-pytest test_integration.py
-```
+1. The first test checks that `createOfferRequest` is making a POST request to the correct endpoint with the correct headers and body, and that it returns the response from the API.
 
-Please note that these tests assume that the backend is running locally on port 5000. The tests also assume that the Duffel API will return a 400 status code when it receives invalid data. You may need to adjust these assumptions based on your specific requirements.
+2. The second test checks that `createOfferRequest` throws an error if the response from the API is not ok (i.e., the status code is not in the 200-299 range).
+
+Remember to replace `/* your test data here */` with the actual data you want to use for testing.
