@@ -1,84 +1,106 @@
-Based on your requirements, here is the complete React code. This code includes the `createOfferRequest` function, the `TravelForm` component, and the `App` component. 
+Sure, here is the complete React code for your `App` component. This code includes the `OfferRequestForm` component and its state management, form fields, and form submission handling. 
 
-```javascript
+```jsx
 import React, { useState } from 'react';
 
-// Backend function
-async function createOfferRequest(data) {
-    const response = await fetch('http://localhost:5000/api/offer_requests', {
+function App() {
+  return (
+    <div className="App">
+      <OfferRequestForm />
+    </div>
+  );
+}
+
+function OfferRequestForm() {
+  const [slices, setSlices] = useState([{origin: "", destination: "", departure_date: ""}]);
+  const [passengers, setPassengers] = useState([{type: ""}]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:5000/api/offer_requests', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
-    });
+        body: JSON.stringify({ slices, passengers }),
+      });
 
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      if (!response.ok) {
+        throw new Error('HTTP error ' + response.status);
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error:', error);
     }
+  };
 
-    return await response.json();
-}
-
-// TravelForm component
-function TravelForm() {
-    const [data, setData] = useState({
-        origin: '',
-        destination: '',
-        departure_date: '',
-        return_date: ''
-    });
-
-    const handleChange = (e) => {
-        setData({
-            ...data,
-            [e.target.name]: e.target.value
-        });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await createOfferRequest(data);
-            console.log(response);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Origin:
-                <input type="text" name="origin" value={data.origin} onChange={handleChange} />
-            </label>
-            <label>
-                Destination:
-                <input type="text" name="destination" value={data.destination} onChange={handleChange} />
-            </label>
-            <label>
-                Departure Date:
-                <input type="date" name="departure_date" value={data.departure_date} onChange={handleChange} />
-            </label>
-            <label>
-                Return Date:
-                <input type="date" name="return_date" value={data.return_date} onChange={handleChange} />
-            </label>
-            <button type="submit">Submit</button>
-        </form>
-    );
-}
-
-// App component
-function App() {
-    return (
-        <div className="App">
-            <TravelForm />
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Slices</h2>
+      {slices.map((slice, index) => (
+        <div key={index}>
+          <input
+            type="text"
+            placeholder="Origin"
+            value={slice.origin}
+            onChange={(e) => {
+              const newSlices = [...slices];
+              newSlices[index].origin = e.target.value;
+              setSlices(newSlices);
+            }}
+          />
+          <input
+            type="text"
+            placeholder="Destination"
+            value={slice.destination}
+            onChange={(e) => {
+              const newSlices = [...slices];
+              newSlices[index].destination = e.target.value;
+              setSlices(newSlices);
+            }}
+          />
+          <input
+            type="date"
+            placeholder="Departure Date"
+            value={slice.departure_date}
+            onChange={(e) => {
+              const newSlices = [...slices];
+              newSlices[index].departure_date = e.target.value;
+              setSlices(newSlices);
+            }}
+          />
         </div>
-    );
+      ))}
+      <h2>Passengers</h2>
+      {passengers.map((passenger, index) => (
+        <div key={index}>
+          <select
+            value={passenger.type}
+            onChange={(e) => {
+              const newPassengers = [...passengers];
+              newPassengers[index].type = e.target.value;
+              setPassengers(newPassengers);
+            }}
+          >
+            <option value="">Select passenger type</option>
+            <option value="adult">Adult</option>
+            <option value="child">Child</option>
+            <option value="infant">Infant</option>
+          </select>
+        </div>
+      ))}
+      <button type="submit">Submit</button>
+    </form>
+  );
 }
 
 export default App;
 ```
 
-Please note that this code assumes that the backend server is running on `http://localhost:5000` and the endpoint `/api/offer_requests` is correctly set up to handle the POST request. Also, the `createOfferRequest` function is defined in the same file as the React components. If it's in a separate file, you would need to import it.
+This code assumes that your server is running on `http://localhost:5000` and that you have an endpoint `/api/offer_requests` that accepts a POST request with a JSON body containing `slices` and `passengers` arrays.
+
+Please ensure that you have the necessary CORS settings on your server to accept requests from the domain where this React app is running.

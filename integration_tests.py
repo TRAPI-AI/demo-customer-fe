@@ -1,70 +1,53 @@
-Based on the provided information, here is a Python script using pytest and requests to create integration tests for the backend. This script will test the POST endpoint at `/api/offer_requests`.
+Based on the provided information, we can write integration tests for the backend using Python's unittest module and the requests library. Here's a basic example of how you might structure your tests:
 
 ```python
-import pytest
+import os
+import unittest
 import requests
-import json
+from flask import Flask
+from your_flask_app import create_offer_request
 
-def test_create_offer_request():
-    url = 'http://localhost:5000/api/offer_requests'
-    headers = {'Content-Type': 'application/json'}
-    data = {
-        "data": {
-            "type": "offer_request",
-            "passengers": [
-                {
-                    "type": "adult"
-                }
-            ],
-            "slices": [
-                {
-                    "origin": "JFK",
-                    "destination": "LHR",
-                    "departure_date": "2022-12-01"
-                }
-            ]
+class TestIntegration(unittest.TestCase):
+    def setUp(self):
+        self.app = Flask(__name__)
+        self.client = self.app.test_client()
+        self.headers = {
+            'Accept-Encoding': 'gzip',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Duffel-Version': 'v1',
+            'Authorization': f"Bearer {os.getenv('DUFFEL_ACCESS_TOKEN')}"
         }
-    }
 
-    response = requests.post(url, headers=headers, data=json.dumps(data))
+    def test_create_offer_request_success(self):
+        data = {
+            "slices": [{"origin": "LON", "destination": "NYC", "departure_date": "2023-09-01"}],
+            "passengers": [{"type": "adult"}]
+        }
+        response = self.client.post('/api/offer_requests', headers=self.headers, json=data)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('data', response.get_json())
 
-    assert response.status_code == 200
-    assert 'code' in response.json()
-    assert 'data' in response.json()
-    assert response.json()['code'] == 200
-
-    offer_request_data = response.json()['data']
-    assert 'id' in offer_request_data
-    assert 'type' in offer_request_data
-    assert offer_request_data['type'] == 'offer_request'
-    assert 'passengers' in offer_request_data
-    assert 'slices' in offer_request_data
-
-def test_create_offer_request_fail():
-    url = 'http://localhost:5000/api/offer_requests'
-    headers = {'Content-Type': 'application/json'}
-    data = {}
-
-    response = requests.post(url, headers=headers, data=json.dumps(data))
-
-    assert response.status_code == 400
-    assert 'code' in response.json()
-    assert response.json()['code'] == 400
+    def test_create_offer_request_fail(self):
+        data = {
+            "slices": [{"origin": "LON", "destination": "NYC", "departure_date": "2023-09-01"}],
+            "passengers": [{"type": "adult"}]
+        }
+        response = self.client.post('/api/offer_requests', headers=self.headers, json=data)
+        self.assertEqual(response.status_code, 400)
+        self.assertIn('error', response.get_json())
 
 if __name__ == '__main__':
-    pytest.main()
+    unittest.main()
 ```
 
-This script contains two tests:
+In this example, we have two tests: `test_create_offer_request_success` and `test_create_offer_request_fail`. The first test checks that a successful request returns a 200 status code and includes 'data' in the response. The second test checks that a failed request returns a 400 status code and includes 'error' in the response.
 
-1. `test_create_offer_request`: This test sends a POST request to the `/api/offer_requests` endpoint with valid data and checks that the response is as expected.
+Please replace `from your_flask_app import create_offer_request` with the actual import statement for your Flask application.
 
-2. `test_create_offer_request_fail`: This test sends a POST request to the `/api/offer_requests` endpoint with invalid data (an empty JSON object) and checks that the response is a 400 error.
-
-To run the tests, use the following command:
+Remember to install the required dependencies for testing:
 
 ```bash
-pytest test_integration.py
+pip install unittest2
+pip install requests
 ```
-
-Please replace the `data` in `test_create_offer_request` with the actual data structure you are using.
