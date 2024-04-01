@@ -1,0 +1,27 @@
+**Summary of the Docs:**
+
+The Duffel API documentation provides information on how to create an offer request to search for flights. An offer request describes the passengers, where and when they want to travel (in the form of a list of slices), and may also include additional filters (e.g., a particular cabin to travel in).
+
+**Guidance for LLM Model:**
+
+1. **Backend (Python):**
+   - Use the `requests` library to make HTTP requests to the Duffel API.
+   - The base URL for the API is `https://api.duffel.com/air/offer_requests`.
+   - To create an offer request, make a POST request to the base URL.
+   - The minimum required payload for the POST request includes:
+     - `slices`: A list of slices that make up the offer request. One-way journeys can be expressed using one slice, whereas return trips will need two.
+     - `passengers`: A list of passengers who want to travel.
+   - The headers should include `Accept-Encoding: gzip`, `Accept: application/json`, `Content-Type: application/json`, `Duffel-Version: v1`, and `Authorization: Bearer <YOUR_ACCESS_TOKEN>`.
+   - Handle errors by checking the HTTP status code of the response. If it's not 200, raise an exception or return an error message.
+
+2. **Frontend (React):**
+   - Create a form for the user to input the required fields (`slices` and `passengers`).
+   - The `slices` field should allow the user to input multiple slices, each with an origin, destination, and departure date.
+   - The `passengers` field should allow the user to input multiple passengers, each with a given name and family name.
+   - On form submission, send the form data to the backend to be used in the API request.
+   - Handle errors by catching them in the frontend and displaying an error message to the user.
+
+**Error Handling:**
+- Check the HTTP status code of the response. If it's not 200, raise an exception or return an error message.
+- In the frontend, catch any errors and display an appropriate error message to the user.
+- Consider implementing a retry mechanism for network-related errors.
