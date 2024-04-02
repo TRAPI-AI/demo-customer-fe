@@ -1,67 +1,142 @@
-Based on the Duffel API documentation, here are the required parameters for the payload object and the response data object:
+### Request Body Schema Object:
 
-**Payload Object:**
+#### Required Body Parameters:
+1. **passengers** (required):
+   - Data Structure:
+     ```json
+     "passengers": [
+         {
+             "family_name": "string",
+             "given_name": "string",
+             "loyalty_programme_accounts": [
+                 {
+                     "account_number": "string",
+                     "airline_iata_code": "string"
+                 }
+             ],
+             "type": "string",
+             "age": integer,
+             "fare_type": "string"
+         }
+     ]
+     ```
 
+2. **slices** (required):
+   - Data Structure:
+     ```json
+     "slices": [
+         {
+             "origin": "string",
+             "destination": "string",
+             "departure_time": {
+                 "to": "string",
+                 "from": "string"
+             },
+             "departure_date": "string",
+             "arrival_time": {
+                 "to": "string",
+                 "from": "string"
+             }
+         }
+     ]
+     ```
+
+### Response Data Object:
+
+#### Data Structure:
 ```json
 {
   "data": {
     "slices": [
       {
-        "origin": "string", // Required. The IATA code of the origin airport.
-        "destination": "string", // Required. The IATA code of the destination airport.
-        "departure_date": "string" // Required. The date of departure in the format "YYYY-MM-DD".
-      }
-    ],
-    "passengers": [
-      {
-        "type": "string" // Required. The type of passenger. Possible values: "adult", "child", "infant", "young_adult", "senior".
-      }
-    ]
-  }
-}
-```
-
-**Response Data Object:**
-
-```json
-{
-  "data": {
-    "slices": [
-      {
-        "origin_type": "string", // The type of the origin. Possible values: "airport", "city".
+        "origin_type": "airport",
         "origin": {
-          "type": "string", // The type of the origin. Possible values: "airport", "city".
-          "id": "string", // Duffel's unique identifier for the origin.
-          "iata_code": "string", // The IATA code of the origin.
-          "iata_country_code": "string", // The IATA code of the country of the origin.
-          "iata_city_code": "string", // The IATA code of the city of the origin.
-          "name": "string", // The name of the origin.
-          "city_name": "string", // The name of the city of the origin.
-          "time_zone": "string", // The time zone of the origin.
-          "longitude": "number", // The longitude of the origin.
-          "latitude": "number" // The latitude of the origin.
+          "type": "airport",
+          "time_zone": "string",
+          "name": "string",
+          "longitude": float,
+          "latitude": float,
+          "id": "string",
+          "icao_code": "string",
+          "iata_country_code": "string",
+          "iata_code": "string",
+          "iata_city_code": "string",
+          "city_name": "string",
+          "city": {
+            "name": "string",
+            "id": "string",
+            "iata_country_code": "string",
+            "iata_code": "string"
+          },
+          "airports": [
+            {
+              "time_zone": "string",
+              "name": "string",
+              "longitude": float,
+              "latitude": float,
+              "id": "string",
+              "icao_code": "string",
+              "iata_country_code": "string",
+              "iata_code": "string",
+              "iata_city_code": "string",
+              "city_name": "string",
+              "city": {
+                "name": "string",
+                "id": "string",
+                "iata_country_code": "string",
+                "iata_code": "string"
+              }
+            }
+          ]
         },
-        "destination_type": "string", // The type of the destination. Possible values: "airport", "city".
+        "destination_type": "airport",
         "destination": {
-          "type": "string", // The type of the destination. Possible values: "airport", "city".
-          "id": "string", // Duffel's unique identifier for the destination.
-          "iata_code": "string", // The IATA code of the destination.
-          "iata_country_code": "string", // The IATA code of the country of the destination.
-          "iata_city_code": "string", // The IATA code of the city of the destination.
-          "name": "string", // The name of the destination.
-          "city_name": "string", // The name of the city of the destination.
-          "time_zone": "string", // The time zone of the destination.
-          "longitude": "number", // The longitude of the destination.
-          "latitude": "number" // The latitude of the destination.
+          "type": "airport",
+          "time_zone": "string",
+          "name": "string",
+          "longitude": float,
+          "latitude": float,
+          "id": "string",
+          "icao_code": "string",
+          "iata_country_code": "string",
+          "iata_code": "string",
+          "iata_city_code": "string",
+          "city_name": "string",
+          "city": {
+            "name": "string",
+            "id": "string",
+            "iata_country_code": "string",
+            "iata_code": "string"
+          },
+          "airports": [
+            {
+              "time_zone": "string",
+              "name": "string",
+              "longitude": float,
+              "latitude": float,
+              "id": "string",
+              "icao_code": "string",
+              "iata_country_code": "string",
+              "iata_code": "string",
+              "iata_city_code": "string",
+              "city_name": "string",
+              "city": {
+                "name": "string",
+                "id": "string",
+                "iata_country_code": "string",
+                "iata_code": "string"
+              }
+            }
+          ]
         },
-        "departure_date": "string" // The date of departure in the format "YYYY-MM-DD".
+        "departure_date": "string"
       }
     ],
-    "id": "string", // Duffel's unique identifier for the offer request.
-    "created_at": "string", // The ISO 8601 datetime at which the offer request was created.
-    "live_mode": "boolean" // Whether the offer request was created in live mode.
+    "live_mode": boolean,
+    "id": "string",
+    "created_at": "string",
+    "client_key": "string",
+    "cabin_class": "string"
   }
 }
 ```
-
-Please note that the actual response may contain more data fields depending on the specific request and the data provided by the airlines.
