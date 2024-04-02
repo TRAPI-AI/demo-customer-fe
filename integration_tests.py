@@ -1,101 +1,52 @@
-Based on the integration requirements and the Duffel API documentation, here is the code for integration tests for the backend route '/duffel-flights-search':
+Based on the provided information, we can write integration tests for the '/simtex-esim-search' endpoint in Python using the pytest and requests libraries. Here is an example of how you might write these tests:
 
 ```python
-import unittest
-from unittest.mock import patch
-from app import app
+import pytest
+import requests
+import json
 
-class TestFlightSearchIntegration(unittest.TestCase):
+# Define the base URL for the API
+BASE_URL = 'http://localhost:5000'
 
-    def setUp(self):
-        self.app = app.test_client()
+# Define the headers for the API
+HEADERS = {
+    'X-Api-Key': 'EXpFsls1nhAUp9Tq',
+    'accept': 'application/json',
+    'content-type': 'application/json'
+}
 
-    @patch('requests.post')
-    def test_duffel_flights_search_success(self, mock_post):
-        mock_post.return_value.status_code = 200
-        mock_post.return_value.json.return_value = {
-            "data": {
-                "slices": [
-                    {
-                        "origin": "LHR",
-                        "destination": "JFK",
-                        "departure_date": "2022-12-25",
-                        "total_amount": 500.00
-                    }
-                ],
-                "offers": [
-                    {
-                        "total_amount": 500.00
-                    }
-                ]
-            }
-        }
+# Define a sample payload for the API
+SAMPLE_PAYLOAD = {
+    "countryCode": "US",
+    "productType": "eSIM",
+    "duration": 30
+}
 
-        payload = {
-            "slices": [
-                {
-                    "origin": "LHR",
-                    "destination": "JFK",
-                    "departure_date": "2022-12-25"
-                }
-            ],
-            "passengers": [
-                {
-                    "family_name": "Doe",
-                    "given_name": "John",
-                    "loyalty_programme_accounts": [
-                        {
-                            "account_number": "123456",
-                            "airline_iata_code": "BA"
-                        }
-                    ],
-                    "type": "adult"
-                }
-            ],
-            "max_connections": 0,
-            "cabin_class": "economy"
-        }
+def test_simtex_esim_search_success():
+    # Make a POST request to the '/simtex-esim-search' endpoint
+    response = requests.post(f'{BASE_URL}/simtex-esim-search', headers=HEADERS, data=json.dumps(SAMPLE_PAYLOAD))
 
-        response = self.app.post('/duffel-flights-search', json=payload)
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b'"total_amount": 500.00', response.data)
+    # Assert that the response status code is 200
+    assert response.status_code == 200
 
-    @patch('requests.post')
-    def test_duffel_flights_search_failure(self, mock_post):
-        mock_post.return_value.status_code = 400
-        mock_post.return_value.json.return_value = {"error": "Bad Request"}
+    # Assert that the response is in JSON format
+    assert response.headers['Content-Type'] == 'application/json'
 
-        payload = {
-            "slices": [
-                {
-                    "origin": "LHR",
-                    "destination": "JFK",
-                    "departure_date": "2022-12-25"
-                }
-            ],
-            "passengers": [
-                {
-                    "family_name": "Doe",
-                    "given_name": "John",
-                    "loyalty_programme_accounts": [
-                        {
-                            "account_number": "123456",
-                            "airline_iata_code": "BA"
-                        }
-                    ],
-                    "type": "adult"
-                }
-            ],
-            "max_connections": 0,
-            "cabin_class": "economy"
-        }
+    # Assert that the response contains 'quoteOptions'
+    assert 'quoteOptions' in response.json()
 
-        response = self.app.post('/duffel-flights-search', json=payload)
-        self.assertEqual(response.status_code, 400)
-        self.assertIn(b'"error": "Bad Request"', response.data)
+def test_simtex_esim_search_failure():
+    # Make a POST request to the '/simtex-esim-search' endpoint with an invalid payload
+    response = requests.post(f'{BASE_URL}/simtex-esim-search', headers=HEADERS, data=json.dumps({}))
 
-if __name__ == '__main__':
-    unittest.main()
+    # Assert that the response status code is 500
+    assert response.status_code == 500
+
+    # Assert that the response is in JSON format
+    assert response.headers['Content-Type'] == 'application/json'
+
+    # Assert that the response contains 'error'
+    assert 'error' in response.json()
 ```
 
-These integration tests cover the success and failure scenarios for the '/duffel-flights-search' route in the Flask backend. The tests use mocking to simulate the responses from the Duffel API.
+In these tests, we are making POST requests to the '/simtex-esim-search' endpoint and asserting that the response is as expected. The `test_simtex_esim_search_success` test checks that a successful request returns a 200 status code, a JSON response, and contains 'quoteOptions' in the response. The `test_simtex_esim_search_failure` test checks that a request with an invalid payload returns a 500 status code, a JSON response, and contains 'error' in the response.
