@@ -1,6 +1,3 @@
-Here is the Python code for the backend route using Flask:
-
-```python
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
@@ -39,6 +36,3 @@ def simtex_esim_search():
 
 if __name__ == '__main__':
     app.run(port=5000)
-```
-
-This code creates a Flask application and defines a POST route '/simtex-esim-search'. It uses the Flask-CORS extension to handle Cross-Origin Resource Sharing (CORS), allowing requests from any origin. The route function makes a POST request to the provided endpoint URL with the provided headers and the payload received in the request. It handles various types of exceptions that can occur during the request and logs the errors. It also logs the response received from the endpoint. The Flask application is run locally on port 5000.
