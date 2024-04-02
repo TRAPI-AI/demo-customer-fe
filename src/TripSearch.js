@@ -7,7 +7,7 @@ function TripSearch() {
 
       <div className="flex justify-center mt-14 items-start h-1/3">
         <div className="bg-white p-14 border border-gray-300 w-11/12 rounded-lg">
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-3">
             <input className="input rounded-lg border-gray-600 border p-4" />
             <input className="input rounded-lg border-gray-600 border p-4" />
             <input className="input rounded-lg border-gray-600 border p-4" />
@@ -18,7 +18,7 @@ function TripSearch() {
         </div>
       </div>
 
-      <h2 className="text-2xl p-14 text-left font-bold">Explore More</h2>
+      <h2 className="text-2xl p-14 text-left font-bold">Results</h2>
 
       <ul className="flex gap-8 mx-14 justify-around items-center">
         <li className="w-1/3 h-40 border border-gray-400 rounded-lg"></li>
