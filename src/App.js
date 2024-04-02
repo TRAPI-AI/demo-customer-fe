@@ -8,12 +8,9 @@ function App() {
         flexDirection: "column", // Stack children vertically
         alignItems: "center", // Center items horizontally
         justifyContent: "center", // Center items vertically
-        backgroundImage:
-          "url('https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
-        backgroundSize: "cover", // Ensure the background covers the entire div
-        backgroundPosition: "center", // Center the background image
         padding: "20px",
         minHeight: "100vh", // Full height
+        backgroundColor: "deeppink", // Light grey background
       }}
     >
       <input
