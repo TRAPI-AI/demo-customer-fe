@@ -20,10 +20,10 @@ function TripSearch() {
 
       <h2 className="text-2xl p-14 text-left font-bold">Results</h2>
 
-      <ul className="flex gap-8 mx-14 justify-around items-center">
-        <li className="w-1/3 h-40 border border-gray-400 rounded-lg"></li>
-        <li className="w-1/3 h-40 border border-gray-400 rounded-lg"></li>
-        <li className="w-1/3 h-40 border border-gray-400 rounded-lg"></li>
+      <ul className="flex flex-wrap  gap-8 mx-14 justify-center w-full items-center">
+        <li className="w-1/3 p-2 h-fit min-h-40 mb-2 border border-gray-400 rounded-lg"></li>
+        <li className="w-1/3 p-2 h-fit min-h-40 mb-2 border border-gray-400 rounded-lg"></li>
+        <li className="w-1/3 p-2 h-fit min-h-40 mb-2 border border-gray-400 rounded-lg"></li>
       </ul>
     </div>
   );
