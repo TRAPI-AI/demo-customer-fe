@@ -1,0 +1,38 @@
+## Integration Documentation
+
+### Backend Endpoint:
+- Endpoint: 
+- Description: 
+
+### Frontend Component:
+- Component: 
+- Description: 
+
+### API Provider Documentation:
+- [Duffel API v1 Offer Requests - Create Offer Request](https://duffel.com/docs/api/v1/offer-requests/create-offer-request)
+
+---
+
+### Quick Start Guide:
+1. **Backend Integration**:
+   - Use the provided backend endpoint to interact with the Duffel API.
+   - Follow the API provider documentation for creating offer requests.
+
+2. **Frontend Integration**:
+   - Implement the frontend component to display and interact with the data from the Duffel API.
+
+### Testing Options:
+- Integration tests are available in `integration_tests.py` to test the integration with the Duffel API.
+
+### Troubleshooting Guide:
+- If you encounter any issues during integration, consider the following steps:
+   1. Check the backend endpoint configuration.
+   2. Verify the frontend component implementation.
+   3. Review the API provider documentation for any specific requirements.
+   4. Refer to the support contact information for assistance.
+
+### Support Contact Info:
+- For support or assistance, reach out to the Duffel API support team at [support@duffel.com](mailto:support@duffel.com).
+
+### Additional Resources:
+- [Duffel API Provider Documentation](https://duffel.com/docs/api/v1/offer-requests/create-offer-request)
