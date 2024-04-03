@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+```jsx
+import React, { useState } from 'react';
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+const FlightSearch = () => {
+  const [offers, setOffers] = useState([]);
 
-## Available Scripts
+  const handleSearch = async () => {
+    const payload = {
+      data: {
+        slices: [
+          {
+            origin: "LHR",
+            destination: "JFK",
+            departure_date: "2020-04-24"
+          }
+        ],
+        passengers: [
+          {
+            type: "adult"
+          }
+        ]
+      }
+    };
 
-In the project directory, you can run:
+    try {
+      const response = await fetch('http://localhost:5000/duffel-flights-search', {
+        method: 'POST',
+        headers: {
+          'Accept-Encoding': 'gzip',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Duffel-Version': 'v1',
+          'Authorization': 'Bearer <YOUR_ACCESS_TOKEN>'
+        },
+        body: JSON.stringify(payload)
+      });
 
-### `npm start`
+      const data = await response.json();
+      setOffers(data.data.offers);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  return (
+    <div>
+      <button onClick={handleSearch}>Search Flights</button>
+    </div>
+  );
+};
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+export default FlightSearch;
+```
 
-### `npm test`
+```jsx
+import React, { useState } from 'react';
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const FlightSearch = () => {
+  const [offers, setOffers] = useState([]);
 
-### `npm run build`
+  const handleSearch = async () => {
+    const payload = {
+      data: {
+        slices: [
+          {
+            origin: "LHR",
+            destination: "JFK",
+            departure_date: "2020-04-24"
+          }
+        ],
+        passengers: [
+          {
+            type: "adult"
+          }
+        ]
+      }
+    };
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    try {
+      const response = await fetch('http://localhost:5000/duffel-flights-search', {
+        method: 'POST',
+        headers: {
+          'Accept-Encoding': 'gzip',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Duffel-Version': 'v1',
+          'Authorization': 'Bearer <YOUR_ACCESS_TOKEN>'
+        },
+        body: JSON.stringify(payload)
+      });
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+      const data = await response.json();
+      setOffers(data.data.offers);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  return (
+    <div>
+      <button onClick={handleSearch}>Search Flights</button>
+      <ul>
+        {offers.map((offer) => (
+          <li key={offer.id}>
+            <div>
+              <p>Total Amount: {offer.total_amount} {offer.total_currency}</p>
+              <p>Departure Date: {offer.departure_date}</p>
+              <p>Destination: {offer.slices[0].destination.name}</p>
+              <p>Operating Carrier: {offer.slices[0].segments[0].operating_carrier.name}</p>
+              <p>Origin: {offer.slices[0].segments[0].origin.name}</p>
+              <p>Departing At: {offer.slices[0].segments[0].departing_at}</p>
+              <p>Arriving At: {offer.slices[0].segments[0].arriving_at}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default FlightSearch;
+```
