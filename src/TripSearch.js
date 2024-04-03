@@ -107,7 +107,7 @@ const FlightSearch = () => {
               <p>Departure Date: {offer.departure_date}</p>
               <p>Destination: {offer.slices[0].destination.name}</p>
               <p>Operating Carrier: {offer.slices[0].segments[0].operating_carrier.name}</p>
-              <p>Origin: {offer.slices[0].segments[0].origin.name}</p>
+              <p>Origin: {offer.slices[0].origin.name}</p>
               <p>Departing At: {offer.slices[0].segments[0].departing_at}</p>
               <p>Arriving At: {offer.slices[0].segments[0].arriving_at}</p>
             </div>
