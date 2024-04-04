@@ -1,13 +1,13 @@
 function TripSearch() {
   return (
     <div className="min-h-screen bg-white">
-      <nav className="bg-white border-b border-gray-300 flex shadow-xs">
+      <nav className="bg-gray-200 border-b border-gray-300 flex shadow-xs">
         <span className="font-semibold text-xl p-4">Your Logo</span>
       </nav>
 
       <div className="flex justify-center mt-14 items-start h-1/3">
-        <div className="bg-white p-14 border border-gray-300 w-11/12 rounded-lg">
-          <div className="flex items-center justify-center gap-3">
+        <div className="bg-slate-800 p-14 border border-gray-300 w-11/12 rounded-lg">
+          <div className="flex items-center  justify-center gap-3">
             <input className="input rounded-lg border-gray-600 border p-4" />
             <input className="input rounded-lg border-gray-600 border p-4" />
             <input className="input rounded-lg border-gray-600 border p-4" />
