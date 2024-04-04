@@ -1,38 +1,45 @@
-## Integration Documentation
+# Duffel API Integration Documentation
 
-### Backend Endpoint:
-- Endpoint: 
-- Description: 
+## Quick Start Guide
 
-### Frontend Component:
-- Component: 
-- Description: 
+### Backend Endpoint
 
-### API Provider Documentation:
-- [Duffel API v1 Offer Requests - Create Offer Request](https://duffel.com/docs/api/v1/offer-requests/create-offer-request)
+The backend endpoint for the Duffel API is `https://api.duffel.com/air/offer_requests`. This endpoint is used to create offer requests. An offer request is a search for flights.
 
----
+To create an offer request, you need to send a POST request to the endpoint with a JSON body containing the details of the flight search. The JSON body should include the following parameters:
 
-### Quick Start Guide:
-1. **Backend Integration**:
-   - Use the provided backend endpoint to interact with the Duffel API.
-   - Follow the API provider documentation for creating offer requests.
+- `data`: An object containing the details of the flight search.
+  - `type`: The type of the resource. This should be `offer_request`.
+  - `attributes`: An object containing the attributes of the offer request.
+    - `passengers`: An array of objects, each representing a passenger. Each object should include a `type` (either `adult`, `child`, or `infant`) and a `count` (the number of passengers of that type).
+    - `slices`: An array of objects, each representing a slice. A slice is a single leg of the journey. Each object should include an `origin` (the IATA code of the origin airport), a `destination` (the IATA code of the destination airport), and a `departure_date` (the date of departure in the format `YYYY-MM-DD`).
 
-2. **Frontend Integration**:
-   - Implement the frontend component to display and interact with the data from the Duffel API.
+### Frontend Component
 
-### Testing Options:
-- Integration tests are available in `integration_tests.py` to test the integration with the Duffel API.
+The frontend component should include a form for the user to input the details of the flight search. The form should include fields for the number of passengers (broken down by type), the origin and destination airports, and the departure date.
 
-### Troubleshooting Guide:
-- If you encounter any issues during integration, consider the following steps:
-   1. Check the backend endpoint configuration.
-   2. Verify the frontend component implementation.
-   3. Review the API provider documentation for any specific requirements.
-   4. Refer to the support contact information for assistance.
+Once the form is submitted, the frontend should send a POST request to the backend endpoint with the details of the flight search.
 
-### Support Contact Info:
-- For support or assistance, reach out to the Duffel API support team at [support@duffel.com](mailto:support@duffel.com).
+## Testing Options
 
-### Additional Resources:
-- [Duffel API Provider Documentation](https://duffel.com/docs/api/v1/offer-requests/create-offer-request)
+We have written tests for the Duffel API integration in `integration_tests.py`. To run these tests, use the following command:
+
+```
+python integration_tests.py
+```
+
+## Troubleshooting Guide
+
+If you encounter any issues with the Duffel API integration, try the following steps:
+
+1. Check the JSON body of your POST request. Make sure that all required parameters are included and that they are in the correct format.
+2. Check the response from the Duffel API. If the response includes an error message, this can help you identify the issue.
+3. Check the Duffel API documentation. The documentation includes detailed information about the API and can help you understand how it works.
+
+## Support Contact Info
+
+If you need further assistance with the Duffel API integration, you can contact our support team at `support@yourcompany.com`.
+
+## Links to API Provider Docs
+
+For more information about the Duffel API, you can refer to the [Duffel API documentation](https://duffel.com/docs/api/v1/offer-requests/create-offer-request).
