@@ -8,7 +8,8 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/duffel-flights-search', methods=['POST'])
+
+@app.route("/duffel-flights-search", methods=["POST"])
 def duffel_flights_search():
     # Extract the payload from the incoming request
     payload = request.json
@@ -19,7 +20,7 @@ def duffel_flights_search():
         "Accept": "application/json",
         "Content-Type": "application/json",
         "Duffel-Version": "v1",
-        "Authorization": "Bearer <YOUR_ACCESS_TOKEN>"
+        "Authorization": "Bearer duffel_test_O6axsBfPB1YFwLk2tVJaNYXiFhITUnItVS8FJEtfpRp",
     }
 
     # Define the endpoint URL
@@ -41,9 +42,13 @@ def duffel_flights_search():
     except Exception as e:
         # Log any exception that occurs
         print("Exception occurred:", str(e))
-        return jsonify({"error": "An error occurred while processing your request."}), 500
+        return (
+            jsonify({"error": "An error occurred while processing your request."}),
+            500,
+        )
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run(port=5000)
 
 # End of the backend route code
