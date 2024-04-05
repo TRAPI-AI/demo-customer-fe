@@ -1,45 +1,35 @@
-# Duffel API Integration Documentation
+## Integration Documentation
 
-## Quick Start Guide
+### Backend Endpoint:
+- Endpoint: 
+- Description: 
 
-### Backend Endpoint
+### Frontend Component:
+- Component: 
+- Description: 
 
-The backend endpoint for the Duffel API is `https://api.duffel.com/air/offer_requests`. This endpoint is used to create offer requests. An offer request is a search for flights.
+### API Provider Documentation:
+- [API Provider Docs](https://duffel.com/docs/api/v1/offer-requests/create-offer-request)
 
-To create an offer request, you need to send a POST request to the endpoint with a JSON body containing the details of the flight search. The JSON body should include the following parameters:
+### Sections:
 
-- `data`: An object containing the details of the flight search.
-  - `type`: The type of the resource. This should be `offer_request`.
-  - `attributes`: An object containing the attributes of the offer request.
-    - `passengers`: An array of objects, each representing a passenger. Each object should include a `type` (either `adult`, `child`, or `infant`) and a `count` (the number of passengers of that type).
-    - `slices`: An array of objects, each representing a slice. A slice is a single leg of the journey. Each object should include an `origin` (the IATA code of the origin airport), a `destination` (the IATA code of the destination airport), and a `departure_date` (the date of departure in the format `YYYY-MM-DD`).
+#### Quick Start Guide:
+1. Register for an account with the API provider and obtain API credentials.
+2. Implement the backend endpoint to make a POST request to the API provider's offer request endpoint.
+3. Use the frontend component to trigger the backend endpoint and display the response to the user.
 
-### Frontend Component
+#### Testing Options:
+- Integration tests have been written at `integration_tests.py` to test the functionality of the integration. You can run these tests to ensure everything is working as expected.
 
-The frontend component should include a form for the user to input the details of the flight search. The form should include fields for the number of passengers (broken down by type), the origin and destination airports, and the departure date.
+#### Troubleshooting Guide:
+1. If you encounter any errors, check the API provider's documentation for error code explanations.
+2. Verify that the API credentials are correctly configured in the backend endpoint.
+3. Check the frontend component for any issues with triggering the backend endpoint.
 
-Once the form is submitted, the frontend should send a POST request to the backend endpoint with the details of the flight search.
+#### Support Contact Info:
+- If you need further assistance or have any questions, you can contact the API provider's support team at [support@duffel.com](mailto:support@duffel.com).
 
-## Testing Options
+#### Links to API Provider Docs:
+- [API Provider Docs](https://duffel.com/docs/api/v1/offer-requests/create-offer-request)
 
-We have written tests for the Duffel API integration in `integration_tests.py`. To run these tests, use the following command:
-
-```
-python integration_tests.py
-```
-
-## Troubleshooting Guide
-
-If you encounter any issues with the Duffel API integration, try the following steps:
-
-1. Check the JSON body of your POST request. Make sure that all required parameters are included and that they are in the correct format.
-2. Check the response from the Duffel API. If the response includes an error message, this can help you identify the issue.
-3. Check the Duffel API documentation. The documentation includes detailed information about the API and can help you understand how it works.
-
-## Support Contact Info
-
-If you need further assistance with the Duffel API integration, you can contact our support team at `support@yourcompany.com`.
-
-## Links to API Provider Docs
-
-For more information about the Duffel API, you can refer to the [Duffel API documentation](https://duffel.com/docs/api/v1/offer-requests/create-offer-request).
+Feel free to refer to the API provider's documentation for more detailed information on integrating with their services.
