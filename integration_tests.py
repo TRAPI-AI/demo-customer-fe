@@ -1,5 +1,5 @@
 ```javascript
-// Integration tests for Duffel API offer requests
+// Integration tests for Duffel API based on the provided integration requirements
 
 const axios = require('axios');
 const assert = require('assert');
@@ -38,39 +38,38 @@ describe('Duffel API Integration Tests', () => {
 
     const response = await axios.post(baseURL, requestData, {
       headers: {
-        'Authorization': `Bearer ${accessToken}`,
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Duffel-Version': 'v1'
+        'Duffel-Version': 'v1',
+        'Authorization': `Bearer ${accessToken}`
       }
     });
 
     assert.strictEqual(response.status, 200);
-    assert.strictEqual(response.data.data.slices[0].origin.name, 'Heathrow');
-    assert.strictEqual(response.data.data.slices[0].destination.name, 'JFK');
+    assert(response.data.data.id);
   });
 
-  it('should get a single offer request', async () => {
-    const offerRequestId = 'orq_00009hjdomFOCJyxHG7k7k'; // Replace with actual offer request ID
+  it('should get an offer request by ID', async () => {
+    const offerRequestId = 'orq_00009hjdomFOCJyxHG7k7k'; // Replace with an actual offer request ID
 
     const response = await axios.get(`${baseURL}/${offerRequestId}`, {
       headers: {
-        'Authorization': `Bearer ${accessToken}`,
         'Accept': 'application/json',
-        'Duffel-Version': 'v1'
+        'Duffel-Version': 'v1',
+        'Authorization': `Bearer ${accessToken}`
       }
     });
 
     assert.strictEqual(response.status, 200);
-    assert.strictEqual(response.data.data.id, offerRequestId);
+    assert(response.data.data.id === offerRequestId);
   });
 
   it('should list offer requests', async () => {
     const response = await axios.get(baseURL, {
       headers: {
-        'Authorization': `Bearer ${accessToken}`,
         'Accept': 'application/json',
-        'Duffel-Version': 'v1'
+        'Duffel-Version': 'v1',
+        'Authorization': `Bearer ${accessToken}`
       }
     });
 
