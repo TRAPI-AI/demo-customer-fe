@@ -1,0 +1,25 @@
+## Integration Documentation: Simtex API
+
+### Quick Start Guide
+1. **Backend Endpoint**: 
+   - Endpoint: `https://api.simtex.io/Quotes`
+   - Description: This endpoint creates an initial quote for an eSIM based on destination countries and duration of stay in each country.
+
+2. **Frontend Component**:
+   - The frontend component should make a POST request to the backend endpoint `https://api.simtex.io/Quotes` to create a new quote for an eSIM.
+
+3. **API Provider Docs**: [Simtex API Reference](https://simtex.readme.io/reference/post_quotes-1)
+
+### Testing Options
+- Integration tests can be written using the `integration_tests.py` file to test the functionality of the integration with the Simtex API.
+
+### Troubleshooting Guide
+- If you encounter any issues during integration, refer to the [Simtex API Reference](https://simtex.readme.io/reference/post_quotes-1) for detailed information on the API endpoints and parameters.
+
+### Support Contact Info
+- For any further assistance or support, you can reach out to Simtex API support team through their official website or contact details provided in their documentation.
+
+### Links to API Provider Docs
+- [Simtex API Reference](https://simtex.readme.io/reference/post_quotes-1)
+
+Follow the above guide to successfully integrate with the Simtex API and create quotes for eSIMs.
