@@ -10,37 +10,38 @@ CORS(app)
 
 @app.route('/duffel-flights-search', methods=['POST'])
 def duffel_flights_search():
-    # Extract the payload from the incoming request
-    payload = request.json
+    # Extract the access token from the request headers or body as per your security practices
+    access_token = "YOUR_ACCESS_TOKEN"  # Replace YOUR_ACCESS_TOKEN with the actual token
 
-    # Define the headers for the Duffel API request
+    # Headers for the Duffel API request
     headers = {
         "Accept-Encoding": "gzip",
         "Accept": "application/json",
         "Content-Type": "application/json",
         "Duffel-Version": "v1",
-        "Authorization": "Bearer <YOUR_ACCESS_TOKEN>"
+        "Authorization": f"Bearer {access_token}"
     }
 
-    # Endpoint URL
+    # URL for the Duffel API endpoint
     url = "https://api.duffel.com/air/offer_requests"
 
+    # Payload from the incoming request to be forwarded to the Duffel API
+    payload = request.json
+
     try:
-        # Make the POST request to the Duffel API
+        # Making the POST request to the Duffel API
         response = requests.post(url, headers=headers, json=payload)
         response.raise_for_status()  # Raises an HTTPError if the response status code is 4XX or 5XX
         return jsonify(response.json()), response.status_code
     except requests.exceptions.HTTPError as err:
-        print(f"HTTP error occurred: {err}")  # Print the HTTP error
-        # Attempt to parse and return the error response from Duffel, if possible
-        try:
-            error_response = response.json()
-        except ValueError:
-            error_response = {"errors": [{"message": "An error occurred, but no additional information is available."}]}
-        return jsonify(error_response), response.status_code
+        print(f"HTTP Error: {err}")
+        # Extracting error details from the response
+        error_response = response.json()
+        print(json.dumps(error_response, indent=4))
+        return jsonify(error_response), error_response["meta"]["status"]
     except Exception as e:
-        print(f"An error occurred: {e}")  # Print any other error
-        return jsonify({"errors": [{"message": "An unexpected error occurred."}]}), 500
+        print(f"Error: {e}")
+        return jsonify({"error": "An unexpected error occurred"}), 500
 
 if __name__ == '__main__':
     app.run(port=5000)
