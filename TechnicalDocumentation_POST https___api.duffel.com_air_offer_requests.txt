@@ -1,35 +1,38 @@
-## Integration Documentation
+# Integration Documentation
 
-### Backend Endpoint:
-- Endpoint: 
-- Description: 
+## Backend Endpoint
+- Endpoint: `/api/v1/offer-requests/create-offer-request`
+- Description: This endpoint is used to create an offer request with the Duffel API provider.
 
-### Frontend Component:
-- Component: 
-- Description: 
+## Frontend Component
+- Component: [Add frontend component name here]
+- Description: [Add description of the frontend component here]
 
-### API Provider Documentation:
-- [API Provider Docs](https://duffel.com/docs/api/v1/offer-requests/create-offer-request)
+## API Provider Documentation
+- [Duffel API Provider Docs](https://duffel.com/docs/api/v1/offer-requests/create-offer-request)
 
-### Sections:
+## Sections
 
-#### Quick Start Guide:
-1. Register for an account with the API provider and obtain API credentials.
-2. Implement the backend endpoint to make a POST request to the API provider's offer request endpoint.
-3. Use the frontend component to trigger the backend endpoint and display the response to the user.
+### Quick Start Guide
+1. Obtain API credentials from Duffel API provider.
+2. Use the backend endpoint `/api/v1/offer-requests/create-offer-request` to create an offer request.
+3. Implement the frontend component to interact with the backend endpoint.
+4. Refer to the Duffel API provider documentation for detailed information on request parameters and response formats.
 
-#### Testing Options:
-- Integration tests have been written at `integration_tests.py` to test the functionality of the integration. You can run these tests to ensure everything is working as expected.
+### Testing Options
+- Integration tests are available in `integration_tests.py` for testing the integration with the Duffel API provider.
 
-#### Troubleshooting Guide:
-1. If you encounter any errors, check the API provider's documentation for error code explanations.
-2. Verify that the API credentials are correctly configured in the backend endpoint.
-3. Check the frontend component for any issues with triggering the backend endpoint.
+### Troubleshooting Guide
+- If you encounter any issues during integration, consider the following troubleshooting steps:
+  - Check API credentials for accuracy.
+  - Verify the request parameters being sent to the backend endpoint.
+  - Review error messages returned by the API provider.
+  - Refer to the Duffel API provider documentation for common troubleshooting scenarios.
 
-#### Support Contact Info:
-- If you need further assistance or have any questions, you can contact the API provider's support team at [support@duffel.com](mailto:support@duffel.com).
+### Support Contact Info
+- For support related to the integration with the Duffel API provider, contact:
+  - Email: [support@duffel.com]
+  - Phone: [Add phone number here]
 
-#### Links to API Provider Docs:
-- [API Provider Docs](https://duffel.com/docs/api/v1/offer-requests/create-offer-request)
-
-Feel free to refer to the API provider's documentation for more detailed information on integrating with their services.
+### Links
+- [Duffel API Provider Docs](https://duffel.com/docs/api/v1/offer-requests/create-offer-request)
