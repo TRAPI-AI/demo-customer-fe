@@ -96,13 +96,13 @@ function TripSearch() {
       <h2 className="text-2xl p-14 text-left font-bold">Results</h2>
 
       <div className="mx-14">
-        {responseData && responseData.offers.map((offer, index) => (
+        {responseData && responseData.data && responseData.data.offers.map((offer, index) => (
           <div key={index} className="border p-4 mb-4 rounded-lg">
             <p className="font-bold">Total Amount: {offer.total_amount}</p>
             {offer.slices.map((slice, sliceIndex) => (
               <div key={sliceIndex} className="mt-4">
                 <p>Departure Date: {slice.departure_date}</p>
-                {slice.segments.slice(0, 1).map((segment, segmentIndex) => (
+                {slice.segments && slice.segments.slice(0, 1).map((segment, segmentIndex) => (
                   <div key={segmentIndex}>
                     <p>Carrier: {segment.operating_carrier.name}</p>
                     <p>Departing At: {segment.departing_at}</p>
@@ -123,3 +123,4 @@ function TripSearch() {
 export default TripSearch;
 
 // End of the response
+//
