@@ -119,6 +119,7 @@
   min-width: 66%;
   justify-content: center;
   justify-items: center;
+  flex-wrap: wrap; /* Add this line */
 }
 
 .result {
