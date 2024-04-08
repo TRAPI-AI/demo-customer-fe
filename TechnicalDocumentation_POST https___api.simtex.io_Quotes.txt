@@ -1,25 +1,34 @@
-## Integration Documentation: Simtex API
+## Integration Documentation
 
-### Quick Start Guide
-1. **Backend Endpoint**: 
-   - Endpoint: `https://api.simtex.io/Quotes`
-   - Description: This endpoint creates an initial quote for an eSIM based on destination countries and duration of stay in each country.
+### Backend Endpoint:
+- Endpoint: 
+- Description: 
 
-2. **Frontend Component**:
-   - The frontend component should make a POST request to the backend endpoint `https://api.simtex.io/Quotes` to create a new quote for an eSIM.
+### Frontend Component:
+- Component: 
+- Description: 
 
-3. **API Provider Docs**: [Simtex API Reference](https://simtex.readme.io/reference/post_quotes-1)
+### API Provider Documentation:
+- [API Provider Docs](https://simtex.readme.io/reference/post_quotes-1)
 
-### Testing Options
-- Integration tests can be written using the `integration_tests.py` file to test the functionality of the integration with the Simtex API.
+### Sections:
 
-### Troubleshooting Guide
-- If you encounter any issues during integration, refer to the [Simtex API Reference](https://simtex.readme.io/reference/post_quotes-1) for detailed information on the API endpoints and parameters.
+#### Quick Start Guide:
+1. Register for an account with the API provider.
+2. Obtain API credentials (API key, secret key, etc.).
+3. Implement the backend endpoint to make POST requests to the API provider's endpoint.
+4. Integrate the frontend component to display the data retrieved from the API provider.
 
-### Support Contact Info
-- For any further assistance or support, you can reach out to Simtex API support team through their official website or contact details provided in their documentation.
+#### Testing Options:
+- Integration tests have been written in `integration_tests.py`. You can run these tests to ensure the integration is working correctly.
 
-### Links to API Provider Docs
-- [Simtex API Reference](https://simtex.readme.io/reference/post_quotes-1)
+#### Troubleshooting Guide:
+1. If you encounter any errors, refer to the API provider documentation for error code explanations.
+2. Check your API credentials for accuracy.
+3. Ensure that the backend endpoint is correctly configured to communicate with the API provider.
 
-Follow the above guide to successfully integrate with the Simtex API and create quotes for eSIMs.
+#### Support Contact Info:
+- For any further assistance or support, you can contact the API provider at [support@simtex.com](mailto:support@simtex.com).
+
+#### Links:
+- [API Provider Documentation](https://simtex.readme.io/reference/post_quotes-1)
