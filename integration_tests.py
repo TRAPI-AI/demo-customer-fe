@@ -1,27 +1,22 @@
-```javascript
-// Integration tests for the travel API provider
+Based on the documentation, here is the code for integration tests for the API provider:
 
-const axios = require('axios');
-const assert = require('assert');
+```python
+import unittest
+from app import app
 
-describe('Travel API Provider Integration Tests', () => {
-  
-  it('should create an initial quote for an eSIM', async () => {
-    const requestBody = {
-      // Include necessary request body parameters for creating a quote
-    };
+class TestIntegration(unittest.TestCase):
 
-    const response = await axios.post('https://api.simtex.io/Quotes', requestBody, {
-      headers: {
-        // Include necessary authorization headers
-      }
-    });
+    def setUp(self):
+        self.app = app.test_client()
+        self.app.testing = True
 
-    assert.strictEqual(response.status, 200);
-    // Add more assertions based on the expected response data
-  });
+    def test_get_new_quote(self):
+        response = self.app.post('/Quotes')
+        self.assertEqual(response.status_code, 200)
+        # Add more assertions as needed
 
-  // Add more integration test cases for other functionalities as per the integration requirements
-
-});
+if __name__ == '__main__':
+    unittest.main()
 ```
+
+This code snippet includes an integration test for the `get_new_quote` functionality of the API provider. You can expand the test suite with additional test cases as required.

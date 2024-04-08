@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 .App {
   text-align: center;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .App-logo {
@@ -56,7 +61,6 @@
 }
 
 .search-area {
-  margin: 1rem;
   display: flex;
   align-self: center;
 }
@@ -86,9 +90,9 @@
 
 .nav {
   background-color: #282c34;
-  padding: 10px;
-  color: #ced4da;
-  margin-bottom: 10px;
+  padding: 20px;
+  color: #fff;
+  /* margin-bottom: 10px; */
 }
 
 /* Colors */
@@ -107,16 +111,21 @@
 .border {
   border: 1px solid #dee2e6; /* Bootstrap border color */
 }
+.fields {
+  display: flex;
+   gap: 10px
+}
 
 .search {
-  background-color: lightblue;
+  background-color: #282c34;
   padding: 20px;
   display: flex;
   align-items: center;
   align-content: center;
-  gap: 10px;
-  border-radius: 12px;
-  min-width: 66%;
+  gap: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 100vw;
   justify-content: center;
   justify-items: center;
   flex-wrap: wrap; /* Add this line */
