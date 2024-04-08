@@ -1,4 +1,3 @@
-
 .App {
   text-align: center;
 }
@@ -27,6 +26,109 @@
 
 .App-link {
   color: #61dafb;
+}
+
+/* General Layout */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Spacing */
+.padding {
+  padding: 1rem; /* Adjust based on your design */
+}
+
+.search-area {
+  margin: 1rem;
+  display: flex;
+  align-self: center;
+}
+
+/* Typography */
+.logo {
+  font-size: 1.5rem; /* 20px */
+  font-weight: bold;
+  padding: 10px;
+}
+
+/* Buttons and Inputs */
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  color: white;
+  background-color: #007bff; /* Bootstrap primary color for example */
+}
+
+.input {
+  padding: 0.5rem;
+  border: 1px solid #ced4da; /* Bootstrap input border color */
+  border-radius: 0.25rem;
+  margin-bottom: 5px;
+}
+
+.nav {
+  background-color: #282c34;
+  padding: 10px;
+  color: #ced4da;
+  margin-bottom: 10px;
+}
+
+/* Colors */
+.bg-dark {
+  background-color: #343a40; /* Bootstrap dark color */
+}
+
+.bg-light {
+  background-color: #f8f9fa; /* Bootstrap light color */
+}
+
+.text-white {
+  color: white;
+}
+
+.border {
+  border: 1px solid #dee2e6; /* Bootstrap border color */
+}
+
+.search {
+  background-color: lightblue;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+  border-radius: 12px;
+  min-width: 66%;
+  justify-content: center;
+  justify-items: center;
+}
+
+.result {
+  border-radius: 12px;
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #282c34;
+  min-width: 66%;
+  margin-bottom: 5px;
 }
 
 @keyframes App-logo-spin {

@@ -1,29 +1,27 @@
+import React from "react";
+import "./App.css";
+
 function TripSearch() {
   return (
-    <div className="min-h-screen bg-white">
-      <nav className="bg-gray-200 border-b border-gray-300 flex shadow-xs">
-        <span className="font-semibold text-xl p-4">Your Logo</span>
+    <div className="flex-column">
+      <nav className="nav">
+        <span className="logo">Your Logo</span>
       </nav>
 
-      <div className="flex justify-center mt-14 items-start h-1/3">
-        <div className="bg-slate-800 p-14 border border-gray-300 w-11/12 rounded-lg">
-          <div className="flex items-center  justify-center gap-3">
-            <input className="input rounded-lg border-gray-600 border p-4" />
-            <input className="input rounded-lg border-gray-600 border p-4" />
-            <input className="input rounded-lg border-gray-600 border p-4" />
-            <button className="bg-blue-500 text-white font-semibold rounded-full px-6 py-4">
-              Search
-            </button>
-          </div>
+      <div className="search-area">
+        <div className="search">
+          <input className="input" />
+          <input className="input" />
+          <input className="input" />
+          <button className="button">Search</button>
         </div>
       </div>
 
-      <h2 className="text-2xl px-14 pt-14 text-left font-bold">Results</h2>
-
-      <ul className="flex flex-col gap-8 m-14 mx-14 justify-around items-center">
-        <li className="w-full min-h-20 h-fit border border-gray-400 rounded-lg"></li>
-        <li className="w-full min-h-20 h-fit border border-gray-400 rounded-lg"></li>
-        <li className="w-full min-h-20 h-fit border border-gray-400 rounded-lg"></li>
+      <ul className="flex-column-center">
+        <h2 className="logo">Results</h2>
+        <li className="result">Result 1</li>
+        <li className="result">Result 2</li>
+        <li className="result">Result 3</li>
       </ul>
     </div>
   );
