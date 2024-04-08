@@ -38,13 +38,13 @@ function TripSearch() {
   return (
     <div className="flex-column">
       <nav className="nav">
-        <span className="logo">Your Logo</span>
+        <span className="logo">TravelCo!</span>
       </nav>
 
       <div className="search-area">
         <div className="search">
           {destinations.map((destination, index) => (
-            <div key={index}>
+            <div className="fields" key={index}>
               <input
                 className="input"
                 placeholder="Country Code"
