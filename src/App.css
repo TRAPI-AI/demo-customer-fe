@@ -1,137 +1,75 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
-.App {
-  text-align: center;
-}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-/* General Layout */
-.flex {
-  display: flex;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.flex-column-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Spacing */
-.padding {
-  padding: 1rem; /* Adjust based on your design */
-}
-
-.search-area {
-  display: flex;
-  align-self: center;
-}
-
-/* Typography */
-.logo {
-  font-size: 1.5rem; /* 20px */
-  font-weight: bold;
-  padding: 10px;
-}
-
-/* Buttons and Inputs */
-.button {
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  border: none;
-  color: white;
-  background-color: #007bff; /* Bootstrap primary color for example */
-}
-
-.input {
-  padding: 0.5rem;
-  border: 1px solid #ced4da; /* Bootstrap input border color */
-  border-radius: 0.25rem;
-  margin-bottom: 5px;
-}
-
-.nav {
-  background-color: #282c34;
+nav {
+  background-color: #05203c;
   padding: 20px;
   color: #fff;
-  /* margin-bottom: 10px; */
-}
-
-/* Colors */
-.bg-dark {
-  background-color: #343a40; /* Bootstrap dark color */
-}
-
-.bg-light {
-  background-color: #f8f9fa; /* Bootstrap light color */
-}
-
-.text-white {
-  color: white;
-}
-
-.border {
-  border: 1px solid #dee2e6; /* Bootstrap border color */
-}
-.fields {
-  display: flex;
-   gap: 10px
 }
 
 .search {
-  background-color: #282c34;
-  padding: 20px;
+  background-color: #05203c;
+  padding-bottom: 60px;
+  padding-top: 40px;
   display: flex;
   align-items: center;
   align-content: center;
   gap: 20px;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   width: 100vw;
   justify-content: center;
   justify-items: center;
   flex-wrap: wrap; /* Add this line */
 }
 
-.result {
+.search-area {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+}
+
+span {
+  font-size: 1.75rem;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #05203c;
+  text-align: center;
+}
+
+input {
+  padding: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+button {
+  padding: 1.1rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  color: white;
+  font-weight: bold;
+  background-color: #007bff;
+}
+
+h2 {
+  font-weight: 500;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: large;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+li {
   border-radius: 12px;
   padding: 10px;
   border-width: 1px;
@@ -139,13 +77,4 @@ body {
   border-color: #282c34;
   min-width: 66%;
   margin-bottom: 5px;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
