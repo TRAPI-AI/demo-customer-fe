@@ -22,7 +22,7 @@ nav {
   width: 100vw;
   justify-content: center;
   justify-items: center;
-  flex-wrap: wrap; /* Add this line */
+  flex-wrap: wrap; 
 }
 
 .search-area {
@@ -45,6 +45,7 @@ input {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   margin-right: 10px;
+  margin-bottom: 20px;
 }
 
 button {
@@ -54,6 +55,7 @@ button {
   color: white;
   font-weight: bold;
   background-color: #007bff;
+  margin-bottom: 20px;
 }
 
 h2 {
