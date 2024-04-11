@@ -17,7 +17,7 @@ def simtex_esim_search():
 
         # Defining the headers
         headers = {
-            'X-Api-Key': 'UtaR8LXYDXqzMBLZ',
+            'X-Api-Key': '<insert API Key>',
             'accept': 'application/json',
             'content-type': 'application/json'
         }
