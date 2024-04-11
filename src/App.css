@@ -46,6 +46,7 @@ input {
   border-radius: 0.25rem;
   margin-right: 10px;
   margin-bottom: 20px;
+  font-size: 12px;
 }
 
 button {
@@ -59,7 +60,7 @@ button {
 }
 
 h2 {
-  font-weight: 500;
+  font-weight: 700;
   margin-top: 40px;
   margin-bottom: 20px;
   font-size: large;
@@ -71,6 +72,14 @@ ul {
   align-items: center;
 }
 
+select {
+  margin-left: 10px;
+  margin-right: 20px;
+  height: 55px;
+  margin-bottom: 20px;
+font-size: 12px;
+}
+
 li {
   border-radius: 12px;
   padding: 10px;
@@ -79,4 +88,18 @@ li {
   border-color: #282c34;
   min-width: 66%;
   margin-bottom: 5px;
+}
+
+.offer-card {  border-radius: 12px;
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #282c34;
+  min-width: 66%;
+  margin-bottom: 5px;
+
+}
+
+.results {
+  margin: 10vh;
 }
