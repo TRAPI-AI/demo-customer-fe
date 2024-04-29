@@ -18,9 +18,9 @@ function TripSearch() {
 
       <ul>
         <h2>Results</h2>
-        <li>Result 1</li>
-        <li>Result 2</li>
-        <li>Result 3</li>
+        <li className="offer-item">Result 1</li>
+        <li className="offer-item">Result 2</li>
+        <li className="offer-item">Result 3</li>
       </ul>
     </div>
   );
