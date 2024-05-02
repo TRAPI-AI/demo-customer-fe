@@ -8,6 +8,7 @@ function Routing() {
     <BrowserRouter>
       <Routes>
         <Route path="/operatorSearch" element={<OperatorSearch />} />
+        <Route path="/" element={<CruiseSearch />} />
         <Route path="/cruiseSearch" element={<CruiseSearch />} />
       </Routes>
     </BrowserRouter>
