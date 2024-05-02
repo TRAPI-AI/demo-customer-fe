@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-function CruiseSearch() {
+function Search() {
   return (
     <div>
       <nav />
@@ -26,4 +26,4 @@ function CruiseSearch() {
   );
 }
 
-export default CruiseSearch;
+export default Search;
