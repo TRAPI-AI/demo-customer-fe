@@ -56,12 +56,12 @@ input {
   margin-right: 10px;
   margin-bottom: 10px;
   margin-top: 10px;
-  font-size: 12px;
-  height: 55px;
+  font-size: 16px;
+  height: 20px;
 }
 
 button {
-  padding: 1.1rem 1rem;
+  padding: 1.1rem 2rem;
   border-radius: 0.5rem;
   border: none;
   color: white;
@@ -71,6 +71,7 @@ button {
   margin-top: 10px;
   height: 55px;
   width: fit-content;
+  cursor: pointer;
 }
 
 h2 {
