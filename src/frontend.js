@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-function Search() {
+function Frontend() {
   return (
     <div>
       <nav />
@@ -26,4 +26,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default Frontend;

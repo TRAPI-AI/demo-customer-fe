@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Search from "./search.js";
+import Frontend from "./frontend.js";
 
 function Routing() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Search />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/" element={<Frontend />} />
+        <Route path="/frontend" element={<Frontend />} />
       </Routes>
     </BrowserRouter>
   );
