@@ -155,6 +155,21 @@ p {
   padding-left: 20;
 }
 
+.flight-info {
+  border-radius: 20px;
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #282c34;
+  min-width: 66%;
+  margin: 20px;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding-left: 20;
+}
+
 .results {
   margin: 10vh;
 }
