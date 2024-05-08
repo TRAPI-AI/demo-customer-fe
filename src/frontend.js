@@ -9,6 +9,7 @@ function Frontend() {
       <div className="search-area">
         <span>Demo Travel Tool</span>
         <div className="search">
+          {/* Input fields go in this container */}
           <input />
           <input />
           <input />
@@ -17,6 +18,8 @@ function Frontend() {
       </div>
 
       <ul>
+        {/* Response items go in this container */}
+
         <h2>Results</h2>
         <li className="offer-item">Result 1</li>
         <li className="offer-item">Result 2</li>
