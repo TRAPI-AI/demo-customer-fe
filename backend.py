@@ -8,11 +8,11 @@ import json
 
 # Initializing Flask app
 app = Flask(__name__)
-CORS(app) 
+CORS(app)
 
 
 # Running the app
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(port=5000, debug=True)
 
-# End of the response
+# End of the responses
