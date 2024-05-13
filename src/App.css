@@ -147,7 +147,21 @@ p {
   border-style: solid;
   border-color: #282c34;
   min-width: 66%;
-  margin-bottom: 20px;
+  margin: 20px;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.ship-details {
+  border-radius: 20px;
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #282c34;
+  min-width: 66%;
+  margin: 20px;
   background-color: white;
   display: flex;
   flex-wrap: wrap;
