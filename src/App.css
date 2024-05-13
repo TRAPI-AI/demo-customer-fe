@@ -140,7 +140,7 @@ p {
   flex-direction: column;
 }
 
-ship-card {
+.ship-card {
   border-radius: 20px;
   padding: 10px;
   border-width: 1px;
