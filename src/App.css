@@ -184,6 +184,20 @@ p {
   padding-left: 20;
 }
 
+.operator-card {
+  border-radius: 20px;
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #282c34;
+  min-width: 66%;
+  margin-bottom: 20px;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  }
+
 .results {
   margin: 10vh;
 }
