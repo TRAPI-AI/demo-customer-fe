@@ -234,3 +234,19 @@ label {
   border-radius: 8px; /* Optional: rounded corners */
   overflow: auto; /* Enable scrolling within the modal if content is large */
 }
+
+.passenger-details {
+  position: fixed; /* Fixed positioning to make it stay in place even on scrolling */
+  top: 50%; /* Position at half the height of the viewport */
+  left: 50%; /* Position at half the width of the viewport */
+  transform: translate(-50%, -50%); /* Shift the modal back by half its width and height to center it */
+  width: 80%; /* Set the width as desired, here it's 80% of the viewport width */
+  max-width: 600px; /* Maximum width of the modal */
+  height: auto; /* Height based on content */
+  padding: 20px; /* Padding inside the modal */
+  background-color: white; /* Background color of the modal */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for 3D effect */
+  z-index: 1000; /* Ensure it sits on top of other content */
+  border-radius: 8px; /* Optional: rounded corners */
+  overflow: auto; /* Enable scrolling within the modal if content is large */
+}
