@@ -5,7 +5,6 @@ function Frontend() {
   return (
     <div>
       <nav>
-        <img src="logo2.png" alt="Logo" className="navbar-logo" />
         <span>Demo Travel Tool</span>
       </nav>
 
