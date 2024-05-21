@@ -7,10 +7,7 @@ function Frontend() {
   return (
     <div>
       <Navbar />
-
-        {/* Replace with travel vertical type */}
       <div className="search-area">
-
         <div className="search">
           {/* Input fields go in this container */}
           <input />
@@ -19,7 +16,6 @@ function Frontend() {
           <button>Search</button>
         </div>
       </div>
-
       {/* Response items go in this container */}
       <ul>
         <li className="offer-item">Result 1</li>
