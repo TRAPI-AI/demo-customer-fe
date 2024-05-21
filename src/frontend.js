@@ -1,14 +1,17 @@
 import React from "react";
+import Inspiration from "./inspiration";
+import Navbar from "./navbar";
 import "./App.css";
 
 function Frontend() {
   return (
     <div>
-      <nav>
-        <span>Demo Travel Tool</span>
-      </nav>
+      <Navbar />
 
+        {/* Replace with travel vertical type */}
       <div className="search-area">
+
+        <div className="vertical">Travel Vertical</div>
         <div className="search">
           {/* Input fields go in this container */}
           <input />
@@ -26,6 +29,7 @@ function Frontend() {
         <li className="offer-item">Result 4</li>
         <li className="offer-item">Result 5</li>
       </ul>
+      <Inspiration />
     </div>
   );
 }
