@@ -4,10 +4,12 @@ import "./App.css";
 function Frontend() {
   return (
     <div>
-      <nav />
+      <nav>
+        <img src="logo2.png" alt="Logo" className="navbar-logo" />
+        <span>Demo Travel Tool</span>
+      </nav>
 
       <div className="search-area">
-        <span>Demo Travel Tool</span>
         <div className="search">
           {/* Input fields go in this container */}
           <input />
@@ -17,13 +19,13 @@ function Frontend() {
         </div>
       </div>
 
+      {/* Response items go in this container */}
       <ul>
-        {/* Response items go in this container */}
-
-        <h2>Results</h2>
         <li className="offer-item">Result 1</li>
         <li className="offer-item">Result 2</li>
         <li className="offer-item">Result 3</li>
+        <li className="offer-item">Result 4</li>
+        <li className="offer-item">Result 5</li>
       </ul>
     </div>
   );
