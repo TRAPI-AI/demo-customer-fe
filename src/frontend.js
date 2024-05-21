@@ -11,7 +11,6 @@ function Frontend() {
         {/* Replace with travel vertical type */}
       <div className="search-area">
 
-        <div className="vertical">Travel Vertical</div>
         <div className="search">
           {/* Input fields go in this container */}
           <input />
