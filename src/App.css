@@ -176,6 +176,8 @@ select {
   margin-right: 20px;
   background-color: white;
   display: flex;
+  width: 323px;
+  height: 338px;
   flex-wrap: wrap;
   flex-direction: column;
   position: relative; /* Set position to relative */
