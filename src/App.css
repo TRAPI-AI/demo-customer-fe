@@ -115,6 +115,7 @@ li {
   font-weight: 500;
   border-color: #d0d1d3;
   width: 600px; /* Fixed width */
+  min-height: 200px;
   height: 'fit'; /* Fixed height */
   margin-right: 5px; /* Add space between items */
   flex-shrink: 0; /* Prevents the items from shrinking */
