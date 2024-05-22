@@ -106,6 +106,7 @@ ul {
   width: 100%; /* Ensure the ul takes full width of its container */
   white-space: nowrap; /* Prevents wrapping of items */
   margin-top: 50px;
+  min-height: 300px;
 }
 
 li {
