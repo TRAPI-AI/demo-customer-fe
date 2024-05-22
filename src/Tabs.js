@@ -79,6 +79,27 @@ const Tabs = ({ setActiveTab, activeTab }) => {
       <div
         style={{
           border:
+            activeTab === "Trains" ? "1px solid white" : "1px solid transparent",
+          borderRadius: 50,
+          padding: "17px 22px",
+          color: "white",
+          fontWeight: 600,
+          cursor: "pointer",
+          display: "flex", // Ensure the contents of the div are laid out in a row
+          alignItems: "center", // Align the image and text vertically
+          backgroundColor:
+            activeTab === "Trains"
+              ? "rgba(255, 255, 255, 0.18)"
+              : "transparent", // Very transparent white
+        }}
+        onClick={() => setActiveTab("Trains")}
+      >
+        <img src="/Train.png" alt="Air" style={{ marginRight: 12, height: 25 }} />
+        Trains
+      </div>
+      <div
+        style={{
+          border:
             activeTab === "Car Rentals" ? "1px solid white" : "1px solid transparent",
           borderRadius: 50,
           padding: "17px 22px",
