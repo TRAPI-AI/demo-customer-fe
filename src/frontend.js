@@ -1,29 +1,25 @@
-import React from "react";
-import Inspiration from "./inspiration";
+import React, { useState } from "react";
 import Navbar from "./navbar";
-import "./App.css";
+import Tabs from "./Tabs";
+import Air from "./Air";
+import Stays from "./Stays";
+import Cruises from "./Cruises";
+import CarRentals from "./CarRentals";
+import Esims from "./Esims";
+import Inspiration from "./inspiration";
 
 function Frontend() {
+  const [activeTab, setActiveTab] = useState('Flights'); // Default to 'Flights'
+
   return (
     <div>
       <Navbar />
-      <div className="search-area">
-        <div className="search">
-          {/* Input fields go in this container */}
-          <input />
-          <input />
-          <input />
-          <button>Search</button>
-        </div>
-      </div>
-      {/* Response items go in this container */}
-      <ul>
-        <li className="offer-item">Result 1</li>
-        <li className="offer-item">Result 2</li>
-        <li className="offer-item">Result 3</li>
-        <li className="offer-item">Result 4</li>
-        <li className="offer-item">Result 5</li>
-      </ul>
+      <Tabs setActiveTab={setActiveTab} activeTab={activeTab} />
+      {activeTab === 'Flights' && <Air />}
+      {activeTab === 'Stays' && <Stays />}
+      {activeTab === 'Cruises' && <Cruises />}
+      {activeTab === 'Car Rentals' && <CarRentals />}
+      {activeTab === 'eSims' && <Esims />}
       <Inspiration />
     </div>
   );
