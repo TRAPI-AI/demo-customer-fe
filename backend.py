@@ -2,6 +2,7 @@
 
 # Importing necessary libraries
 import xml.etree.ElementTree as ET
+from lxml import etree
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
