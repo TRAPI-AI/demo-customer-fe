@@ -120,6 +120,27 @@ const Tabs = ({ setActiveTab, activeTab }) => {
       </div>
       <div
         style={{
+          border:
+            activeTab === "Ride Hailing" ? "1px solid white" : "1px solid transparent",
+          borderRadius: 50,
+          padding: "17px 22px",
+          color: "white",
+          fontWeight: 600,
+          cursor: "pointer",
+          display: "flex", // Ensure the contents of the div are laid out in a row
+          alignItems: "center", // Align the image and text vertically
+          backgroundColor:
+            activeTab === "Ride Hailing"
+              ? "rgba(255, 255, 255, 0.18)"
+              : "transparent", // Very transparent white
+        }}
+        onClick={() => setActiveTab("Ride Hailing")}
+      >
+        <img src="/Ride.png" alt="Ride" style={{ marginRight: 12, height: 25 }} />
+        Ride Hailing
+      </div>
+      <div
+        style={{
           border: activeTab === "eSims" ? "1px solid white" : "transparent",
           borderRadius: 50,
           padding: "17px 22px",

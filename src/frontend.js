@@ -8,6 +8,7 @@ import CarRentals from "./CarRentals";
 import Esims from "./Esims";
 import Inspiration from "./inspiration";
 import Trains from "./Trains";
+import RideHailing from "./RideHailing";
 
 function Frontend() {
   const [activeTab, setActiveTab] = useState('Flights');
@@ -21,6 +22,7 @@ function Frontend() {
       {activeTab === 'Cruises' && <Cruises />}
       {activeTab === 'Trains' && <Trains />}
       {activeTab === 'Car Rentals' && <CarRentals />}
+      {activeTab === 'Ride Hailing' && <RideHailing />}
       {activeTab === 'eSims' && <Esims />}
       <Inspiration />
     </div>
