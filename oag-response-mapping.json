@@ -1,0 +1,76 @@
+{
+    "mappings": [
+      {
+        "xml": "FlightId",
+        "json": "sequenceNumber"
+      },
+      {
+        "xml": "FlightNumber",
+        "json": "flightNumber"
+      },
+      {
+        "xml": "CommercialAirline.AirlineCode",
+        "json": ["carrier.iata", "carrier.icao"]
+      },
+      {
+        "xml": "CommercialAirline.AirlineName",
+        "json": "codeshare.operatingAirlineDisclosure.name"
+      },
+      {
+        "xml": "Aircraft.AircraftType",
+        "json": ["aircraftType.iata", "aircraftType.icao"]
+      },
+      {
+        "xml": "Aircraft.TailNumber",
+        "json": "statusDetails.equipment.aircraftRegistrationNumber"
+      },
+      {
+        "xml": "Departure.Airport.AirportCode",
+        "json": ["departure.airport.iata", "departure.airport.icao"]
+      },
+      {
+        "xml": "Departure.DateTime.Date",
+        "json": "departure.date.utc"
+      },
+      {
+        "xml": "Departure.DateTime.Time",
+        "json": "departure.time.utc"
+      },
+      {
+        "xml": "Departure.Airport.Terminal",
+        "json": "departure.terminal"
+      },
+      {
+        "xml": "Arrival.Airport.AirportCode",
+        "json": ["arrival.airport.iata", "arrival.airport.icao"]
+      },
+      {
+        "xml": "Arrival.DateTime.Date",
+        "json": "arrival.date.utc"
+      },
+      {
+        "xml": "Arrival.DateTime.Time",
+        "json": "arrival.time.utc"
+      },
+      {
+        "xml": "Arrival.Airport.Terminal",
+        "json": "arrival.terminal"
+      },
+      {
+        "xml": "FlightStatus",
+        "json": "statusDetails"
+      },
+      {
+        "xml": "ScheduleStatus",
+        "json": "statusKey"
+      },
+      {
+        "xml": "SvcType",
+        "json": "serviceType.iata"
+      },
+      {
+        "xml": "CodeShares",
+        "json": ["codeshare.marketingFlights", "codeshare.operatingFlight"]
+      }
+    ]
+  }

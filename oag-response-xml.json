@@ -1,0 +1,113 @@
+{
+  "Flight": {
+    "FlightId": "BA103:LHR:2017-03-22:1535",
+    "FlightNumber": "103",
+    "CommercialAirline": {
+      "AirlineCode": "BA",
+      "AirlineName": "British Airways"
+    },
+    "OrigDate": "2017-03-22",
+    "CodeShares": [
+      {
+        "FlightNumber": "6225",
+        "CommercialAirline": {
+          "AirlineCode": "AA",
+          "AirlineName": "American Airlines"
+        }
+      },
+      {
+        "FlightNumber": "5990",
+        "CommercialAirline": {
+          "AirlineCode": "AY",
+          "AirlineName": "Finnair"
+        }
+      },
+      {
+        "FlightNumber": "8803",
+        "CommercialAirline": {
+          "AirlineCode": "EI",
+          "AirlineName": "Aer Lingus"
+        }
+      },
+      {
+        "FlightNumber": "4609",
+        "CommercialAirline": {
+          "AirlineCode": "IB",
+          "AirlineName": "Iberia Airlines"
+        }
+      }
+    ],
+    "Aircraft": {
+      "AircraftType": "788",
+      "TailNumber": "GZBJA"
+    },
+    "FlightStatus": {
+      "InAir": {}
+    },
+    "ScheduleStatus": "AE",
+    "Departure": {
+      "Airport": {
+        "AirportCode": "LHR",
+        "AirportName": "HEATHROW",
+        "AirportLocation": {
+          "CityName": "LONDON",
+          "CountryId": "GB"
+        },
+        "Terminal": "5"
+      },
+      "DateTime": [
+        {
+          "Date": "2017-03-22",
+          "Time": "15:35:00"
+        },
+        {
+          "Date": "2017-03-22",
+          "Time": "15:42:00"
+        },
+        {
+          "Date": "2017-03-22",
+          "Time": "16:11:00"
+        }
+      ]
+    },
+    "Arrival": {
+      "Airport": {
+        "AirportCode": "YYC",
+        "AirportName": "CALGARYINTL",
+        "AirportLocation": {
+          "CityName": "CALGARY",
+          "ProvinceId": "AB",
+          "CountryId": "CA"
+        }
+      },
+      "DateTime": [
+        {
+          "Date": "2017-03-22",
+          "Time": "18:55:00"
+        },
+        {
+          "Date": "2017-03-22",
+          "Time": "18:51:00"
+        }
+      ]
+    },
+    "SvcType": "J",
+    "SchedInfoPresent": "Y",
+    "Map": "http://tracker.flightview.com/fvXMLDemoMapEstPos/flightviewCGI.exe?qtype=GIF&acid=BA103&arrap=YYC&depap=LHR",
+    "SeqNum": "1",
+    "NumLegs": "1",
+    "AircraftPreviousFlightLeg": {
+      "FlightNumber": "276",
+      "CommercialAirline": {
+        "AirlineCode": "BA",
+        "AirlineName": "British Airways"
+      },
+      "Arrival": {
+        "DateTime": {
+          "Date": "2017-03-22",
+          "Time": "12:40:00"
+        }
+      }
+    }
+  }
+}
