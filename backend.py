@@ -43,15 +43,13 @@ def fetch_flight_data():
             return error_message, 500
 
         # Continue processing if key exists
-        result_message = response_dict["FlightViewResults"]["QueryProcessingStamp"][
-            "Result"
-        ]["ResultMessage"]
+        
         flight_number = response_dict["FlightViewResults"]["QueryProcessingStamp"][
             "QueryRequest"
         ]["ACID"]
 
         doc_ref = db.collection("flightViewCalls").document(flight_number)
-        doc_ref.set({"result_message": result_message, "flight_number": flight_number})
+        doc_ref.set({ "flight_number": flight_number})
 
         return f"Data for flight {flight_number} saved to Firestore in 'flightView' collection."
 
