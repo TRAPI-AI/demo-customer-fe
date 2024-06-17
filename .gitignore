@@ -32,3 +32,4 @@ package-lock.json
 yarn.lock
 
 requirements.txt
+firebase-service-account-key.json
