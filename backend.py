@@ -1,4 +1,5 @@
 import os
+import datetime
 from flask import Flask, request
 import requests
 import xmltodict
@@ -12,7 +13,6 @@ app = Flask(__name__)
 
 # Initialize Firestore client
 db = firestore.Client()
-
 
 @app.route("/fetch-flight-data", methods=["GET"])
 def fetch_flight_data():
@@ -30,32 +30,23 @@ def fetch_flight_data():
     # Extracting specific fields from the response
     flight_data = {
         "FlightId": response_dict["FlightViewResults"]["Flight"]["FlightId"],
-        "AirlineCode": response_dict["FlightViewResults"]["Flight"][
-            "CommercialAirline"
-        ]["AirlineCode"],
-        "AirportCode": response_dict["FlightViewResults"]["Flight"]["Arrival"][
-            "Airport"
-        ]["AirportCode"],
-        "ScheduleStatus": response_dict["FlightViewResults"]["Flight"][
-            "ScheduleStatus"
-        ],
+        "AirlineCode": response_dict["FlightViewResults"]["Flight"]["CommercialAirline"]["AirlineCode"],
+        "AirportCode": response_dict["FlightViewResults"]["Flight"]["Arrival"]["Airport"]["AirportCode"],
+        "ScheduleStatus": response_dict["FlightViewResults"]["Flight"]["ScheduleStatus"],
         "SvcType": response_dict["FlightViewResults"]["Flight"]["SvcType"],
-        "Terminal": response_dict["FlightViewResults"]["Flight"]["Arrival"]["Airport"][
-            "Terminal"
-        ],
-        "TailNumber": response_dict["FlightViewResults"]["Flight"]["Aircraft"][
-            "TailNumber"
-        ],
+        "Terminal": response_dict["FlightViewResults"]["Flight"]["Arrival"]["Airport"]["Terminal"],
+        "TailNumber": response_dict["FlightViewResults"]["Flight"]["Aircraft"]["TailNumber"],
     }
 
-    # Create a new document with a random ID
-    doc_ref = db.collection("flightViewCalls").document()
-    doc_ref.set(flight_data)
+    # Generate a datetime string for the document name
+    datetime_str = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    document_name = f"flight_info_v2_req_{datetime_str}"
 
-    return f"Data for flight {flight_data['FlightId']} saved to Firestore in 'flightViewCalls' collection with document ID {doc_ref.id}."
+    # Create a single document with all flights data
+    doc_ref = db.collection("flightViewCalls").document(document_name)
+    doc_ref.set({"flight_data": flight_data})
 
+    return f"Data for flight {flight_data['FlightId']} saved to Firestore in 'flightViewCall' collection under '{document_name}' document."
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-    # curl "http://localhost:5000/fetch-flight-data?acid=BA103&depdate=20240322"
