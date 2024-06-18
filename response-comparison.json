@@ -1,0 +1,37 @@
+{
+    "commonKeys": [
+      "carrier",
+      "serviceSuffix",
+      "flightNumber",
+      "sequenceNumber",
+      "flightType",
+      "departure",
+      "arrival",
+      "elapsedTime",
+      "aircraftType",
+      "serviceType",
+      "segmentInfo",
+      "codeshare",
+      "scheduleInstanceKey",
+      "statusKey",
+      "statusDetails"
+    ]
+  }
+
+  {
+    "keys_in_oag_response_json_not_in_oag_actual_response_large": [
+      "originalFlight",
+      "bookingClasses",
+      "freightClasses",
+      "restrictions",
+      "planeChangeWithoutAircraftChange",
+      "onTimePerformance",
+      "inFlightServices",
+      "automatedCheckIn",
+      "electronicTicketing",
+      "secureFlightIndicator",
+      "governmentApproval",
+      "seatingCapacity"
+    ],
+    "keys_in_oag_actual_response_large_not_in_oag_response_json": []
+  }
