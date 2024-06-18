@@ -27,16 +27,33 @@ def fetch_flight_data():
     response_dict = xmltodict.parse(response.content)
     print("Parsed Dictionary:", response_dict)  # Debugging: Print the parsed dictionary
 
-    # Extracting specific fields from the response
-    flight_data = {
-        "FlightId": response_dict["FlightViewResults"]["Flight"]["FlightId"],
-        "AirlineCode": response_dict["FlightViewResults"]["Flight"]["CommercialAirline"]["AirlineCode"],
-        "AirportCode": response_dict["FlightViewResults"]["Flight"]["Arrival"]["Airport"]["AirportCode"],
-        "ScheduleStatus": response_dict["FlightViewResults"]["Flight"]["ScheduleStatus"],
-        "SvcType": response_dict["FlightViewResults"]["Flight"]["SvcType"],
-        "Terminal": response_dict["FlightViewResults"]["Flight"]["Arrival"]["Airport"]["Terminal"],
-        "TailNumber": response_dict["FlightViewResults"]["Flight"]["Aircraft"]["TailNumber"],
-    }
+    # Check if the response contains multiple flights
+    flights = response_dict["FlightViewResults"]["Flight"]
+    if isinstance(flights, list):
+        # Multiple flights in response
+        flight_data_list = []
+        for flight in flights:
+            flight_data = {
+                "FlightId": flight["FlightId"],
+                "AirlineCode": flight["CommercialAirline"]["AirlineCode"],
+                "AirportCode": flight["Arrival"]["Airport"]["AirportCode"],
+                "ScheduleStatus": flight["ScheduleStatus"],
+                "SvcType": flight["SvcType"],
+                "Terminal": flight["Arrival"]["Airport"]["Terminal"],
+                "TailNumber": flight["Aircraft"]["TailNumber"],
+            }
+            flight_data_list.append(flight_data)
+    else:
+        # Single flight in response
+        flight_data_list = [{
+            "FlightId": flights["FlightId"],
+            "AirlineCode": flights["CommercialAirline"]["AirlineCode"],
+            "AirportCode": flights["Arrival"]["Airport"]["AirportCode"],
+            "ScheduleStatus": flights["ScheduleStatus"],
+            "SvcType": flights["SvcType"],
+            "Terminal": flights["Arrival"]["Airport"]["Terminal"],
+            "TailNumber": flights["Aircraft"]["TailNumber"],
+        }]
 
     # Generate a datetime string for the document name
     datetime_str = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
@@ -44,9 +61,9 @@ def fetch_flight_data():
 
     # Create a single document with all flights data
     doc_ref = db.collection("flightViewCalls").document(document_name)
-    doc_ref.set({"flight_data": flight_data})
+    doc_ref.set({"flights": flight_data_list})
 
-    return f"Data for flight {flight_data['FlightId']} saved to Firestore in 'flightViewCall' collection under '{document_name}' document."
+    return f"Data for flights saved to Firestore in 'flightViewCalls' collection under '{document_name}' document."
 
 if __name__ == "__main__":
     app.run(debug=True)
