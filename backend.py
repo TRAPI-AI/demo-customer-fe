@@ -22,47 +22,21 @@ def fetch_flight_data():
     url = f"http://xml.flightview.com/{fv_company_name}/fvXML.exe"
 
     params = {"acid": acid, "depdate": depdate}
-
     response = requests.get(url, params=params)
+    print("XML Response:", response.text)  # Debugging: Print the raw XML response
+    response_dict = xmltodict.parse(response.content)
+    print("Parsed Dictionary:", response_dict)  # Debugging: Print the parsed dictionary
 
-    # Log the response content to inspect it
-    print("XML Response Content:")
-    print(response.text)  # Ensure using response.text to print as string
+    # Assuming response_dict is the root of your parsed XML
+    flight_number = response_dict["FlightViewResults"]["Flight"]["FlightId"]["FlightNumber"]
+    print("Flight Number:", flight_number)  # Debugging: Print the flight number
+    doc_ref = db.collection("flightViewCalls").document(flight_number)
+    doc_ref.set(response_dict)  # Store the entire dictionary
 
-    try:
-        # Parse the XML response
-        response_dict = xmltodict.parse(response.content)
-
-        # Check if 'FlightViewResults' is in the response_dict
-        if "FlightViewResults" not in response_dict:
-            error_message = "Error: 'FlightViewResults' not found in the XML response."
-            print(error_message)
-            # Log error to Firestore
-            doc_ref = db.collection("flightViewCalls").document()
-            doc_ref.set({"error": error_message})
-            return error_message, 500
-
-        # Continue processing if key exists
-        
-        flight_number = response_dict["FlightViewResults"]["QueryProcessingStamp"][
-            "QueryRequest"
-        ]["ACID"]
-
-        doc_ref = db.collection("flightViewCalls").document(flight_number)
-        doc_ref.set({ "flight_number": flight_number})
-
-        return f"Data for flight {flight_number} saved to Firestore in 'flightView' collection."
-
-    except Exception as e:
-        # Log exception details to Firestore
-        error_message = str(e)
-        print(f"An error occurred: {error_message}")
-        doc_ref = db.collection("flightViewCalls").document()
-        doc_ref.set({"error": error_message})
-        return f"An error occurred: {error_message}", 500
+    return f"Data for flight {flight_number} saved to Firestore in 'flightView' collection."
 
 
 if __name__ == "__main__":
     app.run(debug=True)
 
-    # curl "http://localhost:5000/fetch-flight-data?acid=BA103&depdate=20170322"
+    # curl "http://localhost:5000/fetch-flight-data?acid=BA103&depdate=20240322"
