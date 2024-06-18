@@ -48,12 +48,11 @@ def fetch_flight_data():
         ],
     }
 
-    flight_number = flight_data["FlightId"]
-    print("Flight Number:", flight_number)  # Debugging: Print the flight number
-    doc_ref = db.collection("flightViewCalls").document(flight_number)
-    doc_ref.set(flight_data)  # Store the specific fields
+    # Create a new document with a random ID
+    doc_ref = db.collection("flightViewCalls").document()
+    doc_ref.set(flight_data)
 
-    return f"Data for flight {flight_number} saved to Firestore in 'flightViewCalls' collection."
+    return f"Data for flight {flight_data['FlightId']} saved to Firestore in 'flightViewCalls' collection with document ID {doc_ref.id}."
 
 
 if __name__ == "__main__":
