@@ -33,10 +33,6 @@ def fetch_flight_data():
     doc_ref = db.collection("flightViewCalls").document(flight_number)
     doc_ref.set(response_dict)  # Store the entire dictionary
 
-    return f"Data for flight {flight_number} saved to Firestore in 'flightView' collection."
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+    return f"Data for flight {flight_number} saved to Firestore in 'flightViewCalls' collection."
 
     # curl "http://localhost:5000/fetch-flight-data?acid=BA103&depdate=20240322"
