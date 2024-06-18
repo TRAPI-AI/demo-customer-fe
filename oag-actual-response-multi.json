@@ -1,0 +1,363 @@
+{
+  "data": [
+    {
+      "carrier": { "iata": "EK", "icao": "UAE" },
+      "serviceSuffix": "",
+      "flightNumber": 9912,
+      "sequenceNumber": 2,
+      "flightType": "Scheduled",
+      "departure": {
+        "airport": { "iata": "BQN", "icao": "TJBQ" },
+        "terminal": "",
+        "country": { "code": "PR" },
+        "date": { "local": "2024-01-01", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "04:00" }
+      },
+      "arrival": {
+        "airport": { "iata": "DWC", "icao": "OMDW" },
+        "terminal": "",
+        "country": { "code": "AE" },
+        "date": { "local": "2024-01-02", "utc": "2024-01-01" },
+        "time": { "local": "02:15", "utc": "22:15" }
+      },
+      "elapsedTime": 1095,
+      "aircraftType": { "iata": "" },
+      "serviceType": { "iata": "F" },
+      "segmentInfo": {
+        "numberOfStops": 1,
+        "intermediateAirports": {
+          "iata": [{ "sequenceNumber": 0, "station": "AMS" }]
+        }
+      },
+      "codeshare": {
+        "jointOperationAirlineDesignators": [],
+        "marketingFlights": []
+      },
+      "scheduleInstanceKey": "2591b3bf48123cf205300af3c8b5ceeb464d4214061150dc51becd162ac2cf5b"
+    },
+    {
+      "carrier": { "iata": "CX", "icao": "CPA" },
+      "serviceSuffix": "",
+      "flightNumber": 87,
+      "sequenceNumber": 1,
+      "flightType": "Scheduled",
+      "departure": {
+        "airport": { "iata": "LAX", "icao": "KLAX" },
+        "terminal": "",
+        "country": { "code": "US" },
+        "date": { "local": "2024-01-01", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "08:00" }
+      },
+      "arrival": {
+        "airport": { "iata": "HKG", "icao": "VHHH" },
+        "terminal": "",
+        "country": { "code": "HK" },
+        "date": { "local": "2024-01-02", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "16:00" }
+      },
+      "elapsedTime": 480,
+      "aircraftType": { "iata": "" },
+      "serviceType": { "iata": "F" },
+      "segmentInfo": {
+        "numberOfStops": 1,
+        "intermediateAirports": {
+          "iata": [{ "sequenceNumber": 0, "station": "ANC" }]
+        }
+      },
+      "codeshare": {
+        "jointOperationAirlineDesignators": [],
+        "marketingFlights": []
+      },
+      "scheduleInstanceKey": "ade7a37649e2cd1ec622641257007e0b66527451feea7926cf9a65882bdfe645"
+    },
+    {
+      "carrier": { "iata": "CX", "icao": "CPA" },
+      "serviceSuffix": "",
+      "flightNumber": 38,
+      "sequenceNumber": 2,
+      "flightType": "Scheduled",
+      "departure": {
+        "airport": { "iata": "MXP", "icao": "LIMC" },
+        "terminal": "",
+        "country": { "code": "IT" },
+        "date": { "local": "2024-01-01", "utc": "2023-12-31" },
+        "time": { "local": "00:00", "utc": "23:00" }
+      },
+      "arrival": {
+        "airport": { "iata": "HKG", "icao": "VHHH" },
+        "terminal": "",
+        "country": { "code": "HK" },
+        "date": { "local": "2024-01-02", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "16:00" }
+      },
+      "elapsedTime": 1020,
+      "aircraftType": { "iata": "" },
+      "serviceType": { "iata": "F" },
+      "segmentInfo": {
+        "numberOfStops": 1,
+        "intermediateAirports": {
+          "iata": [{ "sequenceNumber": 0, "station": "BOM" }]
+        }
+      },
+      "codeshare": {
+        "jointOperationAirlineDesignators": [],
+        "marketingFlights": []
+      },
+      "scheduleInstanceKey": "37cb22198d007663972b112b7c305b12ceec2b3d144997917e1869a6060a62b6"
+    },
+    {
+      "carrier": { "iata": "CX", "icao": "CPA" },
+      "serviceSuffix": "",
+      "flightNumber": 38,
+      "sequenceNumber": 1,
+      "flightType": "Scheduled",
+      "departure": {
+        "airport": { "iata": "FRA", "icao": "EDDF" },
+        "terminal": "",
+        "country": { "code": "DE" },
+        "date": { "local": "2024-01-01", "utc": "2023-12-31" },
+        "time": { "local": "00:00", "utc": "23:00" }
+      },
+      "arrival": {
+        "airport": { "iata": "BOM", "icao": "VABB" },
+        "terminal": "",
+        "country": { "code": "IN" },
+        "date": { "local": "2024-01-02", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "18:30" }
+      },
+      "elapsedTime": 1170,
+      "aircraftType": { "iata": "" },
+      "serviceType": { "iata": "F" },
+      "segmentInfo": {
+        "numberOfStops": 1,
+        "intermediateAirports": {
+          "iata": [{ "sequenceNumber": 0, "station": "MXP" }]
+        }
+      },
+      "codeshare": {
+        "jointOperationAirlineDesignators": [],
+        "marketingFlights": []
+      },
+      "scheduleInstanceKey": "41522fcc4387884b7267c8d3cbdc3a4b208acf4448c1d71d1f1f159757728cf2"
+    },
+    {
+      "carrier": { "iata": "CX", "icao": "CPA" },
+      "serviceSuffix": "",
+      "flightNumber": 54,
+      "sequenceNumber": 1,
+      "flightType": "Scheduled",
+      "departure": {
+        "airport": { "iata": "HKG", "icao": "VHHH" },
+        "terminal": "",
+        "country": { "code": "HK" },
+        "date": { "local": "2024-01-01", "utc": "2023-12-31" },
+        "time": { "local": "00:00", "utc": "16:00" }
+      },
+      "arrival": {
+        "airport": { "iata": "PVG", "icao": "ZSPD" },
+        "terminal": "",
+        "country": { "code": "CN" },
+        "date": { "local": "2024-01-02", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "16:00" }
+      },
+      "elapsedTime": 1440,
+      "aircraftType": { "iata": "" },
+      "serviceType": { "iata": "F" },
+      "segmentInfo": {
+        "numberOfStops": 1,
+        "intermediateAirports": {
+          "iata": [{ "sequenceNumber": 0, "station": "CGO" }]
+        }
+      },
+      "codeshare": {
+        "jointOperationAirlineDesignators": [],
+        "marketingFlights": []
+      },
+      "scheduleInstanceKey": "45bfb64db992ce2caf6b5dcf4804b1f3b04c9b3bd83fcbe4f1e79f7432349784"
+    },
+    {
+      "carrier": { "iata": "Y8", "icao": "YZR" },
+      "serviceSuffix": "",
+      "flightNumber": 7452,
+      "sequenceNumber": 1,
+      "flightType": "Scheduled",
+      "departure": {
+        "airport": { "iata": "ORD", "icao": "KORD" },
+        "terminal": "",
+        "country": { "code": "US" },
+        "date": { "local": "2024-01-01", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "06:00" }
+      },
+      "arrival": {
+        "airport": { "iata": "NKG", "icao": "ZSNJ" },
+        "terminal": "",
+        "country": { "code": "CN" },
+        "date": { "local": "2024-01-02", "utc": "2024-01-01" },
+        "time": { "local": "05:45", "utc": "21:45" }
+      },
+      "elapsedTime": 945,
+      "aircraftType": { "iata": "" },
+      "serviceType": { "iata": "F" },
+      "segmentInfo": {
+        "numberOfStops": 1,
+        "intermediateAirports": {
+          "iata": [{ "sequenceNumber": 0, "station": "ANC" }]
+        }
+      },
+      "codeshare": {
+        "jointOperationAirlineDesignators": [],
+        "marketingFlights": []
+      },
+      "scheduleInstanceKey": "45eef1c7d9d0bb926882d852b962f2b75f16c6ce7afbf99bcd0c8031485fb0e2"
+    },
+    {
+      "carrier": { "iata": "CX", "icao": "CPA" },
+      "serviceSuffix": "",
+      "flightNumber": 2095,
+      "sequenceNumber": 1,
+      "flightType": "Scheduled",
+      "departure": {
+        "airport": { "iata": "ORD", "icao": "KORD" },
+        "terminal": "",
+        "country": { "code": "US" },
+        "date": { "local": "2024-01-01", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "06:00" }
+      },
+      "arrival": {
+        "airport": { "iata": "HKG", "icao": "VHHH" },
+        "terminal": "",
+        "country": { "code": "HK" },
+        "date": { "local": "2024-01-02", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "16:00" }
+      },
+      "elapsedTime": 600,
+      "aircraftType": { "iata": "" },
+      "serviceType": { "iata": "F" },
+      "segmentInfo": {
+        "numberOfStops": 1,
+        "intermediateAirports": {
+          "iata": [{ "sequenceNumber": 0, "station": "ANC" }]
+        }
+      },
+      "codeshare": {
+        "jointOperationAirlineDesignators": [],
+        "marketingFlights": []
+      },
+      "scheduleInstanceKey": "4f8933a8724e3f61f29dc404a31611ffdca366aa06baef9f8faa4891a563ebda"
+    },
+    {
+      "carrier": { "iata": "CX", "icao": "CPA" },
+      "serviceSuffix": "",
+      "flightNumber": 38,
+      "sequenceNumber": 1,
+      "flightType": "Scheduled",
+      "departure": {
+        "airport": { "iata": "FRA", "icao": "EDDF" },
+        "terminal": "",
+        "country": { "code": "DE" },
+        "date": { "local": "2024-01-01", "utc": "2023-12-31" },
+        "time": { "local": "00:00", "utc": "23:00" }
+      },
+      "arrival": {
+        "airport": { "iata": "HKG", "icao": "VHHH" },
+        "terminal": "",
+        "country": { "code": "HK" },
+        "date": { "local": "2024-01-02", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "16:00" }
+      },
+      "elapsedTime": 1020,
+      "aircraftType": { "iata": "" },
+      "serviceType": { "iata": "F" },
+      "segmentInfo": {
+        "numberOfStops": 2,
+        "intermediateAirports": {
+          "iata": [
+            { "sequenceNumber": 0, "station": "MXP" },
+            { "sequenceNumber": 1, "station": "BOM" }
+          ]
+        }
+      },
+      "codeshare": {
+        "jointOperationAirlineDesignators": [],
+        "marketingFlights": []
+      },
+      "scheduleInstanceKey": "74b35d8da5a2198c5cb63d21a032cf284a9563d3f31796e40e61c0d98717dff1"
+    },
+    {
+      "carrier": { "iata": "CX", "icao": "CPA" },
+      "serviceSuffix": "",
+      "flightNumber": 3273,
+      "sequenceNumber": 1,
+      "flightType": "Scheduled",
+      "departure": {
+        "airport": { "iata": "MIA", "icao": "KMIA" },
+        "terminal": "",
+        "country": { "code": "US" },
+        "date": { "local": "2024-01-01", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "05:00" }
+      },
+      "arrival": {
+        "airport": { "iata": "HKG", "icao": "VHHH" },
+        "terminal": "",
+        "country": { "code": "HK" },
+        "date": { "local": "2024-01-02", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "16:00" }
+      },
+      "elapsedTime": 660,
+      "aircraftType": { "iata": "" },
+      "serviceType": { "iata": "F" },
+      "segmentInfo": {
+        "numberOfStops": 1,
+        "intermediateAirports": {
+          "iata": [{ "sequenceNumber": 0, "station": "ANC" }]
+        }
+      },
+      "codeshare": {
+        "jointOperationAirlineDesignators": [],
+        "marketingFlights": []
+      },
+      "scheduleInstanceKey": "91905f91440c86e309067f8258658c3c427af86f269cc43d232f05baf8f2752c"
+    },
+    {
+      "carrier": { "iata": "Y8", "icao": "YZR" },
+      "serviceSuffix": "",
+      "flightNumber": 7456,
+      "sequenceNumber": 1,
+      "flightType": "Scheduled",
+      "departure": {
+        "airport": { "iata": "ORD", "icao": "KORD" },
+        "terminal": "",
+        "country": { "code": "US" },
+        "date": { "local": "2024-01-01", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "06:00" }
+      },
+      "arrival": {
+        "airport": { "iata": "PVG", "icao": "ZSPD" },
+        "terminal": "",
+        "country": { "code": "CN" },
+        "date": { "local": "2024-01-02", "utc": "2024-01-01" },
+        "time": { "local": "06:50", "utc": "22:50" }
+      },
+      "elapsedTime": 1010,
+      "aircraftType": { "iata": "" },
+      "serviceType": { "iata": "F" },
+      "segmentInfo": {
+        "numberOfStops": 1,
+        "intermediateAirports": {
+          "iata": [{ "sequenceNumber": 0, "station": "ANC" }]
+        }
+      },
+      "codeshare": {
+        "jointOperationAirlineDesignators": [],
+        "marketingFlights": []
+      },
+      "scheduleInstanceKey": "0e2e1525d1b4919ad70b8da98f3b203f2d8630163f7e6516a146887eaf9ab414"
+    }
+  ],
+  "paging": {
+    "limit": 10,
+    "totalCount": 17963,
+    "totalPages": 1797,
+    "next": "https://api.oag.com/flight-instances?version=v2&DepartureDateTime=2024-01-01T00%3A00&ArrivalDateTime=2024-01-02T00%3A00&After=202401010000-1701951366063000000-0e2e1525d1b4919ad70b8da98f3b203f2d8630163f7e6516a146887eaf9ab414"
+  }
+}
