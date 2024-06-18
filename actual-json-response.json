@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "carrier": { "iata": "", "icao": "" },
+      "serviceSuffix": "",
+      "flightNumber": 9912,
+      "sequenceNumber": 2,
+      "flightType": "",
+      "departure": {
+        "airport": { "iata": "", "icao": "" },
+        "terminal": "",
+        "country": { "code": "" },
+        "date": { "local": "2024-01-01", "utc": "2024-01-01" },
+        "time": { "local": "00:00", "utc": "04:00" }
+      },
+      "arrival": {
+        "airport": { "iata": "", "icao": "" },
+        "terminal": "",
+        "country": { "code": "" },
+        "date": { "local": "2024-01-02", "utc": "2024-01-01" },
+        "time": { "local": "02:15", "utc": "22:15" }
+      },
+      "elapsedTime": 1095,
+      "aircraftType": { "iata": "" },
+      "serviceType": { "iata": "" },
+      "segmentInfo": {
+        "numberOfStops": 1,
+        "intermediateAirports": {
+          "iata": [{ "sequenceNumber": 0, "station": "" }]
+        }
+      },
+      "codeshare": {
+        "jointOperationAirlineDesignators": [],
+        "marketingFlights": []
+      },
+      "scheduleInstanceKey": ""
+    }
+  ]
+}
