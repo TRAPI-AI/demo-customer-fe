@@ -1,0 +1,148 @@
+{
+  "mappings": [
+    {
+      "xml": "FlightId.FlightNumber",
+      "json": "flightNumber"
+    },
+    {
+      "xml": "FlightId.CommercialAirline.AirlineId.AirlineCode",
+      "json": "carrierCode.iata"
+    },
+    {
+      "xml": "FlightId.CommercialAirline.AirlineName",
+      "json": "codeshare.name"
+    },
+    {
+      "xml": "FlightId.OrigDate",
+      "json": "departure.date"
+    },
+    {
+      "xml": "FlightId.CodeShare.FlightNumber",
+      "json": "codeshare.comments010.serviceNumber"
+    },
+    {
+      "xml": "FlightId.CodeShare.CommercialAirline.AirlineId.AirlineCode",
+      "json": "codeshare.operatingAirlineDisclosure.code"
+    },
+    {
+      "xml": "FlightId.CodeShare.CommercialAirline.AirlineName",
+      "json": "codeshare.operatingAirlineDisclosure.name"
+    },
+    {
+      "xml": "Aircraft.AircraftType",
+      "json": "aircraftType.iata?"
+    },
+    {
+      "xml": "Aircraft.TailNumber",
+      "json": "equipment.aircraftRegistrationNumber"
+    },
+    {
+      "xml": "FlightStatus",
+      "json": "statusDetails.state"
+    },
+    {
+      "xml": "ScheduleStatus",
+      "json": "arrival.estimatedTime.inGateTimeliness"
+    },
+    {
+      "xml": "Departure.Airport.AirportId.AirportCode",
+      "json": "departure.airport.iata"
+    },
+    {
+      "xml": "Departure.Airport.AirportName",
+      "json": "DOES NOT EXIST"
+    },
+    {
+      "xml": "Departure.Airport.AirportLocation.CityName",
+      "json": "DOES NOT EXIST"
+    },
+    {
+      "xml": "Departure.Airport.AirportLocation.CountryId",
+      "json": "departure.country.code"
+    },
+    {
+      "xml": "Departure.Airport.Terminal",
+      "json": "departure.terminal"
+    },
+    {
+      "xml": "Departure.DateTime.Date",
+      "json": "departure.estimatedTime.outGate.local",
+      "note": "NOW COMBINATED WITH DEPARTURE.DATETIME.TIME INTO THIS JSON FIELD"
+    },
+    {
+      "xml": "Departure.DateTime.Time",
+      "json": "departure.estimatedTime.outGate.local",
+      "note": "NOW COMBINATED WITH DEPARTURE.DATETIME.DATE INTO THIS JSON FIELD"
+    },
+    {
+      "xml": "Arrival.Airport.AirportId.AirportCode",
+      "json": "arrival.airport.iata"
+    },
+    {
+      "xml": "Arrival.Airport.AirportName",
+      "json": "DOES NOT EXIST"
+    },
+    {
+      "xml": "Arrival.Airport.AirportLocation.CityName",
+      "json": "arrival.actualTerminal"
+    },
+    {
+      "xml": "Arrival.Airport.AirportLocation.CountryId",
+      "json": "arrival.country.code"
+    },
+    {
+      "xml": "Arrival.Airport.Terminal",
+      "json": "arrival.terminal"
+    },
+    {
+      "xml": "Arrival.DateTime.Date",
+      "json": "arrival.estimatedTime.inGate.local",
+      "note": "NOW COMBINATED WITH ARRIVAL.DATETIME.DATE INTO THIS JSON FIELD"
+    },
+    {
+      "xml": "Arrival.DateTime.Time",
+      "json": "arrival.estimatedTime.inGate.local",
+      "note": "NOW COMBINATED WITH ARRIVAL.DATETIME.DATE INTO THIS JSON FIELD"
+    },
+    {
+      "xml": "SvcType",
+      "json": "serviceTypeCode.iata"
+    },
+    {
+      "xml": "SchedInfoPresent",
+      "json": "DOES NOT EXIST"
+    },
+    {
+      "xml": "Map",
+      "json": "DOES NOT EXIST - oagFingerprint?"
+    },
+    {
+      "xml": "SeqNum",
+      "json": "segmentInfo.intermediateAirports.iata.sequenceNumber"
+    },
+    {
+      "xml": "NumLegs",
+      "json": "segmentInfo.numberOfStops"
+    },
+    {
+      "xml": "AircraftPreviousFlightLeg.FlightId.FlightNumber",
+      "json": "DOES NOT EXIST"
+    },
+    {
+      "xml": "AircraftPreviousFlightLeg.FlightId.CommercialAirline.AirlineId.AirlineCode",
+      "json": "DOES NOT EXIST"
+    },
+    {
+      "xml": "AircraftPreviousFlightLeg.FlightId.CommercialAirline.AirlineName",
+      "json": "DOES NOT EXIST"
+    },
+    {
+      "xml": "AircraftPreviousFlightLeg.Arrival.DateTime",
+      "json": "DOES NOT EXIST"
+    },
+    {
+      "xml": "UpLineInfo",
+      "json": "DOES NOT EXIST"
+    }
+  ]
+}

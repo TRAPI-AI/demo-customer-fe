@@ -1,0 +1,456 @@
+{
+  "mappings": [
+    {
+      "xml": "FlightId.FlightNumber",
+      "json": "carrierCode.iata"
+    },
+    {
+      "xml": "FlightId.CommercialAirline.AirlineId.AirlineCode",
+      "json": "carrierCode.icao"
+    },
+    {
+      "xml": "FlightId.CommercialAirline.AirlineName",
+      "json": "serviceSuffix"
+    },
+    {
+      "xml": "FlightId.OrigDate.utc",
+      "json": "flightNumber.sequenceNumber"
+    },
+    {
+      "xml": "FlightId.CodeShare.FlightNumber",
+      "json": "departure.airport.iata"
+    },
+    {
+      "xml": "FlightId.CodeShare.CommercialAirline.AirlineId.AirlineCode",
+      "json": "departure.airport.icao"
+    },
+    {
+      "xml": "FlightId.CodeShare.CommercialAirline.AirlineName",
+      "json": "departure.terminal"
+    },
+    {
+      "xml": "Aircraft.AircraftType",
+      "json": "departure.date"
+    },
+    {
+      "xml": "Aircraft.TailNumber",
+      "json": "departure.passengerLocalTime"
+    },
+    {
+      "xml": "FlightStatus",
+      "json": "arrival.airport.iata"
+    },
+    {
+      "xml": "ScheduleStatus",
+      "json": "arrival.airport.icao"
+    },
+    {
+      "xml": "Departure.Airport.AirportId.AirportCode",
+      "json": "arrival.terminal"
+    },
+    {
+      "xml": "Departure.Airport.AirportName",
+      "json": "arrival.date"
+    },
+    {
+      "xml": "Departure.Airport.AirportLocation.CityName",
+      "json": "arrival.passengerLocalTime"
+    },
+    {
+      "xml": "Departure.Airport.AirportLocation.CountryId",
+      "json": "aircraftType.iata"
+    },
+    {
+      "xml": "Departure.Airport.Terminal",
+      "json": "aircraftType.icao"
+    },
+    {
+      "xml": "Departure.DateTime.Date",
+      "json": "serviceTypeCode.iata"
+    },
+    {
+      "xml": "Departure.DateTime.Time",
+      "json": "segmentInfo.numberOfStops"
+    },
+    {
+      "xml": "Arrival.Airport.AirportId.AirportCode",
+      "json": "segmentInfo.intermediateAirports.iata.sequenceNumber"
+    },
+    {
+      "xml": "Arrival.Airport.AirportName",
+      "json": "segmentInfo.intermediateAirports.iata.station"
+    },
+    {
+      "xml": "Arrival.Airport.AirportLocation.CityName",
+      "json": "oagFingerprint"
+    },
+    {
+      "xml": "Arrival.Airport.AirportLocation.CountryId",
+      "json": "codeshare.operatingAirlineDisclosure.code"
+    },
+    {
+      "xml": "Arrival.Airport.Terminal",
+      "json": "codeshare.operatingAirlineDisclosure.name"
+    },
+    {
+      "xml": "Arrival.DateTime.Date",
+      "json": "codeshare.operatingAirlineDisclosure.number"
+    },
+    {
+      "xml": "Arrival.DateTime.Time",
+      "json": "codeshare.aircraftOwner.code"
+    },
+    {
+      "xml": "SvcType",
+      "json": "codeshare.aircraftOwner.name"
+    },
+    {
+      "xml": "SchedInfoPresent",
+      "json": "codeshare.cockpitCrewEmployer.code"
+    },
+    {
+      "xml": "Map",
+      "json": "codeshare.cockpitCrewEmployer.name"
+    },
+    {
+      "xml": "SeqNum",
+      "json": "codeshare.jointOperationAirlineDesignators.code"
+    },
+    {
+      "xml": "NumLegs",
+      "json": "codeshare.jointOperationAirlineDesignators.name"
+    },
+    {
+      "xml": "AircraftPreviousFlightLeg.FlightId.FlightNumber",
+      "json": "codeshare.comments010.code"
+    },
+    {
+      "xml": "AircraftPreviousFlightLeg.FlightId.CommercialAirline.AirlineId.AirlineCode",
+      "json": "codeshare.comments010.serviceNumber"
+    },
+    {
+      "xml": "AircraftPreviousFlightLeg.FlightId.CommercialAirline.AirlineName",
+      "json": "codeshare.comments010.suffix"
+    },
+    {
+      "xml": "AircraftPreviousFlightLeg.Arrival.DateTime",
+      "json": "codeshare.comment050.code"
+    },
+    {
+      "xml": "UpLineInfo",
+      "json": "codeshare.comment050.serviceNumber"
+    },
+    {
+      "xml": "",
+      "json": "codeshare.comment050.suffix"
+    },
+    {
+      "xml": "",
+      "json": "bookingClasses.code"
+    },
+    {
+      "xml": "",
+      "json": "bookingClasses.meal"
+    },
+    {
+      "xml": "",
+      "json": "freightClasses.code"
+    },
+    {
+      "xml": "",
+      "json": "freightClasses.quantity"
+    },
+    {
+      "xml": "",
+      "json": "restrictions.number"
+    },
+    {
+      "xml": "",
+      "json": "restrictions.code"
+    },
+    {
+      "xml": "",
+      "json": "restrictions.passenger"
+    },
+    {
+      "xml": "",
+      "json": "restrictions.cargo"
+    },
+    {
+      "xml": "",
+      "json": "restrictions.mail"
+    },
+    {
+      "xml": "",
+      "json": "restrictions.boardPoint"
+    },
+    {
+      "xml": "",
+      "json": "restrictions.offPoint"
+    },
+    {
+      "xml": "",
+      "json": "planeChangeWithoutAircraftChange"
+    },
+    {
+      "xml": "",
+      "json": "onTimePerformance.indicator.month"
+    },
+    {
+      "xml": "",
+      "json": "onTimePerformance.indicator.value"
+    },
+    {
+      "xml": "",
+      "json": "onTimePerformance.delaysAndCancellationsIndicator.month"
+    },
+    {
+      "xml": "",
+      "json": "onTimePerformance.delaysAndCancellationsIndicator.min15"
+    },
+    {
+      "xml": "",
+      "json": "onTimePerformance.delaysAndCancellationsIndicator.min30"
+    },
+    {
+      "xml": "",
+      "json": "onTimePerformance.delaysAndCancellationsIndicator.min30Warning"
+    },
+    {
+      "xml": "",
+      "json": "onTimePerformance.delaysAndCancellationsIndicator.cancel"
+    },
+    {
+      "xml": "",
+      "json": "inFlightServices"
+    },
+    {
+      "xml": "",
+      "json": "automatedCheckIn"
+    },
+    {
+      "xml": "",
+      "json": "electronicTicketing"
+    },
+    {
+      "xml": "",
+      "json": "secureFlightIndicator"
+    },
+    {
+      "xml": "",
+      "json": "governmentApproval"
+    },
+    {
+      "xml": "",
+      "json": "statusDetails.state"
+    },
+    {
+      "xml": "",
+      "json": "statusDetails.updatedAt"
+    },
+    {
+      "xml": "",
+      "json": "equipment.aircraftRegistrationNumber"
+    },
+    {
+      "xml": "",
+      "json": "equipment.actualAircraftType.iata"
+    },
+    {
+      "xml": "",
+      "json": "equipment.actualAircraftType.icao"
+    },
+    {
+      "xml": "",
+      "json": "departure.estimatedTime.outGateTimeliness"
+    },
+    {
+      "xml": "",
+      "json": "departure.estimatedTime.outGateVariation"
+    },
+    {
+      "xml": "",
+      "json": "departure.estimatedTime.outGate.local"
+    },
+    {
+      "xml": "",
+      "json": "departure.estimatedTime.outGate.utc"
+    },
+    {
+      "xml": "",
+      "json": "departure.estimatedTime.offGround.local"
+    },
+    {
+      "xml": "",
+      "json": "departure.estimatedTime.offGround.utc"
+    },
+    {
+      "xml": "",
+      "json": "departure.actualTime.outGateTimeliness"
+    },
+    {
+      "xml": "",
+      "json": "departure.actualTime.outGateVariation"
+    },
+    {
+      "xml": "",
+      "json": "departure.actualTime.outGate.local"
+    },
+    {
+      "xml": "",
+      "json": "departure.actualTime.outGate.utc"
+    },
+    {
+      "xml": "",
+      "json": "departure.actualTime.offGround.local"
+    },
+    {
+      "xml": "",
+      "json": "departure.actualTime.offGround.utc"
+    },
+    {
+      "xml": "",
+      "json": "departure.airport.iata"
+    },
+    {
+      "xml": "",
+      "json": "departure.airport.icao"
+    },
+    {
+      "xml": "",
+      "json": "departure.actualTerminal"
+    },
+    {
+      "xml": "",
+      "json": "departure.gate"
+    },
+    {
+      "xml": "",
+      "json": "departure.checkInCounter"
+    },
+    {
+      "xml": "",
+      "json": "arrival.estimatedTime.inGateTimeliness"
+    },
+    {
+      "xml": "",
+      "json": "arrival.estimatedTime.inGateVariation"
+    },
+    {
+      "xml": "",
+      "json": "arrival.estimatedTime.inGate.local"
+    },
+    {
+      "xml": "",
+      "json": "arrival.estimatedTime.inGate.utc"
+    },
+    {
+      "xml": "",
+      "json": "arrival.estimatedTime.onGround.local"
+    },
+    {
+      "xml": "",
+      "json": "arrival.estimatedTime.onGround.utc"
+    },
+    {
+      "xml": "",
+      "json": "arrival.actualTime.inGateTimeliness"
+    },
+    {
+      "xml": "",
+      "json": "arrival.actualTime.inGateVariation"
+    },
+    {
+      "xml": "",
+      "json": "arrival.actualTime.onGround.local"
+    },
+    {
+      "xml": "",
+      "json": "arrival.actualTime.onGround.utc"
+    },
+    {
+      "xml": "",
+      "json": "arrival.actualTime.inGate.local"
+    },
+    {
+      "xml": "",
+      "json": "arrival.actualTime.inGate.utc"
+    },
+    {
+      "xml": "",
+      "json": "arrival.airport.iata"
+    },
+    {
+      "xml": "",
+      "json": "arrival.airport.icao"
+    },
+    {
+      "xml": "",
+      "json": "arrival.actualTerminal"
+    },
+    {
+      "xml": "",
+      "json": "arrival.gate"
+    },
+    {
+      "xml": "",
+      "json": "arrival.baggage"
+    },
+    {
+      "xml": "",
+      "json": "diversionAirport.iata"
+    },
+    {
+      "xml": "",
+      "json": "diversionAirport.icao"
+    },
+    {
+      "xml": "",
+      "json": "seatingCapacity.actual.firstClass"
+    },
+    {
+      "xml": "",
+      "json": "seatingCapacity.actual.businessClass"
+    },
+    {
+      "xml": "",
+      "json": "seatingCapacity.actual.premiumEconomyClass"
+    },
+    {
+      "xml": "",
+      "json": "seatingCapacity.actual.economyPlusClass"
+    },
+    {
+      "xml": "",
+      "json": "seatingCapacity.actual.economyClass"
+    },
+    {
+      "xml": "",
+      "json": "seatingCapacity.actual.totalSeats"
+    },
+    {
+      "xml": "",
+      "json": "seatingCapacity.predicted.firstClass"
+    },
+    {
+      "xml": "",
+      "json": "seatingCapacity.predicted.businessClass"
+    },
+    {
+      "xml": "",
+      "json": "seatingCapacity.predicted.premiumEconomyClass"
+    },
+    {
+      "xml": "",
+      "json": "seatingCapacity.predicted.economyPlusClass"
+    },
+    {
+      "xml": "",
+      "json": "seatingCapacity.predicted.economyClass"
+    },
+    {
+      "xml": "",
+      "json": "seatingCapacity.predicted.totalSeats"
+    }
+  ]
+}
