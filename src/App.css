@@ -124,6 +124,15 @@ li {
   flex-shrink: 0; /* Prevents the items from shrinking */
 }
 
+li div,
+li p {
+  margin-bottom: 5px;
+  border: 1px solid rgb(226, 226, 226);
+  border-radius: 8px;
+  padding: 5px;
+  font-size: 14px;
+}
+
 .offer-item {
   border-radius: 20px;
   padding: 10px;
