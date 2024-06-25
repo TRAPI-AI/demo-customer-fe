@@ -118,18 +118,18 @@ li {
   font-weight: 500;
   border-color: #d0d1d3;
   width: 600px; /* Fixed width */
-  min-height: 350px;
-  height: "fit"; /* Fixed height */
+  min-height: 420px;
+  height: fit;
   margin-right: 5px; /* Add space between items */
   flex-shrink: 0; /* Prevents the items from shrinking */
 }
 
-li div,
 li p {
   margin-bottom: 5px;
   border: 1px solid rgb(226, 226, 226);
   border-radius: 8px;
-  padding: 5px;
+  padding: 7px;
+  width: fit-content;
   font-size: 14px;
 }
 
