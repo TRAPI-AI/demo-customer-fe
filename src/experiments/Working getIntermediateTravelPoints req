@@ -1,0 +1,84 @@
+curl -X POST https://xml-cert-nex.railgds.net/shopping-ws/services/Shopping/v2 \
+     -H "Content-Type: text/xml" \
+     --cert combined_unencrypted.pem \
+     -d '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                           xmlns:shop="http://railgds.net/ws/shopping"
+                           xmlns="http://railgds.net/ws/commontypes">
+           <soapenv:Header/>
+           <soapenv:Body>
+             <shop:getIntermediateTravelPointsRequest>
+               <context>
+                 <distributorCode>TRAPI</distributorCode>
+                 <pointOfSaleCode>GB</pointOfSaleCode>
+                 <channelCode>WEB</channelCode>
+               </context>
+               <shop:intermediateTravelPointsQuery>
+                 <shop:legSolution legSolutionID="LS_1_0">
+                   <travelSegments>
+                     <travelSegment sequence="0" travelSegmentID="LS_1_0_TS_0" type="TRAIN">
+                       <originTravelPoint type="STATION">GBRDG</originTravelPoint>
+                       <destinationTravelPoint type="STATION">GBQQN</destinationTravelPoint>
+                       <departureDateTime>2024-09-07T14:45:00</departureDateTime>
+                       <arrivalDateTime>2024-09-07T16:18:00</arrivalDateTime>
+                       <designator>XC2227</designator>
+                       <marketingCarrier>CrossCountry</marketingCarrier>
+                       <operatingCarrier>CrossCountry</operatingCarrier>
+                       <supplierEquipmentType>CrossCountry-ICY</supplierEquipmentType>
+                       <equipmentType code="ICY">Inter-City</equipmentType>
+                       <scheduleConfirmed>true</scheduleConfirmed>
+                     </travelSegment>
+                   </travelSegments>
+                 </shop:legSolution>
+               </shop:intermediateTravelPointsQuery>
+             </shop:getIntermediateTravelPointsRequest>
+           </soapenv:Body>
+         </soapenv:Envelope>'
+
+         {
+  "soapenv:Envelope": {
+    "@xmlns:soapenv": "http://schemas.xmlsoap.org/soap/envelope/",
+    "@xmlns:shop": "http://railgds.net/ws/shopping",
+    "@xmlns": "http://railgds.net/ws/commontypes",
+    "soapenv:Header": {},
+    "soapenv:Body": {
+      "shop:getIntermediateTravelPointsRequest": {
+        "context": {
+          "distributorCode": "string*",
+          "pointOfSaleCode": "string*",
+          "channelCode": "string*"
+        },
+        "shop:intermediateTravelPointsQuery": {
+          "shop:legSolution": {
+            "@legSolutionID": "string*",
+            "travelSegments": {
+              "travelSegment": {
+                "@sequence": "int",
+                "@travelSegmentID": "string*",
+                "@type": "string",
+                "originTravelPoint": {
+                  "@type": "string",
+                  "#text": "string"
+                },
+                "destinationTravelPoint": {
+                  "@type": "string*",
+                  "#text": "string*"
+                },
+                "departureDateTime": "string*",
+                "arrivalDateTime": "string*",
+                "designator": "string*",
+                "marketingCarrier": "string*",
+                "operatingCarrier": "string*",
+                "supplierEquipmentType": "string*",
+                "equipmentType": {
+                  "@code": "string*",
+                  "#text": "string*"
+                },
+                "scheduleConfirmed": "boolean*"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

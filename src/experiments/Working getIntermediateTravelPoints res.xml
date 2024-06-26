@@ -1,0 +1,125 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <ns2:getIntermediateTravelPointsResponse xmlns:ns2="http://railgds.net/ws/shopping" xmlns="http://railgds.net/ws/commontypes" conversationToken="116df189-ee74-4908-9b29-983705fc2422">
+      <requestStatus systemId="Q9Lm2d">
+        <success>true</success>
+      </requestStatus>
+      <ns2:intermediateTravelPointsLists>
+        <ns2:intermediateTravelPointsList>
+          <ns2:travelSegment travelSegmentID="LS_1_0_TS_0" type="TRAIN">
+            <originTravelPoint type="STATION">GBRDG</originTravelPoint>
+            <destinationTravelPoint type="STATION">GBQQN</destinationTravelPoint>
+            <departureDateTime>2024-09-07T14:45:00</departureDateTime>
+            <arrivalDateTime>2024-09-07T16:18:00</arrivalDateTime>
+            <designator>XC2227</designator>
+            <marketingCarrier>CrossCountry</marketingCarrier>
+            <operatingCarrier>CrossCountry</operatingCarrier>
+            <supplierEquipmentType>CrossCountry-ICY</supplierEquipmentType>
+            <duration>P0Y0M0DT1H33M0S</duration>
+            <crossBorderInfo>false</crossBorderInfo>
+            <equipmentType code="ICY">Inter-City</equipmentType>
+            <carbonData unit="kgCO2">6.59</carbonData>
+            <marketingServiceName>CrossCountry service from Reading to Newcastle</marketingServiceName>
+            <marketingInformation serviceCode="CrossCountry"/>
+            <scheduleConfirmed>true</scheduleConfirmed>
+          </ns2:travelSegment>
+          <ns2:intermediateTravelPoints>
+            <ns2:intermediateTravelPoint status="SCHEDULED" activity="PICK_UP_ONLY" type="ORIGIN">
+              <ns2:travelPoint type="STATION">GBRDG</ns2:travelPoint>
+              <ns2:scheduledDepartureDateTime>2024-09-07T14:45:00</ns2:scheduledDepartureDateTime>
+              <ns2:platform>3</ns2:platform>
+            </ns2:intermediateTravelPoint>
+            <ns2:intermediateTravelPoint status="SCHEDULED" activity="NORMAL" type="INTERMEDIATE">
+              <ns2:travelPoint type="STATION">GBOXF</ns2:travelPoint>
+              <ns2:scheduledArrivalDateTime>2024-09-07T15:09:00</ns2:scheduledArrivalDateTime>
+              <ns2:scheduledDepartureDateTime>2024-09-07T15:11:00</ns2:scheduledDepartureDateTime>
+              <ns2:platform>4</ns2:platform>
+            </ns2:intermediateTravelPoint>
+          </ns2:intermediateTravelPoints>
+        </ns2:intermediateTravelPointsList>
+      </ns2:intermediateTravelPointsLists>
+    </ns2:getIntermediateTravelPointsResponse>
+  </soap:Body>
+</soap:Envelope>
+
+
+{
+  "soap:Envelope": {
+    "@xmlns:soap": "http://schemas.xmlsoap.org/soap/envelope/",
+    "soap:Body": {
+      "ns2:getIntermediateTravelPointsResponse": {
+        "@xmlns:ns2": "http://railgds.net/ws/shopping",
+        "@xmlns": "http://railgds.net/ws/commontypes",
+        "@conversationToken": "116df189-ee74-4908-9b29-983705fc2422",
+        "requestStatus": {
+          "@systemId": "Q9Lm2d",
+          "success": true
+        },
+        "ns2:intermediateTravelPointsLists": {
+          "ns2:intermediateTravelPointsList": {
+            "ns2:travelSegment": {
+              "@travelSegmentID": "LS_1_0_TS_0",
+              "@type": "TRAIN",
+              "originTravelPoint": {
+                "@type": "STATION",
+                "#text": "GBRDG"
+              },
+              "destinationTravelPoint": {
+                "@type": "STATION",
+                "#text": "GBQQN"
+              },
+              "departureDateTime": "2024-09-07T14:45:00",
+              "arrivalDateTime": "2024-09-07T16:18:00",
+              "designator": "XC2227",
+              "marketingCarrier": "CrossCountry",
+              "operatingCarrier": "CrossCountry",
+              "supplierEquipmentType": "CrossCountry-ICY",
+              "duration": "P0Y0M0DT1H33M0S",
+              "crossBorderInfo": false,
+              "equipmentType": {
+                "@code": "ICY",
+                "#text": "Inter-City"
+              },
+              "carbonData": {
+                "@unit": "kgCO2",
+                "#text": "6.59"
+              },
+              "marketingServiceName": "CrossCountry service from Reading to Newcastle",
+              "marketingInformation": {
+                "@serviceCode": "CrossCountry"
+              },
+              "scheduleConfirmed": true
+            },
+            "ns2:intermediateTravelPoints": {
+              "ns2:intermediateTravelPoint": [
+                {
+                  "@status": "SCHEDULED",
+                  "@activity": "PICK_UP_ONLY",
+                  "@type": "ORIGIN",
+                  "ns2:travelPoint": {
+                    "@type": "STATION",
+                    "#text": "GBRDG"
+                  },
+                  "ns2:scheduledDepartureDateTime": "2024-09-07T14:45:00",
+                  "ns2:platform": "3"
+                },
+                {
+                  "@status": "SCHEDULED",
+                  "@activity": "NORMAL",
+                  "@type": "INTERMEDIATE",
+                  "ns2:travelPoint": {
+                    "@type": "STATION",
+                    "#text": "GBOXF"
+                  },
+                  "ns2:scheduledArrivalDateTime": "2024-09-07T15:09:00",
+                  "ns2:scheduledDepartureDateTime": "2024-09-07T15:11:00",
+                  "ns2:platform": "4"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
