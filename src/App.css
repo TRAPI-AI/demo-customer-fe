@@ -376,3 +376,20 @@ label {
   border-radius: 8px; /* Optional: rounded corners */
   overflow: auto; /* Enable scrolling within the modal if content is large */
 }
+
+.intermediate-travel-points {
+  background-color: #fff;
+  position: fixed; /* Position the modal on top of everything else */
+  top: 50%; /* Center the modal vertically */
+  left: 50%; /* Center the modal horizontally */
+  transform: translate(-50%, -50%); /* Adjust the position to be exactly centered */
+  z-index: 1000; /* Ensure the modal is on top of other elements */
+  padding: 20px; /* Add some padding for better appearance */
+  border-radius: 8px; /* Optional: Add rounded corners */
+  border: #282c34 2px solid;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+  color: black; /* Optional: Set text color to white for better contrast */
+  max-width: 90%; /* Optional: Limit the width of the modal */
+  max-height: 90%; /* Optional: Limit the height of the modal */
+  overflow-y: auto; /* Optional: Add scroll if content overflows */
+}
