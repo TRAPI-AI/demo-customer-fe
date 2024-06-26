@@ -1,9 +1,7 @@
-# Start of the response
-
 # Importing necessary libraries
 import xml.etree.ElementTree as ET
 from lxml import etree
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
 import requests
 import json
@@ -16,5 +14,3 @@ CORS(app)
 # Running the app
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
-
-# End of the responses
