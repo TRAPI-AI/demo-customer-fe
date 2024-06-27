@@ -1,0 +1,101 @@
+{
+  "Result": {
+    "ProcessingTimeUtc": "2024-06-27T10:04:30",
+    "Version": "3.0.5.62",
+    "Code": "0",
+    "Message": "2 flight(s) found for this request",
+    "Flights": 2
+  },
+  "Flights": [
+    {
+      "FlightGuid": null,
+      "Acid": {
+        "Airline": {
+          "Code": "WN",
+          "CodeNamespace": "Iata",
+          "Name": "Southwest Airlines"
+        },
+        "FlightNumber": "1"
+      },
+      "DepartureAirport": {
+        "Code": "DAL",
+        "CodeNamespace": "Iata",
+        "Name": "DALLAS LOVE FIELD",
+        "Location": {
+          "CityName": "DALLAS",
+          "StateId": "TX",
+          "CountryId": "US"
+        }
+      },
+      "ArrivalAirport": {
+        "Code": "HOU",
+        "CodeNamespace": "Iata",
+        "Name": "WILLIAM P HOBBY",
+        "Location": {
+          "CityName": "HOUSTON",
+          "StateId": "TX",
+          "CountryId": "US"
+        }
+      },
+      "OriginationDate": {
+        "Utc": "2024-07-10",
+        "Local": "2024-07-10"
+      },
+      "ScheduledDeparture": {
+        "Utc": "2024-07-10T12:00Z",
+        "Local": "2024-07-10T07:00"
+      },
+      "ScheduledArrival": {
+        "Utc": "2024-07-10T13:05Z",
+        "Local": "2024-07-10T08:05"
+      },
+      "Scheduled": true,
+      "GeneralAviation": false,
+      "Status": "Scheduled",
+      "DepartureScheduleStatus": null,
+      "ArrivalScheduleStatus": null,
+      "DiversionStatus": null,
+      "DepDelayReason": [],
+      "ArrDelayReason": [],
+      "FaaId": null,
+      "Codeshares": null,
+      "OutGate": null,
+      "InAir": null,
+      "Landed": null,
+      "InGate": null,
+      "DepartureTerminal": "1",
+      "DepartureGate": null,
+      "CheckinCounter": null,
+      "ArrivalTerminal": null,
+      "ArrivalGate": null,
+      "Baggage": null,
+      "ServiceType": "J",
+      "LegSequenceNumber": 1,
+      "NumLegs": 2,
+      "Aircraft": {
+        "Code": "73W",
+        "CodeNamespace": "Iata",
+        "OptionalEquipment": null,
+        "WeightClass": null
+      },
+      "AlternateDepartureAirport": null,
+      "AlternateArrivalAirport": null,
+      "UplineInfo": null,
+      "DownlineInfo": [
+        {
+          "DepAirportCode": "HOU",
+          "DepCodeNS": "Iata",
+          "ArrAirportCode": "CRP",
+          "ArrCodeNS": "Iata"
+        }
+      ],
+      "AircraftPreviousFlightLeg": null,
+      "RemainingTime": null,
+      "ElapsedTime": null,
+      "ScheduledDuration": "01:05:00",
+      "Map": null,
+      "Position": null,
+      "Route": null
+    }
+  ]
+}
