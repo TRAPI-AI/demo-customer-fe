@@ -136,6 +136,7 @@ li p {
 
 .offer-item {
   border-radius: 20px;
+  height: 420px;
   padding: 10px;
   border-width: 1px;
   border-style: solid;
@@ -223,6 +224,10 @@ footer {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+}
+
+.offers-list{
+  margin-top: 60px;
 }
 
 p {
