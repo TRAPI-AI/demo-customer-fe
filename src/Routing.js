@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Search from "./search.js";
+import Bookings from "./bookings.js";
 
 function Routing() {
   return (
@@ -8,7 +9,7 @@ function Routing() {
       <Routes>
         <Route path="/" element={<Search />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/bookings" element={<Search />} />
+        <Route path="/bookings" element={<Bookings />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
 body {
@@ -50,8 +53,7 @@ nav {
   width: 100vw;
   justify-content: center;
   justify-items: center;
-  flex-wrap: wrap;
-  
+  flex-wrap: wrap; 
 }
 
 input {
@@ -62,9 +64,9 @@ input {
   margin-bottom: -30px;
   margin-top: 10px;
   font-size: 16px;
-  height: 20px;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Gray shadow */
+  box-sizing: border-box; /* Ensure padding and border are included in the height */
 }
 
 span {
@@ -92,7 +94,7 @@ button {
   background-color: #007bff;
   margin-bottom: -30px;
   margin-top: 10px;
-  height: 63px;
+  height: 66px;
   width: fit-content;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Gray shadow */
