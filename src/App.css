@@ -4,6 +4,8 @@ body {
   font-family: "Montserrat", sans-serif;
   background-color: #fff;
   width: 100vw;
+  margin: 0; /* Ensure no margin on body */
+  padding: 0; /* Ensure no padding on body */
 }
 
 nav {
@@ -13,6 +15,8 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%; /* Ensure nav takes full width */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .navbar-logo {
@@ -30,7 +34,12 @@ nav {
   align-self: center;
   background-color: rgb(0, 59, 149);
   flex-direction: column;
+  width: 100%; /* Ensure search-area takes full width */
+  box-sizing: border-box; /* Include padding in width calculation */
+  margin: 0; /* Ensure no margin on search-area */
+  padding: 0; /* Ensure no padding on search-area */
 }
+
 .search {
   background-color: rgb(0, 59, 149);
   padding-bottom: -20px;
@@ -42,6 +51,7 @@ nav {
   justify-content: center;
   justify-items: center;
   flex-wrap: wrap;
+  
 }
 
 input {
@@ -103,7 +113,7 @@ ul {
   flex-direction: row;
   align-items: center;
   overflow-x: auto; /* Enables horizontal scrolling */
-  width: 100%; /* Ensure the ul takes full width of its container */
+  /* width: 100%; Ensure the ul takes full width of its container */
   white-space: nowrap; /* Prevents wrapping of items */
   margin-top: 50px;
   min-height: 300px;
