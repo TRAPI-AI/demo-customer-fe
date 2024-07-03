@@ -32,6 +32,14 @@ nav {
   padding: 5px;
 }
 
+form {
+display: flex;
+margin-bottom: 40px;
+justify-content: flex-start;
+align-items: center;
+flex-direction: row;
+}
+
 .search-area {
   display: flex;
   align-self: center;
