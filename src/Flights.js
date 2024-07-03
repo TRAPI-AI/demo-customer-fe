@@ -1,4 +1,4 @@
-const Air = () => {
+const Flights = () => {
   return (
     <div>
       <div className="search-area">
@@ -25,4 +25,4 @@ const Air = () => {
   );
 };
 
-export default Air;
+export default Flights;

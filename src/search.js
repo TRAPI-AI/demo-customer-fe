@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./navbar";
 import Tabs from "./Tabs";
-import Air from "./Air";
+import Flights from "./Flights";
 import Stays from "./Stays";
 import Cruises from "./Cruises";
 import CarRentals from "./CarRentals";
@@ -10,14 +10,14 @@ import Inspiration from "./inspiration";
 import Trains from "./Trains";
 import RideHailing from "./RideHailing";
 
-function Frontend() {
+function Search() {
   const [activeTab, setActiveTab] = useState('Flights');
 
   return (
     <div>
       <Navbar />
       <Tabs setActiveTab={setActiveTab} activeTab={activeTab} />
-      {activeTab === 'Flights' && <Air />}
+      {activeTab === 'Flights' && <Flights />}
       {activeTab === 'Stays' && <Stays />}
       {activeTab === 'Cruises' && <Cruises />}
       {activeTab === 'Trains' && <Trains />}
@@ -29,4 +29,4 @@ function Frontend() {
   );
 }
 
-export default Frontend;
+export default Search;
