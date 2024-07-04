@@ -33,11 +33,11 @@ nav {
 }
 
 form {
-display: flex;
-margin-bottom: 40px;
-justify-content: flex-start;
-align-items: center;
-flex-direction: row;
+  display: flex;
+  margin-bottom: 40px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
 }
 
 .search-area {
@@ -61,7 +61,7 @@ flex-direction: row;
   width: 100vw;
   justify-content: center;
   justify-items: center;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 
 input {
@@ -127,7 +127,7 @@ ul {
   white-space: nowrap; /* Prevents wrapping of items */
   margin-top: 50px;
   min-height: 300px;
-  gap: 10px
+  gap: 10px;
 }
 
 li {
@@ -167,6 +167,21 @@ li p {
   /* flex-wrap: wrap; */
   flex-direction: column;
   padding-left: 20px; /* Corrected missing unit */
+}
+
+.list-item {
+  border-radius: 20px;
+  height: 10px;
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d0d1d3;
+  margin: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px; /* Corrected missing unit */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for 3D effect */
 }
 
 select {
@@ -246,7 +261,7 @@ footer {
   flex-direction: column;
 }
 
-.offers-list{
+.offers-list {
   margin-top: 60px;
 }
 
@@ -409,7 +424,10 @@ label {
   position: fixed; /* Position the modal on top of everything else */
   top: 50%; /* Center the modal vertically */
   left: 50%; /* Center the modal horizontally */
-  transform: translate(-50%, -50%); /* Adjust the position to be exactly centered */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Adjust the position to be exactly centered */
   z-index: 1000; /* Ensure the modal is on top of other elements */
   padding: 20px; /* Add some padding for better appearance */
   border-radius: 8px; /* Optional: Add rounded corners */
@@ -426,7 +444,7 @@ table {
   border-collapse: collapse;
   margin: 20px 0;
   font-size: 1em;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 thead tr {
@@ -444,6 +462,7 @@ tr:nth-of-type(even) {
   background-color: #f3f3f3;
 }
 
-th, td {
+th,
+td {
   padding: 12px 15px;
 }
