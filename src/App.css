@@ -77,6 +77,19 @@ input {
   box-sizing: border-box; /* Ensure padding and border are included in the height */
 }
 
+textarea {
+  padding: 5px;
+  border: 5px solid rgb(255, 183, 0); /* Updated border color */
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-bottom: -30px;
+  margin-top: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Gray shadow */
+  box-sizing: border-box; /* Ensure padding and border are included in the height */
+}
+
 span {
   font-size: 1.25rem;
   color: white;
@@ -491,4 +504,13 @@ tr:nth-of-type(even) {
 th,
 td {
   padding: 12px 15px;
+}
+
+.booking-form {
+  min-height: 100px;
+  padding: 40px;
+  margin: 20px;
+  background-color: #ffff;
+  border: #b2b2b2 1px solid;
+  border-radius: 12px;
 }
