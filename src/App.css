@@ -189,6 +189,7 @@ li p {
   border-style: solid;
   border-color: #d0d1d3;
   margin: 10px;
+  min-height: 200px;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -507,6 +508,15 @@ td {
 }
 
 .booking-form {
+  min-height: 100px;
+  padding: 40px;
+  margin: 20px;
+  background-color: #ffff;
+  border: #b2b2b2 1px solid;
+  border-radius: 12px;
+}
+
+.booking-response {
   min-height: 100px;
   padding: 40px;
   margin: 20px;
