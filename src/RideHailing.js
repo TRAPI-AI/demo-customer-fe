@@ -1,3 +1,6 @@
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+
 const RideHailing = () => {
   return (
     <div>
@@ -18,6 +21,23 @@ const RideHailing = () => {
         <li className="offer-item">Result 4</li>
         <li className="offer-item">Result 5</li>
       </ul>
+  <MapContainer
+        center={[lat || 52, lng || 0]}
+        zoom={2}
+        style={{ height: "400px", width: "100%" }}
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        />
+          <Marker
+            key={index}
+            position={[location.latitude, location.longitude]}
+          >
+            <Popup>
+            </Popup>
+          </Marker>
+      </MapContainer>
     </div>
   );
 };
