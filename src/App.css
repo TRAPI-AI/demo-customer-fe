@@ -532,3 +532,18 @@ td {
   border: #b2b2b2 1px solid;
   border-radius: 12px;
 }
+
+.driver-locations {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 20px;
+  border-bottom: none;
+}
+
+.location-search {
+  margin-left: 20px;
+}
+
+.location-item {
+  margin-left: 20px;
+}
