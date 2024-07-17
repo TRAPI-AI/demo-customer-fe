@@ -1,4 +1,4 @@
-import { faList, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faList, faMap, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +11,10 @@ const Navbar = () => {
 
   const handleBookingsClick = () => {
     navigate("/bookings");
+  };
+
+  const handleMapClick = () => {
+    navigate("/map");
   };
 
   return (
@@ -30,6 +34,13 @@ const Navbar = () => {
         >
           <FontAwesomeIcon size="xl" icon={faList} />
           <div className="">Bookings</div>
+        </div>
+        <div
+          className="cursor-pointer flex items-center font-bold gap-4"
+          onClick={handleMapClick}
+        >
+          <FontAwesomeIcon size="xl" icon={faMap} />
+          <div className="">Map</div>
         </div>
       </div>
     </nav>

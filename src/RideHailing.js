@@ -1,4 +1,3 @@
-import DriverLocations from "./DriverLocations";
 
 const RideHailing = () => {
   return (
@@ -20,7 +19,6 @@ const RideHailing = () => {
         <li className="offer-item">Result 4</li>
         <li className="offer-item">Result 5</li>
       </ul>
-      <DriverLocations/>
     </div>
   );
 };
