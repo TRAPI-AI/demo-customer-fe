@@ -5,7 +5,6 @@ const DriverLocations = () => {
   return (
     <div>
       <div>
-        <p className="driver-locations">Driver Locations</p>
         <div className="location-search">
           {/* Input fields go in this container */}
           <input />
