@@ -14,6 +14,14 @@ const RideHailing = () => {
   const [loading, setLoading] = useState(false);
   const [vehicles, setVehicles] = useState([]);
   const [quoteReference, setQuoteReference] = useState('');
+  const [supplierQuoteReference, setSupplierQuoteReference] = useState('');
+  const [quantity, setQuantity] = useState('');
+
+  const [bookingReference, setBookingReference] = useState('');
+  const [journeyReference, setJourneyReference] = useState('');
+  const [estimatedJourneyDistance, setEstimatedJourneyDistance] = useState(0);
+  const [estimatedJourneyTime, setEstimatedJourneyTime] = useState(0);
+  const [outboundVehicles, setOutboundVehicles] = useState([]);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -56,6 +64,44 @@ const RideHailing = () => {
       setVehicles(data.outbound.vehicles);
     } catch (error) {
       console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleBooking = async () => {
+    setLoading(true);
+    const bookingPayload = {
+      data: {
+        outbound: {
+          quoteReference,
+          vehicles: [
+            {
+              supplierQuoteReference,
+              quantity: quantity.toString(),
+            },
+          ],
+        },
+      },
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/jyrney-partner-bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookingPayload),
+      });
+      const bookingData = await response.json();
+      setBookingReference(bookingData.bookingReference);
+      setJourneyReference(bookingData.outbound.journeyReference);
+      setEstimatedJourneyDistance(bookingData.outbound.estimatedJourneyDistance);
+      setEstimatedJourneyTime(bookingData.outbound.estimatedJourneyTime);
+      setOutboundVehicles(bookingData.outbound.vehicles);
+      console.log('Booking successful:', bookingData);
+    } catch (error) {
+      console.error('Booking error:', error);
     } finally {
       setLoading(false);
     }
@@ -130,12 +176,38 @@ const RideHailing = () => {
             <p>Supplier Name: {vehicle.supplierName}</p>
             <p>Estimated Price: {vehicle.estimatedPrice.price} {vehicle.estimatedPrice.currency}</p>
             <p>Category: {vehicle.vehicleDetails.category}</p>
-            <button>Book</button>
+            <input
+              type="text"
+              value={supplierQuoteReference}
+              onChange={(e) => setSupplierQuoteReference(e.target.value)}
+              placeholder="Supplier Quote Reference"
+            />
+            <input
+              type="number"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              placeholder="Quantity"
+            />
+            <button onClick={handleBooking} disabled={loading}>
+              {loading ? 'Loading...' : 'Book'}
+            </button>
           </li>
         ))}
       </ul>
       <div className="booking-response">
         <p>Quote Reference: {quoteReference}</p>
+        <p>Booking Reference: {bookingReference}</p>
+        <p>Journey Reference: {journeyReference}</p>
+        <p>Estimated Journey Distance: {estimatedJourneyDistance} km</p>
+        <p>Estimated Journey Time: {estimatedJourneyTime} minutes</p>
+        <ul>
+          {outboundVehicles.map((vehicle, index) => (
+            <li key={index}>
+              <p>Job Reference: {vehicle.jobReference}</p>
+              <p>Vehicle Type: {vehicle.vehicleTypeName}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
