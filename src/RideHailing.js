@@ -14,6 +14,13 @@ const RideHailing = () => {
   const [loading, setLoading] = useState(false);
   const [vehicles, setVehicles] = useState([]);
   const [quoteReference, setQuoteReference] = useState('');
+  const [bookingReference, setBookingReference] = useState('');
+  const [outbound, setOutbound] = useState({
+    journeyReference: '',
+    estimatedJourneyDistance: 0,
+    estimatedJourneyTime: 0,
+    vehicles: [],
+  });
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -54,6 +61,41 @@ const RideHailing = () => {
       const data = await response.json();
       setQuoteReference(data.outbound.quoteReference);
       setVehicles(data.outbound.vehicles);
+      setBookingReference(data.bookingReference);
+      setOutbound(data.outbound);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleBooking = async (supplierQuoteReference, quantity) => {
+    setLoading(true);
+    const payload = {
+      data: {
+        outbound: {
+          quoteReference,
+          vehicles: [
+            {
+              supplierQuoteReference,
+              quantity: quantity.toString(),
+            },
+          ],
+        },
+      },
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/jyrney-partner-bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json();
+      console.log('Booking response:', data);
     } catch (error) {
       console.error('Error:', error);
     } finally {
@@ -130,12 +172,26 @@ const RideHailing = () => {
             <p>Supplier Name: {vehicle.supplierName}</p>
             <p>Estimated Price: {vehicle.estimatedPrice.price} {vehicle.estimatedPrice.currency}</p>
             <p>Category: {vehicle.vehicleDetails.category}</p>
-            <button>Book</button>
+            <button onClick={() => handleBooking(vehicle.supplierQuoteReference, 1)}>Book</button>
           </li>
         ))}
       </ul>
       <div className="booking-response">
         <p>Quote Reference: {quoteReference}</p>
+        <p>Booking Reference: {bookingReference}</p>
+        <div className="outbound-details">
+          <p>Journey Reference: {outbound.journeyReference}</p>
+          <p>Estimated Journey Distance: {outbound.estimatedJourneyDistance} km</p>
+          <p>Estimated Journey Time: {outbound.estimatedJourneyTime} mins</p>
+          <ul>
+            {outbound.vehicles.map((vehicle, index) => (
+              <li key={index}>
+                <p>Job Reference: {vehicle.jobReference}</p>
+                <p>Vehicle Type: {vehicle.vehicleTypeName}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
