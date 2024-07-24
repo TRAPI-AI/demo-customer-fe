@@ -14,6 +14,15 @@ const RideHailing = () => {
   const [loading, setLoading] = useState(false);
   const [vehicles, setVehicles] = useState([]);
   const [quoteReference, setQuoteReference] = useState('');
+  const [supplierQuoteReference, setSupplierQuoteReference] = useState('');
+  const [quantity, setQuantity] = useState('');
+
+  // New state for API response data
+  const [bookingReference, setBookingReference] = useState('');
+  const [journeyReference, setJourneyReference] = useState('');
+  const [estimatedJourneyDistance, setEstimatedJourneyDistance] = useState(0);
+  const [estimatedJourneyTime, setEstimatedJourneyTime] = useState(0);
+  const [responseVehicles, setResponseVehicles] = useState([]);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -54,6 +63,46 @@ const RideHailing = () => {
       const data = await response.json();
       setQuoteReference(data.outbound.quoteReference);
       setVehicles(data.outbound.vehicles);
+
+      // Set new response data
+      setBookingReference(data.bookingReference);
+      setJourneyReference(data.outbound.journeyReference);
+      setEstimatedJourneyDistance(data.outbound.estimatedJourneyDistance);
+      setEstimatedJourneyTime(data.outbound.estimatedJourneyTime);
+      setResponseVehicles(data.outbound.vehicles);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleBooking = async () => {
+    setLoading(true);
+    const bookingData = {
+      data: {
+        outbound: {
+          quoteReference,
+          vehicles: [
+            {
+              supplierQuoteReference,
+              quantity: quantity.toString(),
+            },
+          ],
+        },
+      },
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/jyrney-partner-bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookingData),
+      });
+      const data = await response.json();
+      console.log('Booking response:', data);
     } catch (error) {
       console.error('Error:', error);
     } finally {
@@ -130,12 +179,43 @@ const RideHailing = () => {
             <p>Supplier Name: {vehicle.supplierName}</p>
             <p>Estimated Price: {vehicle.estimatedPrice.price} {vehicle.estimatedPrice.currency}</p>
             <p>Category: {vehicle.vehicleDetails.category}</p>
-            <button>Book</button>
+            <input
+              type="text"
+              value={supplierQuoteReference}
+              onChange={(e) => setSupplierQuoteReference(e.target.value)}
+              placeholder="Supplier Quote Reference"
+            />
+            <input
+              type="number"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              placeholder="Quantity"
+            />
+            <button onClick={handleBooking} disabled={loading}>
+              {loading ? 'Loading...' : 'Book'}
+            </button>
           </li>
         ))}
       </ul>
       <div className="booking-response">
         <p>Quote Reference: {quoteReference}</p>
+      </div>
+      {/* New UI elements for displaying API response data */}
+      <div className="api-response">
+        <h3>API Response Data</h3>
+        <p>Booking Reference: {bookingReference}</p>
+        <p>Journey Reference: {journeyReference}</p>
+        <p>Estimated Journey Distance: {estimatedJourneyDistance} km</p>
+        <p>Estimated Journey Time: {estimatedJourneyTime} minutes</p>
+        <h4>Vehicles</h4>
+        <ul>
+          {responseVehicles.map((vehicle, index) => (
+            <li key={index}>
+              <p>Job Reference: {vehicle.jobReference}</p>
+              <p>Vehicle Type: {vehicle.vehicleTypeName}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
