@@ -13,6 +13,10 @@ const Flights = () => {
   const [dropOffLongitude, setDropOffLongitude] = useState(-2.9784966);
   const [loading, setLoading] = useState(false);
   const [vehicles, setVehicles] = useState([]);
+  const [quoteReference, setQuoteReference] = useState("");
+  const [supplierQuoteReference, setSupplierQuoteReference] = useState("");
+  const [bookingReference, setBookingReference] = useState("");
+  const [outbound, setOutbound] = useState(null);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -54,7 +58,44 @@ const Flights = () => {
       console.log(data);
       if (data.outbound && data.outbound.vehicles) {
         setVehicles(data.outbound.vehicles);
+        setQuoteReference(data.outbound.quoteReference);
+        setSupplierQuoteReference(data.outbound.vehicles[0].supplierQuoteReference);
+        setBookingReference(data.bookingReference);
+        setOutbound(data.outbound);
       }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleBooking = async () => {
+    setLoading(true);
+    const bookingPayload = {
+      data: {
+        outbound: {
+          quoteReference,
+          vehicles: [
+            {
+              supplierQuoteReference,
+              quantity: "1",
+            },
+          ],
+        },
+      },
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/jyrney-partner-bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookingPayload),
+      });
+      const bookingData = await response.json();
+      console.log(bookingData);
     } catch (error) {
       console.error('Error:', error);
     } finally {
@@ -133,10 +174,30 @@ const Flights = () => {
             <p>Estimated Price: {vehicle.estimatedPrice.price} {vehicle.estimatedPrice.currency}</p>
             <p>Vehicle Category: {vehicle.vehicleDetails.category}</p>
             <p>Service Quantity: 1</p>
-            <button>Book</button>
+            <button onClick={handleBooking} disabled={loading}>
+              {loading ? 'Loading...' : 'Book'}
+            </button>
           </li>
         ))}
       </ul>
+      {outbound && (
+        <div className="response-details">
+          <h3>Booking Details</h3>
+          <p>Booking Reference: {bookingReference}</p>
+          <p>Journey Reference: {outbound.journeyReference}</p>
+          <p>Estimated Journey Distance: {outbound.estimatedJourneyDistance} km</p>
+          <p>Estimated Journey Time: {outbound.estimatedJourneyTime} mins</p>
+          <h4>Vehicles</h4>
+          <ul>
+            {outbound.vehicles.map((vehicle, index) => (
+              <li key={index}>
+                <p>Job Reference: {vehicle.jobReference}</p>
+                <p>Vehicle Type: {vehicle.vehicleTypeName}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
