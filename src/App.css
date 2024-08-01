@@ -462,11 +462,16 @@ label {
     -50%
   ); /* Shift the modal back by half its width and height to center it */
   width: 80%; /* Set the width as desired, here it's 80% of the viewport width */
-  max-width: 600px; /* Maximum width of the modal */
+  max-width: 700px; /* Maximum width of the modal */
   height: auto; /* Height based on content */
-  padding: 20px; /* Padding inside the modal */
+  padding: 30px; /* Padding inside the modal */
+  padding-bottom: 50px;
   background-color: white; /* Background color of the modal */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for 3D effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+  border: #282c34 5px solid;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   z-index: 1000; /* Ensure it sits on top of other content */
   border-radius: 8px; /* Optional: rounded corners */
   overflow: auto; /* Enable scrolling within the modal if content is large */
