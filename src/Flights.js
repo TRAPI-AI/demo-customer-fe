@@ -8,6 +8,18 @@ const Flights = () => {
   const [maxConnections, setMaxConnections] = useState(1);
   const [loading, setLoading] = useState(false);
   const [offers, setOffers] = useState([]);
+  const [selectedOfferId, setSelectedOfferId] = useState('');
+  const [passengerDetails, setPassengerDetails] = useState({
+    id: '',
+    born_on: '',
+    email: '',
+    family_name: '',
+    gender: '',
+    given_name: '',
+    phone_number: '',
+    title: ''
+  });
+  const [orderSuccess, setOrderSuccess] = useState(false);
 
   const handleSearch = async () => {
     setLoading(true);
@@ -41,6 +53,42 @@ const Flights = () => {
       const data = await response.json();
       console.log(data);
       setOffers(data.data.offers);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOrder = async () => {
+    setLoading(true);
+    const requestData = {
+      data: {
+        type: 'hold',
+        passengers: [
+          {
+            ...passengerDetails,
+            id: passengerDetails.id || offers[0]?.passengers[0]?.id
+          }
+        ],
+        selected_offers: [selectedOfferId]
+      }
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/duffel-flights-orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      const data = await response.json();
+      console.log(data);
+      if (data.data) {
+        setOrderSuccess(true);
+      }
     } catch (error) {
       console.error('Error:', error);
     } finally {
@@ -107,10 +155,66 @@ const Flights = () => {
                 )}
               </div>
             ))}
-            <button>Select</button>
+            <button onClick={() => setSelectedOfferId(offer.id)}>Select</button>
           </li>
         ))}
       </ul>
+      {!orderSuccess && (
+        <div className="passenger-details">
+          <h3>Passenger Details</h3>
+          <input
+            type="text"
+            placeholder="Born On (YYYY-MM-DD)"
+            value={passengerDetails.born_on}
+            onChange={(e) => setPassengerDetails({ ...passengerDetails, born_on: e.target.value })}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={passengerDetails.email}
+            onChange={(e) => setPassengerDetails({ ...passengerDetails, email: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Family Name"
+            value={passengerDetails.family_name}
+            onChange={(e) => setPassengerDetails({ ...passengerDetails, family_name: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Gender"
+            value={passengerDetails.gender}
+            onChange={(e) => setPassengerDetails({ ...passengerDetails, gender: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Given Name"
+            value={passengerDetails.given_name}
+            onChange={(e) => setPassengerDetails({ ...passengerDetails, given_name: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Phone Number"
+            value={passengerDetails.phone_number}
+            onChange={(e) => setPassengerDetails({ ...passengerDetails, phone_number: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Title"
+            value={passengerDetails.title}
+            onChange={(e) => setPassengerDetails({ ...passengerDetails, title: e.target.value })}
+          />
+          <button onClick={handleOrder} disabled={loading}>
+            {loading ? 'Loading...' : 'Place Order'}
+          </button>
+        </div>
+      )}
+      {orderSuccess && (
+        <div className="order-success">
+          <h3>Booking Successful!</h3>
+          <p>Check your Duffel Orders Dashboard for booking.</p>
+        </div>
+      )}
     </div>
   );
 };
