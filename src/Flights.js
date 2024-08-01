@@ -8,6 +8,18 @@ const Flights = () => {
   const [maxConnections, setMaxConnections] = useState(1);
   const [loading, setLoading] = useState(false);
   const [offers, setOffers] = useState([]);
+  const [selectedOffer, setSelectedOffer] = useState(null);
+  const [passengerDetails, setPassengerDetails] = useState({
+    id: '',
+    born_on: '',
+    email: '',
+    family_name: '',
+    gender: '',
+    given_name: '',
+    phone_number: '',
+    title: '',
+  });
+  const [orderSuccess, setOrderSuccess] = useState(false);
 
   const handleSearch = async () => {
     setLoading(true);
@@ -41,6 +53,53 @@ const Flights = () => {
       const data = await response.json();
       console.log(data);
       setOffers(data.data.offers);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSelectOffer = (offer) => {
+    setSelectedOffer(offer);
+    setPassengerDetails((prevDetails) => ({
+      ...prevDetails,
+      id: offer.passengers[0].id,
+    }));
+  };
+
+  const handlePassengerDetailChange = (e) => {
+    const { name, value } = e.target;
+    setPassengerDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  };
+
+  const handleCreateOrder = async () => {
+    setLoading(true);
+    const requestData = {
+      data: {
+        type: 'hold',
+        passengers: [passengerDetails],
+        selected_offers: [selectedOffer.id],
+      },
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/duffel-flights-orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      const data = await response.json();
+      console.log(data);
+      if (!data.errors) {
+        setOrderSuccess(true);
+      }
     } catch (error) {
       console.error('Error:', error);
     } finally {
@@ -107,10 +166,73 @@ const Flights = () => {
                 )}
               </div>
             ))}
-            <button>Select</button>
+            <button onClick={() => handleSelectOffer(offer)}>Select</button>
           </li>
         ))}
       </ul>
+      {selectedOffer && !orderSuccess && (
+        <div className="passenger-details">
+          <h3>Passenger Details</h3>
+          <input
+            type="text"
+            name="born_on"
+            placeholder="Date of Birth (YYYY-MM-DD)"
+            value={passengerDetails.born_on}
+            onChange={handlePassengerDetailChange}
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={passengerDetails.email}
+            onChange={handlePassengerDetailChange}
+          />
+          <input
+            type="text"
+            name="family_name"
+            placeholder="Family Name"
+            value={passengerDetails.family_name}
+            onChange={handlePassengerDetailChange}
+          />
+          <input
+            type="text"
+            name="gender"
+            placeholder="Gender"
+            value={passengerDetails.gender}
+            onChange={handlePassengerDetailChange}
+          />
+          <input
+            type="text"
+            name="given_name"
+            placeholder="Given Name"
+            value={passengerDetails.given_name}
+            onChange={handlePassengerDetailChange}
+          />
+          <input
+            type="text"
+            name="phone_number"
+            placeholder="Phone Number"
+            value={passengerDetails.phone_number}
+            onChange={handlePassengerDetailChange}
+          />
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            value={passengerDetails.title}
+            onChange={handlePassengerDetailChange}
+          />
+          <button onClick={handleCreateOrder} disabled={loading}>
+            {loading ? 'Loading...' : 'Create Order'}
+          </button>
+        </div>
+      )}
+      {orderSuccess && (
+        <div className="order-success">
+          <h3>Booking Successful!</h3>
+          <p>Check your Duffel Orders Dashboard for booking.</p>
+        </div>
+      )}
     </div>
   );
 };
