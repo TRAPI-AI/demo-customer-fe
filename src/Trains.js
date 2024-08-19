@@ -85,7 +85,7 @@ const Trains = () => {
 
       setResults(extractedPrices);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching datas:", error);
     } finally {
       setLoading(false);
     }
