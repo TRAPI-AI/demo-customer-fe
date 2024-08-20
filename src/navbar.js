@@ -22,24 +22,24 @@ const Navbar = () => {
       <span className="text-2xl">Demo Travel Tool</span>
       <div style={{ display: "flex", gap: 30, marginRight: 20 }}>
         <div
-          className="cursor-pointer flex items-center font-bold gap-4"
+          className="cursor-pointer flex items-center text-sm font-bold gap-4"
           onClick={handleSearchClick}
         >
-          <FontAwesomeIcon size="xl" icon={faSearch} />
+          <FontAwesomeIcon size="md" icon={faSearch} />
           <div>Search</div>
         </div>
         <div
-          className="cursor-pointer flex items-center font-bold gap-4"
+          className="cursor-pointer flex items-center text-sm font-bold gap-4"
           onClick={handleBookingsClick}
         >
-          <FontAwesomeIcon size="xl" icon={faList} />
+          <FontAwesomeIcon size="md" icon={faList} />
           <div className="">Bookings</div>
         </div>
         <div
-          className="cursor-pointer flex items-center font-bold gap-4"
+          className="cursor-pointer flex items-center text-sm font-bold gap-4"
           onClick={handleMapClick}
         >
-          <FontAwesomeIcon size="xl" icon={faMap} />
+          <FontAwesomeIcon size="md" icon={faMap} />
           <div className="">Map</div>
         </div>
       </div>

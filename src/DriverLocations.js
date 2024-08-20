@@ -14,8 +14,8 @@ const DriverLocations = () => {
       </div>
       {/* Response items go in this container */}
       <ul>
-        <li className="location-item">Result 1</li>
-        <li className="location-item">Result 2</li>
+        <li className="location-item"></li>
+        <li className="location-item"></li>
       </ul>
       <MapContainer
         center={[52, 0]}

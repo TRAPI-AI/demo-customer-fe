@@ -3,12 +3,12 @@ const Tabs = ({ setActiveTab, activeTab }) => {
     <div
       style={{
         backgroundColor: "rgb(0, 59, 149)",
-        justifyContent: "flex-start",
+        justifyContent: "center",
         alignContent: "center",
         display: "flex",
-        gap: 20,
+        gap: 5,
         paddingBottom: 20,
-        paddingLeft: 120
+        paddingLeft: 0
       }}
     >
       <div
