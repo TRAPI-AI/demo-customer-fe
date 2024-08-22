@@ -1,20 +1,139 @@
+import React, { useState } from 'react';
+
 const RideHailing = () => {
+  const [clientAccountNumber, setClientAccountNumber] = useState('00001037');
+  const [leadPassengerName, setLeadPassengerName] = useState('Daisy Hill');
+  const [contactNumber, setContactNumber] = useState('+447791114579');
+  const [journeyTypeName, setJourneyTypeName] = useState('OneWay');
+  const [isImmediateJourney, setIsImmediateJourney] = useState(false);
+  const [outboundWhen, setOutboundWhen] = useState('2024-11-12T08:00:00.0000000+00:00');
+  const [pickupLatitude, setPickupLatitude] = useState(53.364304);
+  const [pickupLongitude, setPickupLongitude] = useState(-2.268331);
+  const [dropOffLatitude, setDropOffLatitude] = useState(53.407211);
+  const [dropOffLongitude, setDropOffLongitude] = useState(-2.9784966);
+  const [loading, setLoading] = useState(false);
+  const [vehicles, setVehicles] = useState([]);
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    const payload = {
+      data: {
+        clientAccountNumber,
+        passengers: [
+          {
+            isLeadPassenger: true,
+            name: leadPassengerName,
+            contactNumber,
+          },
+        ],
+        journeyTypeName,
+        isImmediateJourney,
+        outbound: {
+          when: outboundWhen,
+          pickup: {
+            latitude: pickupLatitude,
+            longitude: pickupLongitude,
+          },
+          dropOff: {
+            latitude: dropOffLatitude,
+            longitude: dropOffLongitude,
+          },
+        },
+      },
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/jyrney-create-quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json();
+      setVehicles(data.outbound.vehicles);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <div className="search-area">
         <div className="search">
-          {/* Search Request Input fields go in this container */}
-          <input />
-          <input />
-          <input />
-          <button>Search</button>
+          <input
+            type="text"
+            value={clientAccountNumber}
+            onChange={(e) => setClientAccountNumber(e.target.value)}
+            placeholder="Client Account Number"
+          />
+          <input
+            type="text"
+            value={leadPassengerName}
+            onChange={(e) => setLeadPassengerName(e.target.value)}
+            placeholder="Lead Passenger Name"
+          />
+          <input
+            type="text"
+            value={contactNumber}
+            onChange={(e) => setContactNumber(e.target.value)}
+            placeholder="Contact Number"
+          />
+          <input
+            type="text"
+            value={journeyTypeName}
+            onChange={(e) => setJourneyTypeName(e.target.value)}
+            placeholder="Journey Type Name"
+          />
+          <input
+            type="datetime-local"
+            value={outboundWhen}
+            onChange={(e) => setOutboundWhen(e.target.value)}
+            placeholder="Outbound When"
+          />
+          <input
+            type="number"
+            value={pickupLatitude}
+            onChange={(e) => setPickupLatitude(e.target.value)}
+            placeholder="Pickup Latitude"
+          />
+          <input
+            type="number"
+            value={pickupLongitude}
+            onChange={(e) => setPickupLongitude(e.target.value)}
+            placeholder="Pickup Longitude"
+          />
+          <input
+            type="number"
+            value={dropOffLatitude}
+            onChange={(e) => setDropOffLatitude(e.target.value)}
+            placeholder="DropOff Latitude"
+          />
+          <input
+            type="number"
+            value={dropOffLongitude}
+            onChange={(e) => setDropOffLongitude(e.target.value)}
+            placeholder="DropOff Longitude"
+          />
+          <button onClick={handleSubmit} disabled={loading}>
+            {loading ? 'Loading...' : 'Search'}
+          </button>
         </div>
       </div>
-      {/* Search Response items go in this container*/}
       <ul>
-        <li className="offer-item"></li>
+        {vehicles.map((vehicle, index) => (
+          <li key={index} className="offer-item">
+            <p>Supplier Name: {vehicle.supplierName}</p>
+            <p>Supplier Quote Reference: {vehicle.supplierQuoteReference}</p>
+            <p>Estimated Price: {vehicle.estimatedPrice.price} {vehicle.estimatedPrice.currency}</p>
+            <p>Vehicle Category: {vehicle.vehicleDetails.category}</p>
+            <p>Service Quantity: 1</p>
+            <button>Book</button>
+          </li>
+        ))}
       </ul>
-      {/* Booking Response items go in this container */}
       <div className="booking-response">
         <p>Field 1</p>
         <p>Field 1</p>
