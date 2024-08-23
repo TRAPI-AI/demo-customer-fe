@@ -7,7 +7,7 @@ function Bookings() {
     <div>
       <Navbar />
       <div className="my-10 mx-28">
-        <div className="text-4xl mb-6 font-bold">Bookings</div>
+        <div className="text-4xl mb-6 font-bold">Your Bookings</div>
         <ListBookings />
       </div>
     </div>
