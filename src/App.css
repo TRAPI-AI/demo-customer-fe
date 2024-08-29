@@ -83,6 +83,10 @@ input {
   box-sizing: border-box; /* Ensure padding and border are included in the height */
 }
 
+input:hover {
+  box-shadow: 0 4px 8px rgba(255, 183, 0, 0.5); /* Yellow shadow on hover */
+}
+
 textarea {
   padding: 5px;
   border: 5px solid rgb(255, 183, 0); /* Updated border color */
@@ -305,6 +309,33 @@ footer {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+}
+
+.result-card {
+  border-radius: 20px;
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #282c34;
+  min-width: 66%;
+  margin-bottom: 20px;
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.results-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow-x: auto; /* Enables horizontal scrolling */
+  /* width: 100%; Ensure the ul takes full width of its container */
+  white-space: nowrap; /* Prevents wrapping of items */
+  margin-top: 10px;
+  margin-left: 10px;
+  min-height: 300px;
+  gap: 10px;
 }
 
 .offers-list {
