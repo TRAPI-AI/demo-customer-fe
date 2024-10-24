@@ -1,4 +1,27 @@
+import React, { useState } from 'react';
+
 const CarRentals = () => {
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState([]);
+
+  const handleSearch = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch('http://localhost:5000/indie-campers-list-locations', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await res.json();
+      setResponse(data.data); // Update to access the 'data' array in the response
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <div className="search-area">
@@ -7,17 +30,31 @@ const CarRentals = () => {
           <input />
           <input />
           <input />
-          <button>Search</button>
+          <button onClick={handleSearch}>Search</button>
         </div>
       </div>
-      {/* Response items go in this container */}
-      <ul>
-        <li className="offer-item"></li>
-        <li className="offer-item"></li>
-        <li className="offer-item"></li>
-        <li className="offer-item"></li>
-        <li className="offer-item"></li>
-      </ul>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <ul>
+          {response.map((item, index) => (
+            <li key={index} className="offer-item">
+              <div>
+                <strong>Name:</strong> {item.name}
+              </div>
+              <div>
+                <strong>Address:</strong> {item.address}
+              </div>
+              <div>
+                <strong>Identifier:</strong> {item.identifier}
+              </div>
+              <div>
+                <strong>Country Code:</strong> {item.country_code}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
