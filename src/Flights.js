@@ -13,7 +13,9 @@ const Flights = () => {
       </div>
       {/* Response items go in this container */}
       <ul>
-        <li className="offer-item"></li>
+        <li className="offer-item">
+          <p className="field-duration">duration</p>
+        </li>
         <li className="offer-item"></li>
         <li className="offer-item"></li>
         <li className="offer-item"></li>
