@@ -8,7 +8,7 @@ const Flights = () => {
           <input />
           <input />
           <input />
-          <button>Search</button>
+          <button className="search-button">Search</button>
         </div>
       </div>
       {/* Response items go in this container */}
