@@ -701,8 +701,10 @@ td {
   flex-direction: row;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-left: 20px;
   width: fit-content;
+  min-width: 90vw;
 }
 
 .select-button {
