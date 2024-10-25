@@ -14,12 +14,21 @@ const Flights = () => {
       {/* Response items go in this container */}
       <ul>
         <li className="offer-item">
-          <p className="field-duration">duration</p>
+          <p className="operator-name">name</p>
+          <div>
+            <p className="departing-at">departing at</p>
+            <p className="origin-name">origin name</p>
+          </div>
+          <p className="duration">duration</p>
+          <div>
+            <p className="arriving-at">arriving at</p>
+            <p className="destination-name">destination name</p>
+          </div>
+          <div>
+            <p className="total-amount">amount</p>
+            <button className="select-button">Select</button>
+          </div>
         </li>
-        <li className="offer-item"></li>
-        <li className="offer-item"></li>
-        <li className="offer-item"></li>
-        <li className="offer-item"></li>
       </ul>
     </div>
   );
