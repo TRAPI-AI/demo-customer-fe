@@ -123,6 +123,21 @@ button {
   font-weight: bold;
   font-size: 16px;
   background-color: #007bff;
+  margin-top: 10px;
+  height: 66px;
+  width: fit-content;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Gray shadow */
+}
+
+.search-button {
+  padding: 1.1rem 2rem;
+  border: 5px solid rgb(255, 183, 0); /* Updated border color */
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: #007bff;
   margin-bottom: -30px;
   margin-top: 10px;
   height: 66px;
