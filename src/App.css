@@ -702,9 +702,8 @@ td {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 20px;
   width: fit-content;
-  min-width: 90vw;
+  min-width: 99vw;
 }
 
 .select-button {
