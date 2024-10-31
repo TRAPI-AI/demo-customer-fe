@@ -48,9 +48,9 @@ const Flights = () => {
       </ul>
       {isModalOpen && (
         <div className="select-modal">
-          <p className="cabin-class">Cabin Class</p>
-          <p className="time-zone">Time Zone</p>
-          <p className="conditions-of-carriage">Conditions of Carriage</p>
+          <p className="total-emissions">Emissions</p>
+          <p className="destination-type">Tax Amount</p>
+          <p className="corporate-code">Code</p>
           <button onClick={handleCloseModal}>Close</button>
         </div>
       )}
