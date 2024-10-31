@@ -724,3 +724,38 @@ td {
   margin-left: 50px;
   margin-right: 30px;
 }
+
+.select-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it appears above other elements */
+  width: 50vw; /* Adjust width as needed */
+  height: 50vh; /* Adjust width as needed */
+  text-align: center;
+}
+
+.select-modal p {
+  margin: 10px;
+  border: none;
+  text-align: left;
+}
+
+.select-modal button {
+  margin-top: 40px;
+  padding: 0px 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.select-modal button:hover {
+  background-color: #0056b3;
+}

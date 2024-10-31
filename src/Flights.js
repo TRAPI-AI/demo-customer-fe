@@ -1,13 +1,27 @@
+import React, { useState } from "react";
+
 const Flights = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSelectClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div>
       <div className="search-area">
         <div className="search">
           {/* Input fields go in this container */}
-          <input />
-          <input />
-          <input />
-          <input />
+          <input className="origin" />
+          <input className="destination" />
+          <input className="departure-date" type="date" />
+          <select className="passenger-type">
+            <option value="adult">Option</option>
+          </select>
           <button className="search-button">Search</button>
         </div>
       </div>
@@ -26,10 +40,20 @@ const Flights = () => {
           </div>
           <div>
             <p className="total-amount">amount</p>
-            <button className="select-button">Select</button>
+            <button className="select-button" onClick={handleSelectClick}>
+              Select
+            </button>
           </div>
         </li>
       </ul>
+      {isModalOpen && (
+        <div className="select-modal">
+          <p className="cabin-class">Cabin Class</p>
+          <p className="time-zone">Time Zone</p>
+          <p className="conditions-of-carriage">Conditions of Carriage</p>
+          <button onClick={handleCloseModal}>Close</button>
+        </div>
+      )}
     </div>
   );
 };
