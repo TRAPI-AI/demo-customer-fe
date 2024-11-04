@@ -653,7 +653,7 @@ td {
   font-size: 0.75rem;
   border: none;
   margin-left: 30px;
-  margin-right:50px;
+  margin-right: 50px;
 }
 
 .origin-name {
@@ -758,5 +758,20 @@ td {
 }
 
 .search-response-item {
-  padding: 14px;
+  border-radius: 0.75rem;
+  /* min-height: 220px; */
+  /* height: fit; */
+  padding: 1rem;
+  /* border-width: 1px; */
+  box-shadow: 0 1px 3px 0 #25201f4d;
+  transition: opacity 0.2s ease-in-out;
+  /* margin: 20px; */
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: fit-content;
+  min-width: 99vw;
 }
