@@ -1,21 +1,57 @@
-import React, { useState } from "react";
+// Integrating the frontend with the backend for location data
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const CarRentals = () => {
   const [BookingDetails, setBookingDetails] = useState(false);
   const [BookingSuccess, setBookingSuccess] = useState(false);
+  const [locations, setLocations] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchLocations = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("http://localhost:5000/indie-campers-list-locations");
+        setLocations(response.data.data);
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLocations();
+  }, []);
 
   return (
     <div>
       <div className="search-area">
         <div className="search">
           {/* Input fields go in this container */}
-          <input className="origin" placeholder="Origin" />
-          <input className="destination" placeholder="Destination" />
+          <select className="origin">
+            <option value="">Select Origin</option>
+            {locations.map((location) => (
+              <option key={location.identifier} value={location.identifier}>
+                {location.name}
+              </option>
+            ))}
+          </select>
+          <select className="destination">
+            <option value="">Select Destination</option>
+            {locations.map((location) => (
+              <option key={location.identifier} value={location.identifier}>
+                {location.name}
+              </option>
+            ))}
+          </select>
           <input className="date-from" type="date" />
           <input className="date-to" type="date" />
           <button>Search</button>
         </div>
       </div>
+      {loading && <p>Loading locations...</p>}
       <ul>
         <li className="search-response-item">
           <img alt="Placeholder Image" className="vehicle-image" />
@@ -55,3 +91,5 @@ const CarRentals = () => {
 };
 
 export default CarRentals;
+
+// End of integration
