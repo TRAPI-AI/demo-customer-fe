@@ -11,7 +11,6 @@ const CarRentals = () => {
           <button>Search</button>
         </div>
       </div>
-      {/* Response items go in this container */}
       <ul>
         <li className="search-response-item">
           <p className="status">status</p>
