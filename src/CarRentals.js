@@ -4,7 +4,7 @@ const CarRentals = () => {
       <div className="search-area">
         <div className="search">
           {/* Input fields go in this container */}
-          <input className="origin" />
+          <input className="origin" placeholder='Origin' />
           <input className="destination" />
           <input />
           <button>Search</button>
