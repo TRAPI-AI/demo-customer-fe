@@ -18,12 +18,12 @@ const CarRentals = () => {
             className="vehicle-image"
           />
           <div>
-            <p className="status">status</p>
-            <p className="capacity">capacity</p>
-            <p className="beds">beds</p>
-            <p className="price-per-day">price-per-day</p>
+            <p className="status"></p>
+            <p className="capacity">Capacity: </p>
+            <p className="beds">Beds:</p>
+            <p className="price-per-day">Price-per-day:</p>
             <p className="total-price">
-              total price<span className="currency">currency</span>
+              Total price: <span className="currency"></span>
             </p>
           </div>
           <button className="select-button">Select</button>
