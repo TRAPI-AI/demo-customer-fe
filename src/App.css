@@ -768,10 +768,15 @@ td {
   /* margin: 20px; */
   background-color: #fff;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 20px;
   width: fit-content;
   min-width: 99vw;
+}
+
+.vehicle-image {
+  width: 400px;
 }
