@@ -21,6 +21,8 @@ const CarRentals = () => {
           <img alt="Placeholder Image" className="vehicle-image" />
           <div>
             <p className="status"></p>
+            <p className="distance-package-name"></p>
+            <p className="insurance-name">Insurance: </p>
             <p className="capacity">Capacity: </p>
             <p className="beds">Beds:</p>
             <p className="price-per-day">Price-per-day:</p>
