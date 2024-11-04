@@ -29,6 +29,14 @@ const CarRentals = () => {
           <button className="select-button">Select</button>
         </li>
       </ul>
+      <div className="booking-form">
+          <h3>Enter Client Details</h3>
+          <input placeholder="Name" />
+          <input type="email" placeholder="Email"/>
+          <input placeholder="Nationality" />
+          <input placeholder="Phone Number" />
+          <button>Book</button>
+        </div>
     </div>
   );
 };
