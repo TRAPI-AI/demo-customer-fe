@@ -37,6 +37,13 @@ const CarRentals = () => {
           <input placeholder="Phone Number" />
           <button>Book</button>
         </div>
+  <div className="booking-confirmation">
+        <h3>Booking Confirmation</h3>
+        <p className="from-location">from:</p>
+        <p className="to-location">to:</p>
+        <p className="capacity">Capacity:</p>
+        <p className="type">Type:</p>
+      </div>
     </div>
   );
 };
