@@ -780,3 +780,35 @@ td {
 .vehicle-image {
   width: 400px;
 }
+
+.booking-form {
+  position: fixed; /* Keeps it above other elements */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Offset for perfect centering */
+  background-color: #fff; /* White background for the modal */
+  padding: 20px; /* Padding for inner spacing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for a raised effect */
+  border-radius: 8px; /* Rounded corners */
+  z-index: 1000; /* High z-index to ensure it stays on top */
+  width: 90vw; /* Set a width, adjust as needed */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.booking-confirmation {
+  position: fixed; /* Keeps it above other elements */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Offset for perfect centering */
+  background-color: #fff; /* White background for the modal */
+  padding: 20px; /* Padding for inner spacing */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for a raised effect */
+  border-radius: 8px; /* Rounded corners */
+  z-index: 1000; /* High z-index to ensure it stays on top */
+  width: 90vw; /* Set a width, adjust as needed */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
