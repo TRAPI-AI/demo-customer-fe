@@ -1,22 +1,51 @@
+// Integrating the frontend with the backend for Indie Campers location data
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 const CarRentals = () => {
+  const [locations, setLocations] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchLocations = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get('http://localhost:5000/indie-campers-list-locations');
+        setLocations(response.data.data);
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLocations();
+  }, []);
+
   return (
     <div>
       <div className="search-area">
         <div className="search">
           {/* Input fields go in this container */}
-          <input className="origin" placeholder="Origin" />
-          <input className="destination" placeholder="Destination" />
+          <input className="origin" placeholder="Origin" list="location-options" />
+          <input className="destination" placeholder="Destination" list="location-options" />
           <input className="date-from" type="date" />
           <input className="date-to" type="date" />
           <button>Search</button>
         </div>
       </div>
+      {loading && <p>Loading locations...</p>}
+      <datalist id="location-options">
+        {locations.map((location) => (
+          <option key={location.identifier} value={location.name}>
+            {location.name}, {location.country_code}
+          </option>
+        ))}
+      </datalist>
       <ul>
         <li className="search-response-item">
-          <img
-            alt="Placeholder Image"
-            className="vehicle-image"
-          />
+          <img alt="Placeholder Image" className="vehicle-image" />
           <div>
             <p className="status"></p>
             <p className="capacity">Capacity: </p>
@@ -34,3 +63,5 @@ const CarRentals = () => {
 };
 
 export default CarRentals;
+
+// End of integration
