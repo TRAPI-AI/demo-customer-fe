@@ -1,4 +1,4 @@
-// Integrating the frontend with the backend for Indie Campers location and availability data
+// Integrating the frontend with the backend for Indie Campers booking functionality
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -11,6 +11,13 @@ const CarRentals = () => {
   const [destination, setDestination] = useState('');
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
+  const [selectedAvailability, setSelectedAvailability] = useState(null);
+  const [clientData, setClientData] = useState({
+    email: '',
+    name: '',
+    nationality: '',
+    phone_number: ''
+  });
 
   useEffect(() => {
     const fetchLocations = async () => {
@@ -40,6 +47,33 @@ const CarRentals = () => {
       setAvailabilities(response.data.data);
     } catch (error) {
       console.error('Error fetching availabilities:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleBooking = async () => {
+    if (!selectedAvailability) return;
+
+    const bookingData = {
+      checkin_date: dateFrom,
+      checkout_date: dateTo,
+      client: clientData,
+      code: selectedAvailability.code,
+      distance_package: selectedAvailability.distance_package.identifier,
+      from_location: origin,
+      insurance: selectedAvailability.insurance.identifier,
+      passengers: 2,
+      to_location: destination,
+      vehicle: selectedAvailability.vehicle.identifier
+    };
+
+    setLoading(true);
+    try {
+      const response = await axios.post('http://localhost:5000/indie-campers-create-a-booking', bookingData);
+      console.log('Booking successful:', response.data);
+    } catch (error) {
+      console.error('Error creating booking:', error);
     } finally {
       setLoading(false);
     }
@@ -77,10 +111,20 @@ const CarRentals = () => {
                 Total price: <span className="currency">{availability.price.total_cost} {availability.price.currency}</span>
               </p>
             </div>
-            <button className="select-button">Select</button>
+            <button className="select-button" onClick={() => setSelectedAvailability(availability)}>Select</button>
           </li>
         ))}
       </ul>
+      {selectedAvailability && (
+        <div className="booking-form">
+          <h3>Enter Client Details</h3>
+          <input type="text" placeholder="Name" onChange={(e) => setClientData({ ...clientData, name: e.target.value })} />
+          <input type="email" placeholder="Email" onChange={(e) => setClientData({ ...clientData, email: e.target.value })} />
+          <input type="text" placeholder="Nationality" onChange={(e) => setClientData({ ...clientData, nationality: e.target.value })} />
+          <input type="text" placeholder="Phone Number" onChange={(e) => setClientData({ ...clientData, phone_number: e.target.value })} />
+          <button onClick={handleBooking}>Book Now</button>
+        </div>
+      )}
     </div>
   );
 };
