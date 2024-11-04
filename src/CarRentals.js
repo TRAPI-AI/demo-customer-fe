@@ -112,7 +112,7 @@ const CarRentals = () => {
                 Total price: <span className="currency">{availability.price.total_cost} {availability.price.currency}</span>
               </p>
             </div>
-            <button className="select-button">Select</button>
+            <button className="select-button" onClick={() => setBookingDetails(true)}>Select</button>
           </li>
         ))}
       </ul>
@@ -123,7 +123,7 @@ const CarRentals = () => {
           <input type="email" placeholder="Email" />
           <input placeholder="Nationality" />
           <input placeholder="Phone Number" />
-          <button>Book</button>
+          <button onClick={() => setBookingSuccess(true)}>Book</button>
         </div>
       )}
       {BookingSuccess && (
