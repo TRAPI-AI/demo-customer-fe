@@ -1,4 +1,4 @@
-// Integrating the frontend with the backend for location data and vehicle availability
+// Integrating the frontend with the backend for location data, vehicle availability, and booking creation
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -14,6 +14,12 @@ const CarRentals = () => {
     toLocation: "",
     dateFrom: "",
     dateTo: "",
+  });
+  const [clientDetails, setClientDetails] = useState({
+    name: "",
+    email: "",
+    nationality: "",
+    phone_number: "",
   });
 
   useEffect(() => {
@@ -46,6 +52,32 @@ const CarRentals = () => {
       setAvailabilities(response.data.data);
     } catch (error) {
       console.error("Error fetching availabilities:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleBooking = async () => {
+    setLoading(true);
+    try {
+      const selectedAvailability = availabilities[0]; // Assuming the first availability is selected
+      const bookingData = {
+        checkin_date: searchParams.dateFrom,
+        checkout_date: searchParams.dateTo,
+        client: clientDetails,
+        code: "ID-12345",
+        distance_package: selectedAvailability.distance_package.identifier,
+        from_location: searchParams.fromLocation,
+        insurance: selectedAvailability.insurance.identifier,
+        passengers: 2,
+        to_location: searchParams.toLocation,
+        vehicle: selectedAvailability.vehicle.identifier,
+      };
+
+      const response = await axios.post("http://localhost:5000/indie-campers-create-a-booking", bookingData);
+      setBookingSuccess(true);
+    } catch (error) {
+      console.error("Error creating booking:", error);
     } finally {
       setLoading(false);
     }
@@ -94,7 +126,7 @@ const CarRentals = () => {
           <button onClick={handleSearch}>Search</button>
         </div>
       </div>
-      {loading && <p>Loading locations...</p>}
+      {loading && <p>Loading...</p>}
       <ul>
         {availabilities.map((availability) => (
           <li key={availability.vehicle.identifier} className="search-response-item">
@@ -112,18 +144,35 @@ const CarRentals = () => {
                 Total price: <span className="currency">{availability.price.total_cost} {availability.price.currency}</span>
               </p>
             </div>
-            <button className="select-button">Select</button>
+            <button className="select-button" onClick={() => setBookingDetails(true)}>Select</button>
           </li>
         ))}
       </ul>
       {BookingDetails && (
         <div className="booking-form">
           <h3>Enter Client Details</h3>
-          <input placeholder="Name" />
-          <input type="email" placeholder="Email" />
-          <input placeholder="Nationality" />
-          <input placeholder="Phone Number" />
-          <button>Book</button>
+          <input
+            placeholder="Name"
+            value={clientDetails.name}
+            onChange={(e) => setClientDetails({ ...clientDetails, name: e.target.value })}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={clientDetails.email}
+            onChange={(e) => setClientDetails({ ...clientDetails, email: e.target.value })}
+          />
+          <input
+            placeholder="Nationality"
+            value={clientDetails.nationality}
+            onChange={(e) => setClientDetails({ ...clientDetails, nationality: e.target.value })}
+          />
+          <input
+            placeholder="Phone Number"
+            value={clientDetails.phone_number}
+            onChange={(e) => setClientDetails({ ...clientDetails, phone_number: e.target.value })}
+          />
+          <button onClick={handleBooking}>Book</button>
         </div>
       )}
       {BookingSuccess && (
