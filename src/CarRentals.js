@@ -5,9 +5,9 @@ const CarRentals = () => {
         <div className="search">
           {/* Input fields go in this container */}
           <input className="origin" placeholder="Origin" />
-          <input className="destination" />
-          <input className="date-from" />
-          <input className="date-to" />
+          <input className="destination" placeholder="Destination" />
+          <input className="date-from" type="date"/>
+          <input className="date-to" type="date"/>
           <button>Search</button>
         </div>
       </div>
