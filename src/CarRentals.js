@@ -1,4 +1,9 @@
+import React, { useState } from "react";
+
 const CarRentals = () => {
+  const [BookingDetails, setBookingDetails] = useState(false);
+  const [BookingSuccess, setBookingSuccess] = useState(false);
+
   return (
     <div>
       <div className="search-area">
@@ -13,10 +18,7 @@ const CarRentals = () => {
       </div>
       <ul>
         <li className="search-response-item">
-          <img
-            alt="Placeholder Image"
-            className="vehicle-image"
-          />
+          <img alt="Placeholder Image" className="vehicle-image" />
           <div>
             <p className="status"></p>
             <p className="capacity">Capacity: </p>
@@ -29,21 +31,25 @@ const CarRentals = () => {
           <button className="select-button">Select</button>
         </li>
       </ul>
-      <div className="booking-form">
+      {BookingDetails && (
+        <div className="booking-form">
           <h3>Enter Client Details</h3>
           <input placeholder="Name" />
-          <input type="email" placeholder="Email"/>
+          <input type="email" placeholder="Email" />
           <input placeholder="Nationality" />
           <input placeholder="Phone Number" />
           <button>Book</button>
         </div>
-  <div className="booking-confirmation">
-        <h3>Booking Confirmation</h3>
-        <p className="from-location">from:</p>
-        <p className="to-location">to:</p>
-        <p className="capacity">Capacity:</p>
-        <p className="type">Type:</p>
-      </div>
+      )}
+      {BookingSuccess && (
+        <div className="booking-confirmation">
+          <h3>Booking Confirmation</h3>
+          <p className="from-location">from:</p>
+          <p className="to-location">to:</p>
+          <p className="capacity">Capacity:</p>
+          <p className="type">Type:</p>
+        </div>
+      )}
     </div>
   );
 };
