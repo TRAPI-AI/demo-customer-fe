@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const CarRentals = () => {
+  const [OfferInfo, setOfferInfo] = useState(true);
   const [BookingDetails, setBookingDetails] = useState(false);
   const [BookingSuccess, setBookingSuccess] = useState(false);
 
@@ -33,6 +34,16 @@ const CarRentals = () => {
           <button className="select-button">Select</button>
         </li>
       </ul>
+      {OfferInfo && (
+        <div className="offer-information">
+          <h3>Offer Information</h3>
+          <p className="price"></p>
+          <p className="insurance">Insurance info:</p>
+          <p className="identifier">ID:</p>
+          <p className="type">Type:</p>
+          <button>Select Offer</button>
+        </div>
+      )}
       {BookingDetails && (
         <div className="booking-form">
           <h3>Enter Client Details</h3>
