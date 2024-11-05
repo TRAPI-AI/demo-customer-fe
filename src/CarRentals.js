@@ -22,8 +22,6 @@ const CarRentals = () => {
           <img alt="Placeholder Image" className="vehicle-image" />
           <div>
             <p className="status"></p>
-            <p className="distance-package-name"></p>
-            <p className="insurance-name">Insurance: </p>
             <p className="capacity">Capacity: </p>
             <p className="beds">Beds:</p>
             <p className="price-per-day">Price-per-day:</p>
@@ -40,6 +38,7 @@ const CarRentals = () => {
           <p className="price"></p>
           <p className="insurance">Insurance info:</p>
           <p className="identifier">ID:</p>
+          <p className="distance-package-name"></p>
           <p className="type">Type:</p>
           <button>Select Offer</button>
         </div>
