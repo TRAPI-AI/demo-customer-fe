@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const CarRentals = () => {
-  const [sameReturnDestination, setSameReturnDestination] = useState(true);
   const [OffersList, setOffersList] = useState(false);
   const [OfferInfo, setOfferInfo] = useState(false);
   const [BookingDetails, setBookingDetails] = useState(false);
@@ -12,18 +11,8 @@ const CarRentals = () => {
       <div className="search-area">
         <div className="search">
           {/* Input fields go in this container */}
-          <label>
-            <input
-              type="checkbox"
-              checked={!sameReturnDestination}
-              onChange={() => setSameReturnDestination((prev) => !prev)}
-            />
-            Drop off in different city
-          </label>
           <input className="origin" placeholder="Origin" />
-          {!sameReturnDestination && (
-            <input className="destination" placeholder="Destination" />
-          )}
+          <input className="destination" placeholder="Destination" />
           <input className="date-from" type="date" />
           <input className="date-to" type="date" />
           <button className="search-button">Search</button>
