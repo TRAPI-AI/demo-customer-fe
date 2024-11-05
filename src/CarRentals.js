@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 const CarRentals = () => {
-  const [OfferInfo, setOfferInfo] = useState(true);
+  const [OffersList, setOffersList] = useState(false);
+  const [OfferInfo, setOfferInfo] = useState(false);
   const [BookingDetails, setBookingDetails] = useState(false);
   const [BookingSuccess, setBookingSuccess] = useState(false);
 
@@ -14,24 +15,26 @@ const CarRentals = () => {
           <input className="destination" placeholder="Destination" />
           <input className="date-from" type="date" />
           <input className="date-to" type="date" />
-          <button>Search</button>
+          <button className="search-button">Search</button>
         </div>
       </div>
-      <ul>
-        <li className="search-response-item">
-          <img alt="Placeholder Image" className="vehicle-image" />
-          <div>
-            <p className="status"></p>
-            <p className="capacity">Capacity: </p>
-            <p className="beds">Beds:</p>
-            <p className="price-per-day">Price-per-day:</p>
-            <p className="total-price">
-              Total price: <span className="currency"></span>
-            </p>
-          </div>
-          <button className="select-button">Select</button>
-        </li>
-      </ul>
+      {OffersList && (
+        <ul>
+          <li className="search-response-item">
+            <img alt="Placeholder Image" className="vehicle-image" />
+            <div>
+              <p className="status"></p>
+              <p className="capacity">Capacity: </p>
+              <p className="beds">Beds:</p>
+              <p className="price-per-day">Price-per-day:</p>
+              <p className="total-price">
+                Total price: <span className="currency"></span>
+              </p>
+            </div>
+            <button className="select-button">Select</button>
+          </li>
+        </ul>
+      )}
       {OfferInfo && (
         <div className="offer-information">
           <h3>Offer Information</h3>
