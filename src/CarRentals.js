@@ -51,8 +51,8 @@ const CarRentals = () => {
           <h3>Enter Client Details</h3>
           <input placeholder="Name" />
           <input type="email" placeholder="Email" />
-          <input placeholder="Nationality" />
-          <input placeholder="Phone Number" />
+          <input placeholder="Nationality ('EN', 'ES' etc)" />
+          <input placeholder="Phone Number (format: +44 7493 291 665)" />
           <button>Book</button>
         </div>
       )}
