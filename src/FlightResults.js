@@ -1,47 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 
-const FlightResults = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const FlightResults = ({ searchData }) => {
+  const [loading, setLoading] = useState(true);
+  const [offers, setOffers] = useState([]);
 
-  const handleSelectClick = () => {
-    setIsModalOpen(true);
-  };
+  useEffect(() => {
+    const fetchOffers = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/duffel-flights-list-offers', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(searchData),
+        });
+        const data = await response.json();
+        setOffers(data.data.offers);
+      } catch (error) {
+        console.error('Error fetching flight offers:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+    fetchOffers();
+  }, [searchData]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
-      {/* Response items go in this container */}
-      <ul>
-        <li className="offer-item">
-          <p className="operator-name">name</p>
-          <div>
-            <p className="departing-at">departing at</p>
-            <p className="origin-name">origin name</p>
-          </div>
-          <p className="duration">duration</p>
-          <div>
-            <p className="arriving-at">arriving at</p>
-            <p className="destination-name">destination name</p>
-          </div>
-          <div>
-            <p className="total-amount">amount</p>
-            <button className="select-button" onClick={handleSelectClick}>
-              Select
-            </button>
-          </div>
-        </li>
-      </ul>
-      {isModalOpen && (
-        <div className="select-modal">
-          <p className="total-emissions">Emissions</p>
-          <p className="destination-type">Tax Amount</p>
-          <p className="corporate-code">Code</p>
-          <button onClick={handleCloseModal}>Close</button>
+      {offers.map((offer) => (
+        <div key={offer.id}>
+          <h3>Offer ID: {offer.id}</h3>
+          <p>Total Amount: {offer.total_amount} {offer.total_currency}</p>
+          {/* Add more fields as needed */}
         </div>
-      )}
+      ))}
     </div>
   );
 };
