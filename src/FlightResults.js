@@ -1,49 +1,24 @@
-import React, { useState } from "react";
+import React from 'react';
 
-const FlightResults = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleSelectClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
+const FlightResults = ({ offers }) => {
   return (
     <div>
-      {/* Response items go in this container */}
-      <ul>
-        <li className="offer-item">
-          <p className="operator-name">name</p>
-          <div>
-            <p className="departing-at">departing at</p>
-            <p className="origin-name">origin name</p>
-          </div>
-          <p className="duration">duration</p>
-          <div>
-            <p className="arriving-at">arriving at</p>
-            <p className="destination-name">destination name</p>
-          </div>
-          <div>
-            <p className="total-amount">amount</p>
-            <button className="select-button" onClick={handleSelectClick}>
-              Select
-            </button>
-          </div>
-        </li>
-      </ul>
-      {isModalOpen && (
-        <div className="select-modal">
-          <p className="total-emissions">Emissions</p>
-          <p className="destination-type">Tax Amount</p>
-          <p className="corporate-code">Code</p>
-          <button onClick={handleCloseModal}>Close</button>
+      {offers.map((offer) => (
+        <div key={offer.id}>
+          <h3>Offer ID: {offer.id}</h3>
+          <p>Total Amount: {offer.total_amount} {offer.total_currency}</p>
+          <p>Base Amount: {offer.base_amount} {offer.base_currency}</p>
+          <p>Tax Amount: {offer.tax_amount} {offer.tax_currency}</p>
+          <p>Total Emissions: {offer.total_emissions_kg} kg</p>
+          {/* Additional offer details can be displayed here */}
         </div>
-      )}
+      ))}
     </div>
   );
 };
 
 export default FlightResults;
+
+// End of response
+
+This refactored code for `FlightSearch.js` and `FlightResults.js` integrates the frontend with the backend API endpoint `/duffel-flights-list-offers`. The `FlightSearch` component handles user input and submits a request to the backend, while the `FlightResults` component displays the flight offers returned from the API. A loading indicator is shown while the request is being processed.
