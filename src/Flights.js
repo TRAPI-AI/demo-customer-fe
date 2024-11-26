@@ -1,61 +1,64 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-const Flights = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+function Flights() {
+  const [loading, setLoading] = useState(false);
+  const [offers, setOffers] = useState([]);
 
-  const handleSelectClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const fetchFlightOffers = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('http://localhost:5000/duffel-flights-list-offers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: {
+            slices: [
+              {
+                origin: 'JFK',
+                destination: 'LAX',
+                departure_date: '2023-12-01',
+              },
+            ],
+            passengers: [
+              {
+                type: 'adult',
+              },
+            ],
+          },
+        }),
+      });
+      const data = await response.json();
+      setOffers(data.data.offers);
+    } catch (error) {
+      console.error('Error fetching flight offers:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div>
-      <div className="search-area">
-        <div className="search">
-          {/* Input fields go in this container */}
-          <input className="origin" />
-          <input className="destination" />
-          <input className="departure-date" type="date" />
-          <select className="passenger-type">
-            <option value="adult">Option</option>
-          </select>
-          <button className="search-button">Search</button>
-        </div>
-      </div>
-      {/* Response items go in this container */}
+      <button onClick={fetchFlightOffers}>Fetch Flight Offers</button>
+      {loading && <p>Loading...</p>}
       <ul>
-        <li className="offer-item">
-          <p className="operator-name">name</p>
-          <div>
-            <p className="departing-at">departing at</p>
-            <p className="origin-name">origin name</p>
-          </div>
-          <p className="duration">duration</p>
-          <div>
-            <p className="arriving-at">arriving at</p>
-            <p className="destination-name">destination name</p>
-          </div>
-          <div>
-            <p className="total-amount">amount</p>
-            <button className="select-button" onClick={handleSelectClick}>
-              Select
-            </button>
-          </div>
-        </li>
+        {offers.map((offer, index) => (
+          <li key={index}>
+            {offer.slices.map((slice, sliceIndex) => (
+              <div key={sliceIndex}>
+                <p>Origin: {slice.origin.iata_code}</p>
+                <p>Destination: {slice.destination.iata_code}</p>
+                <p>Departure Date: {slice.departure_date}</p>
+              </div>
+            ))}
+          </li>
+        ))}
       </ul>
-      {isModalOpen && (
-        <div className="select-modal">
-          <p className="total-emissions">Emissions</p>
-          <p className="destination-type">Tax Amount</p>
-          <p className="corporate-code">Code</p>
-          <button onClick={handleCloseModal}>Close</button>
-        </div>
-      )}
     </div>
   );
-};
+}
 
 export default Flights;
+
+// The above code integrates the new endpoint with the frontend by creating a `Flights` component that fetches flight offers from the backend and displays them. The `App` component renders the `Flights` component. The backend is already set up to handle requests to the `/duffel-flights-list-offers` endpoint, as shown in the provided `backend.py` file.
