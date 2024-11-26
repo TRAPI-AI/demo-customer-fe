@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Flights = () => {
+const FlightResults = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSelectClick = () => {
@@ -13,18 +13,6 @@ const Flights = () => {
 
   return (
     <div>
-      <div className="search-area">
-        <div className="search">
-          {/* Input fields go in this container */}
-          <input className="origin" />
-          <input className="destination" />
-          <input className="departure-date" type="date" />
-          <select className="passenger-type">
-            <option value="adult">Option</option>
-          </select>
-          <button className="search-button">Search</button>
-        </div>
-      </div>
       {/* Response items go in this container */}
       <ul>
         <li className="offer-item">
@@ -58,4 +46,4 @@ const Flights = () => {
   );
 };
 
-export default Flights;
+export default FlightResults;

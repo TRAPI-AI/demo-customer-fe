@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 
 const CarRentals = () => {
+  // eslint-disable-next-line no-unused-vars
   const [OffersList, setOffersList] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [OfferInfo, setOfferInfo] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [BookingDetails, setBookingDetails] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [BookingSuccess, setBookingSuccess] = useState(false);
 
   return (
@@ -21,7 +25,7 @@ const CarRentals = () => {
       {OffersList && (
         <ul>
           <li className="search-response-item">
-            <img alt="Placeholder Image" className="vehicle-image" />
+            <img alt="Placeholder" className="vehicle-image" />
             <div>
               <p className="status"></p>
               <p className="capacity">Capacity: </p>

@@ -13,7 +13,7 @@ const Tabs = ({ setActiveTab, activeTab }) => {
     >
       <div
         style={{
-          border: activeTab === "Flights" ? "1px solid white" : "1px solid transparent",
+          border: activeTab === "FlightSearch" ? "1px solid white" : "1px solid transparent",
           borderRadius: 50,
           padding: "17px 22px",
           color: "white",
@@ -22,11 +22,11 @@ const Tabs = ({ setActiveTab, activeTab }) => {
           display: "flex", // Ensure the contents of the div are laid out in a row
           alignItems: "center", // Align the image and text vertically
           backgroundColor:
-            activeTab === "Flights"
+            activeTab === "FlightSearch"
               ? "rgba(255, 255, 255, 0.18)"
               : "transparent", // Very transparent white
         }}
-        onClick={() => setActiveTab("Flights")}
+        onClick={() => setActiveTab("FlightSearch")}
       >
         <img src="/Air.png" alt="Air" style={{ marginRight: 12, height: 25 }} />
         Flights

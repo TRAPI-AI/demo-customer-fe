@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./navbar";
 import Tabs from "./Tabs";
-import Flights from "./Flights";
+import FlightSearch from "./FlightSearch";
 import Stays from "./Stays";
 import Cruises from "./Cruises";
 import CarRentals from "./CarRentals";
@@ -11,13 +11,13 @@ import Trains from "./Trains";
 import RideHailing from "./RideHailing";
 
 function Search() {
-  const [activeTab, setActiveTab] = useState('Flights');
+  const [activeTab, setActiveTab] = useState('FlightSearch');
 
   return (
     <div>
       <Navbar />
       <Tabs setActiveTab={setActiveTab} activeTab={activeTab} />
-      {activeTab === 'Flights' && <Flights />}
+      {activeTab === 'FlightSearch' && <FlightSearch />}
       {activeTab === 'Stays' && <Stays />}
       {activeTab === 'Cruises' && <Cruises />}
       {activeTab === 'Trains' && <Trains />}
