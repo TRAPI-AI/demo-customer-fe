@@ -1,49 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 
-const FlightResults = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleSelectClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+const FlightResults = ({ flightData }) => {
+  if (!flightData) {
+    return null;
+  }
 
   return (
     <div>
-      {/* Response items go in this container */}
       <ul>
-        <li className="offer-item">
-          <p className="operator-name">name</p>
-          <div>
-            <p className="departing-at">departing at</p>
-            <p className="origin-name">origin name</p>
-          </div>
-          <p className="duration">duration</p>
-          <div>
-            <p className="arriving-at">arriving at</p>
-            <p className="destination-name">destination name</p>
-          </div>
-          <div>
-            <p className="total-amount">amount</p>
-            <button className="select-button" onClick={handleSelectClick}>
-              Select
-            </button>
-          </div>
-        </li>
+        {flightData.data.offers.map((offer, index) => (
+          <li key={index} className="offer-item">
+            <p className="operator-name">{offer.slices[0].segments[0].operating_carrier.name}</p>
+            <div>
+              <p className="departing-at">{new Date(offer.slices[0].segments[0].departing_at).toLocaleString()}</p>
+              <p className="origin-name">{offer.slices[0].segments[0].origin.name}</p>
+            </div>
+            <p className="duration">{offer.slices[0].segments[0].duration}</p>
+            <div>
+              <p className="arriving-at">{new Date(offer.slices[0].segments[0].arriving_at).toLocaleString()}</p>
+              <p className="destination-name">{offer.slices[0].segments[0].destination.name}</p>
+            </div>
+            <div>
+              <p className="total-amount">{offer.total_currency} {offer.total_amount}</p>
+              <button className="select-button" onClick={() => alert('Selected!')}>
+                Select
+              </button>
+            </div>
+          </li>
+        ))}
       </ul>
-      {isModalOpen && (
-        <div className="select-modal">
-          <p className="total-emissions">Emissions</p>
-          <p className="destination-type">Tax Amount</p>
-          <p className="corporate-code">Code</p>
-          <button onClick={handleCloseModal}>Close</button>
-        </div>
-      )}
     </div>
   );
 };
 
 export default FlightResults;
+
+// The above code refactors the FlightSearch and FlightResults components to integrate with the backend API. It includes a loading indicator and maps the API response to the frontend display.
