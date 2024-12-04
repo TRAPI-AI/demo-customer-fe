@@ -33,7 +33,7 @@ const Tabs = ({ setActiveTab, activeTab }) => {
       </div>
       <div
         style={{
-          border: activeTab === "Stays" ? "1px solid white" : "1px solid transparent",
+          border: activeTab === "StaysSearch" ? "1px solid white" : "1px solid transparent",
           borderRadius: 50,
           padding: "17px 22px",
           color: "white",
@@ -44,7 +44,7 @@ const Tabs = ({ setActiveTab, activeTab }) => {
           backgroundColor:
             activeTab === "Stays" ? "rgba(255, 255, 255, 0.18)" : " transparent", // Very transparent white
         }}
-        onClick={() => setActiveTab("Stays")}
+        onClick={() => setActiveTab("StaysSearch")}
       >
         <img
           src="/Beds.png"
