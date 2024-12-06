@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const StaysResults = () => {
+const StaysResults = ({ results }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSelectClick = () => {
@@ -13,26 +13,27 @@ const StaysResults = () => {
 
   return (
     <div>
-      {/* Response items go in this container */}
       <ul>
-        <li className="offer-item">
-          <p className="destination">destination</p>
-          <div>
-            <p className="zone">zone</p>
-            <p className="discount">discount</p>
-          </div>
-          <p className="rate-class">rate class</p>
-          <div>
-            <p className="category">category</p>
-            <p className="board-name">board name</p>
-          </div>
-          <div>
-            <p className="rate">rate</p>
-            <button className="select-button" onClick={handleSelectClick}>
-              Select
-            </button>
-          </div>
-        </li>
+        {results.map((hotel) => (
+          <li key={hotel.code} className="offer-item">
+            <p className="destination">{hotel.destinationName}</p>
+            <div>
+              <p className="zone">{hotel.zoneName}</p>
+              <p className="discount">{hotel.rooms[0].rates[0].discount}</p>
+            </div>
+            <p className="rate-class">{hotel.rooms[0].rates[0].rateClass}</p>
+            <div>
+              <p className="category">{hotel.categoryName}</p>
+              <p className="board-name">{hotel.rooms[0].rates[0].boardName}</p>
+            </div>
+            <div>
+              <p className="rate">{hotel.rooms[0].rates[0].net}</p>
+              <button className="select-button" onClick={handleSelectClick}>
+                Select
+              </button>
+            </div>
+          </li>
+        ))}
       </ul>
       {isModalOpen && (
         <div className="select-modal">
