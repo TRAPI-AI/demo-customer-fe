@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const StaysResults = () => {
+const StaysResults = ({ offers }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSelectClick = () => {
@@ -13,32 +13,33 @@ const StaysResults = () => {
 
   return (
     <div>
-      {/* Response items go in this container */}
       <ul>
-        <li className="offer-item">
-          <p className="destination">destination</p>
-          <div>
-            <p className="zone">zone</p>
-            <p className="discount">discount</p>
-          </div>
-          <p className="rate-class">rate class</p>
-          <div>
-            <p className="category">category</p>
-            <p className="board-name">board name</p>
-          </div>
-          <div>
-            <p className="rate">rate</p>
-            <button className="select-button" onClick={handleSelectClick}>
-              Select
-            </button>
-          </div>
-        </li>
+        {offers.map((offer, index) => (
+          <li key={index} className="offer-item">
+            <p className="destination">{offer.destination.city_name}</p>
+            <div>
+              <p className="zone">{offer.destination_type}</p>
+              <p className="discount">{offer.conditions.change_before_departure.penalty_amount}</p>
+            </div>
+            <p className="rate-class">{offer.slices[0].fare_brand_name}</p>
+            <div>
+              <p className="category">{offer.slices[0].segments[0].cabin_class}</p>
+              <p className="board-name">{offer.slices[0].segments[0].marketing_carrier.name}</p>
+            </div>
+            <div>
+              <p className="rate">{offer.total_amount}</p>
+              <button className="select-button" onClick={handleSelectClick}>
+                Select
+              </button>
+            </div>
+          </li>
+        ))}
       </ul>
       {isModalOpen && (
         <div className="select-modal">
-          <p className="total-emissions">Emissions</p>
-          <p className="destination-type">Tax Amount</p>
-          <p className="corporate-code">Code</p>
+          <p className="total-emissions">Emissions: {offers[0].total_emissions_kg}</p>
+          <p className="destination-type">Tax Amount: {offers[0].tax_amount}</p>
+          <p className="corporate-code">Code: {offers[0].id}</p>
           <button onClick={handleCloseModal}>Close</button>
         </div>
       )}
