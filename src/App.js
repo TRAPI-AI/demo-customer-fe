@@ -1,12 +1,20 @@
-import React from "react";
-import Routing from "./Routing"; 
+import React, { useState } from "react";
+import FlightSearch from "./FlightSearch";
+import FlightResults from "./FlightResults";
 
-function App() {
+const App = () => {
+  const [offers, setOffers] = useState([]);
+
+  const handleSearchResults = (data) => {
+    setOffers(data.offers);
+  };
+
   return (
     <div>
-      <Routing /> 
+      <FlightSearch onSearchResults={handleSearchResults} />
+      <FlightResults offers={offers} />
     </div>
   );
-}
+};
 
-export default App
+export default App;
