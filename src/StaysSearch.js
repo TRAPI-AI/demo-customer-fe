@@ -1,21 +1,125 @@
-import React from "react";
-import StaysResults from './StaysResults'
+import React, { useState } from "react";
+import StaysResults from './StaysResults';
 
 const StaysSearch = () => {
+  const [placeName, setPlaceName] = useState("");
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const [error, setError] = useState("");
+  const [results, setResults] = useState([]);
+
+  const getCoordinates = async (placeName) => {
+    const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(placeName)}&key=${apiKey}`;
+    try {
+      const response = await fetch(geocodeUrl);
+      const data = await response.json();
+      console.log('Geocoding response:', data);
+      if (data.results.length > 0) {
+        const location = data.results[0].geometry.location;
+        return {
+          latitude: location.lat,
+          longitude: location.lng,
+        };
+      } else {
+        throw new Error('No results found for the specified place name.');
+      }
+    } catch (error) {
+      console.error('Geocoding error:', error);
+      throw error;
+    }
+  };
+
+  const handleSearch = async () => {
+    if (!placeName || !checkIn || !checkOut) {
+      setError("Please fill in all fields.");
+      return;
+    }
+    try {
+      const { latitude, longitude } = await getCoordinates(placeName);
+      const requestBody = {
+        stay: {
+          checkIn,
+          checkOut
+        },
+        occupancies: [{
+          rooms: 1,
+          adults,
+          children
+        }],
+        geolocation: {
+          latitude,
+          longitude,
+          radius: 50,
+          unit: "km"
+        }
+      };
+
+      const response = await fetch("http://localhost:5000/hotelbeds-hotels-booking-hotel-availability", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(requestBody)
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch hotel availability.");
+      }
+
+      const data = await response.json();
+      setResults(data.hotels.hotels);
+      setError("");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <div>
       <div className="search-area">
         <div className="search">
-          {/* Input fields go in this container */}
-          <input placeholder="Place" className="placeName" />
-          <input className="checkIn" type="date" />
-          <input className="checkOut" type="date" />
-          <input placeholder="Adults" className="adults" type="number" />
-          <input placeholder="Children" className="children" type="number" />
-          <button className="search-button">Search</button>
+          <input
+            placeholder="Place"
+            className="placeName"
+            value={placeName}
+            onChange={(e) => setPlaceName(e.target.value)}
+          />
+          <input
+            className="checkIn"
+            type="date"
+            value={checkIn}
+            onChange={(e) => setCheckIn(e.target.value)}
+          />
+          <input
+            className="checkOut"
+            type="date"
+            value={checkOut}
+            onChange={(e) => setCheckOut(e.target.value)}
+          />
+          <input
+            placeholder="Adults"
+            className="adults"
+            type="number"
+            min="1"
+            value={adults}
+            onChange={(e) => setAdults(e.target.value)}
+          />
+          <input
+            placeholder="Children"
+            className="children"
+            type="number"
+            min="0"
+            value={children}
+            onChange={(e) => setChildren(e.target.value)}
+          />
+          <button className="search-button" onClick={handleSearch}>Search</button>
         </div>
+        {error && <p className="error">{error}</p>}
       </div>
-      <StaysResults />
+      <StaysResults results={results} />
     </div>
   );
 };
