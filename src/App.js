@@ -1,12 +1,12 @@
-import React from "react";
-import Routing from "./Routing"; 
+import React from 'react';
+import DuffelFlightOffers from './components/DuffelFlightOffers';
 
 function App() {
   return (
     <div>
-      <Routing /> 
+      <DuffelFlightOffers />
     </div>
   );
 }
 
-export default App
+export default App;
